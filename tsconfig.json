@@ -1,6 +1,17 @@
 {
   "extends": "expo/tsconfig.base",
+  "preset": "react-native",
   "compilerOptions": {
-    "strict": true
-  }
+    "strict": true,
+    "target": "es5",
+    "module": "commonjs",
+    "jsx": "react-native",
+    "moduleResolution": "node",
+    "paths": {
+      "*": ["./node_modules/*"]
+    }
+  },
+  "transformIgnorePatterns": [
+    "node_modules/(?!(@react-native|react-native|@react-navigation)/)"
+  ]
 }
