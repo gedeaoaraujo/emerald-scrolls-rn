@@ -19,7 +19,7 @@ export default function App() {
           name="Home"
           component={HomeScreen}
           options={{
-            title: 'Home',
+            title: 'Emerald Scrolls',
             headerTintColor: Colors.white,
             headerStyle: { backgroundColor: Colors.primary },
           }}
