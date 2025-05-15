@@ -1,5 +1,6 @@
 import { ScrollItem } from './ScrollItem';
 import { RootStackParamList } from '../App';
+import { FloatActionBtn } from './FloatActionBtn';
 import { ScrollModel } from '../model/ScrollModel';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { StyleSheet, View, FlatList } from 'react-native';
@@ -11,6 +12,10 @@ type HomeScreenProps = {
 export const HomeScreen = (props: HomeScreenProps) => {
   function goToScroll(item: ScrollModel) {
     props.navigation.navigate('Scroll', item)
+  }
+
+  function goToCreate() {
+    props.navigation.navigate('Create')
   }
 
   const mockItens = () => {
@@ -28,22 +33,27 @@ export const HomeScreen = (props: HomeScreenProps) => {
 
   return (
     <View style={styles.content}>
-      <FlatList
-        data={mockItens()}
-        renderItem={({item}) =>
-          <ScrollItem
-            item={item}
-            goToScroll={goToScroll}
-          />
-        }
-      />
+      <View style={styles.list}>
+        <FlatList
+          data={mockItens()}
+          renderItem={({item}) =>
+            <ScrollItem
+              item={item}
+              goToScroll={goToScroll}
+            />
+          }
+        />
+      </View>
+      <FloatActionBtn onClick={goToCreate}/>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
   content: {
-    flex: 1,
+    flex: 1
+  },
+  list: {
     alignItems: 'center',
     justifyContent: 'center'
   },
