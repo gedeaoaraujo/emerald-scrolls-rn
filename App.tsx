@@ -9,6 +9,17 @@ export type RootStackParamList = {
   Scroll: undefined;
 };
 
+const Screens = {
+  home: {
+    name: "Home",
+    title: "Emerald Scrolls"
+  },
+  scroll: {
+    name: "Scroll",
+    title: "Scroll"
+  }
+}
+
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -16,19 +27,19 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="Home"
+          name={Screens.home.name}
           component={HomeScreen}
           options={{
-            title: 'Emerald Scrolls',
+            title: Screens.home.title,
             headerTintColor: Colors.white,
             headerStyle: { backgroundColor: Colors.primary },
           }}
         />
         <Stack.Screen
-          name="Scroll"
+          name={Screens.scroll.name}
           component={ScrollScreen}
           options={{
-            title: 'Scroll',
+            title: Screens.scroll.title,
             headerTintColor: Colors.white,
             headerStyle: { backgroundColor: Colors.primary }, 
           }}
