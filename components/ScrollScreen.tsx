@@ -1,11 +1,11 @@
 import { ScrollModel } from '../model/ScrollModel';
 import { StyleSheet, Text, View } from 'react-native';
 
-type ScrollScreenProps = {
+type ViewScrollScreenProps = {
   route: { params: ScrollModel }
 };
 
-export const ScrollScreen = ({route}: ScrollScreenProps) => {
+export const ViewScrollScreen = ({route}: ViewScrollScreenProps) => {
   return (
     <View style={styles.content}>
       <Text style={styles.title}>{route.params.title}</Text>

@@ -11,7 +11,7 @@ type HomeScreenProps = {
 
 export const HomeScreen = (props: HomeScreenProps) => {
   function goToScroll(item: ScrollModel) {
-    props.navigation.navigate('Scroll', item)
+    props.navigation.navigate('View', item)
   }
 
   function goToCreate() {
