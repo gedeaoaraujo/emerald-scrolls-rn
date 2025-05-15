@@ -1,4 +1,5 @@
 import { Colors } from './colors.js';
+import { ScrollModel } from './model/ScrollModel.js';
 import { HomeScreen } from './components/HomeSceen';
 import { ScrollScreen } from './components/ScrollScreen';
 import { NavigationContainer } from '@react-navigation/native';
@@ -6,7 +7,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 export type RootStackParamList = {
   Home: undefined;
-  Scroll: undefined;
+  Scroll: ScrollModel;
 };
 
 const Screens = {
