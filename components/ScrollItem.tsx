@@ -1,22 +1,19 @@
+import { ScrollModel } from "../model/ScrollModel";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 type ScrollItemProps = {
-  props: {
-    title: string,
-    date: string,
-    text: string,
-    goToScroll: ()=>void 
-  },
+  item: ScrollModel,
+  goToScroll: (scroll: ScrollModel) => void
 };
 
-export const ScrollItem = ({props}: ScrollItemProps) => {
+export const ScrollItem = (props: ScrollItemProps) => {
   return (
     <TouchableOpacity
-      onPress={props.goToScroll}>
+      onPress={() => props.goToScroll(props.item)}>
         <View style={styles.container}>
-          <Text style={styles.title}>{props.title}</Text>
-          <Text style={styles.date}>{props.date}</Text>
-          <Text style={styles.text}>{props.text}</Text>
+          <Text style={styles.title}>{props.item.title}</Text>
+          <Text style={styles.date}>{props.item.date}</Text>
+          <Text style={styles.text}>{props.item.text}</Text>
         </View>
     </TouchableOpacity>
   )

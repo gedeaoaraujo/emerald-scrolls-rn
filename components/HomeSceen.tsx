@@ -1,5 +1,6 @@
 import { ScrollItem } from './ScrollItem';
 import { RootStackParamList } from '../App';
+import { ScrollModel } from '../model/ScrollModel';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { StyleSheet, View, FlatList } from 'react-native';
 
@@ -8,8 +9,8 @@ type HomeScreenProps = {
 };
 
 export const HomeScreen = (props: HomeScreenProps) => {
-  function goToScroll() {
-    props.navigation.navigate('Scroll', undefined)
+  function goToScroll(item: ScrollModel) {
+    props.navigation.navigate('Scroll', item)
   }
 
   const mockItens = () => {
@@ -17,13 +18,11 @@ export const HomeScreen = (props: HomeScreenProps) => {
       .from(Array(100).keys())
       .map(val => {
         return {
-          key: val,
-          props: {
-            title: 'Title ' + val,
-            date: '05/02/25 14:00',
-            text: 'Something here...',
-            goToScroll
-          }}
+          id: val,
+          title: 'Title ' + val,
+          date: '05/02/25 14:00',
+          text: 'Something here...'
+        }
       });
   }
 
@@ -32,7 +31,10 @@ export const HomeScreen = (props: HomeScreenProps) => {
       <FlatList
         data={mockItens()}
         renderItem={({item}) =>
-          <ScrollItem props={item.props}/>
+          <ScrollItem
+            item={item}
+            goToScroll={goToScroll}
+          />
         }
       />
     </View>

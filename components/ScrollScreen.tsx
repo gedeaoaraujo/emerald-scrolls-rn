@@ -1,20 +1,16 @@
-import { RootStackParamList } from '../App';
+import { ScrollModel } from '../model/ScrollModel';
 import { StyleSheet, Text, View } from 'react-native';
-import { StackNavigationProp } from '@react-navigation/stack';
 
 type ScrollScreenProps = {
-  title: string,
-  date: string,
-  text: string,
-  navigation: StackNavigationProp<RootStackParamList, 'Scroll'>;
+  route: { params: ScrollModel }
 };
 
-export const ScrollScreen = (props: ScrollScreenProps) => { 
+export const ScrollScreen = ({route}: ScrollScreenProps) => {
   return (
     <View style={styles.content}>
-      <Text>{props.title}</Text>
-      <Text>{props.date}</Text>
-      <Text>{props.text}</Text>
+      <Text style={styles.title}>{route.params.title}</Text>
+      <Text style={styles.date}>{route.params.date}</Text>
+      <Text style={styles.text}>{route.params.text}</Text>
     </View>
   )
 }
@@ -22,7 +18,16 @@ export const ScrollScreen = (props: ScrollScreenProps) => {
 const styles = StyleSheet.create({
   content: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
+    padding: 18,
   },
+  title: {
+    fontSize: 18,
+    fontWeight: 'bold'
+  },
+  date: {
+    paddingVertical: 8
+  },
+  text: {
+    fontSize: 16
+  }
 });
