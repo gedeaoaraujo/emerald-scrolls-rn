@@ -8,8 +8,8 @@ type HomeScreenProps = {
 };
 
 export const HomeScreen = (props: HomeScreenProps) => {
-  function goToProfile() {
-    props.navigation.navigate('Profile', { name: 'XXX' })
+  function goToScroll() {
+    props.navigation.navigate('Scroll', undefined)
   }
 
   const mockItens = () => {
@@ -22,7 +22,7 @@ export const HomeScreen = (props: HomeScreenProps) => {
             title: 'Title ' + val,
             date: '05/02/25 14:00',
             text: 'Something here...',
-            goToProfile
+            goToScroll
           }}
       });
   }

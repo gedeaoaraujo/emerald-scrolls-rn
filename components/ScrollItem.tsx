@@ -5,14 +5,14 @@ type ScrollItemProps = {
     title: string,
     date: string,
     text: string,
-    goToProfile: ()=>void
+    goToScroll: ()=>void 
   },
 };
 
 export const ScrollItem = ({props}: ScrollItemProps) => {
   return (
     <TouchableOpacity
-      onPress={props.goToProfile}>
+      onPress={props.goToScroll}>
         <View style={styles.container}>
           <Text style={styles.title}>{props.title}</Text>
           <Text style={styles.date}>{props.date}</Text>

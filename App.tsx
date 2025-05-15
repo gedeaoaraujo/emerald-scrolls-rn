@@ -1,12 +1,12 @@
 import { Colors } from './colors.js';
 import { HomeScreen } from './components/HomeSceen';
-import { ProfileScreen } from './components/ProfileScreen';
+import { ScrollScreen } from './components/ScrollScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 export type RootStackParamList = {
   Home: undefined;
-  Profile: { name: string };
+  Scroll: undefined;
 };
 
 const Stack = createNativeStackNavigator();
@@ -25,10 +25,10 @@ export default function App() {
           }}
         />
         <Stack.Screen
-          name="Profile"
-          component={ProfileScreen}
+          name="Scroll"
+          component={ScrollScreen}
           options={{
-            title: 'Profile',
+            title: 'Scroll',
             headerTintColor: Colors.white,
             headerStyle: { backgroundColor: Colors.primary }, 
           }}

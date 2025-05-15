@@ -2,15 +2,19 @@ import { RootStackParamList } from '../App';
 import { StyleSheet, Text, View } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
-type ProfileScreenProps = {
-    route: { params: { name: '' } };
-    navigation: StackNavigationProp<RootStackParamList, 'Profile'>;
+type ScrollScreenProps = {
+  title: string,
+  date: string,
+  text: string,
+  navigation: StackNavigationProp<RootStackParamList, 'Scroll'>;
 };
 
-export const ProfileScreen = (props: ProfileScreenProps) => { 
+export const ScrollScreen = (props: ScrollScreenProps) => { 
   return (
     <View style={styles.content}>
-      <Text>This is {props.route.params.name}'s profile</Text>
+      <Text>{props.title}</Text>
+      <Text>{props.date}</Text>
+      <Text>{props.text}</Text>
     </View>
   )
 }
