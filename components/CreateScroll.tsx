@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { StyleSheet, TextInput, View } from 'react-native';
+import { dateTimeNow } from '../utils/date';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
 
 export const CreateScrollScreen = () => {
   const [title, onChageTitle] = useState('')
-  const [date, onChageDate] = useState('')
   const [text, onChageText] = useState('')
+
   return (
     <View style={styles.content}>
       <TextInput 
@@ -13,12 +14,9 @@ export const CreateScrollScreen = () => {
         style={styles.title}
         onChangeText={onChageTitle}
       />
-      <TextInput 
-        value={date}
-        placeholder="Date"
-        style={styles.date}
-        onChangeText={onChageDate}
-      />
+      <Text style={styles.date}>
+          {dateTimeNow()}
+      </Text>
       <TextInput
         editable
         multiline
@@ -42,9 +40,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   date: {
-    paddingVertical: 8
+    paddingVertical: 8,
+    paddingHorizontal: 4
   },
   text: {
-    fontSize: 16
+    fontSize: 16,
+    paddingHorizontal: 8
   }
 });
