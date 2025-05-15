@@ -19,11 +19,11 @@ const Screens = {
   },
   scroll: {
     name: "Scroll",
-    title: "Scroll"
+    title: "View Scroll"
   },
   create: {
     name: "Create",
-    title: "Create"
+    title: "Create Scroll"
   }
 }
 
