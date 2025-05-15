@@ -15,7 +15,7 @@ export const HomeScreen = (props: HomeScreenProps) => {
 
   const mockItens = () => {
     return Array
-      .from(Array(100).keys())
+      .from(Array(3).keys())
       .map(val => {
         return {
           id: val,
