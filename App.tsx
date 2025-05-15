@@ -3,11 +3,13 @@ import { ScrollModel } from './model/ScrollModel.js';
 import { HomeScreen } from './components/HomeSceen';
 import { ScrollScreen } from './components/ScrollScreen';
 import { NavigationContainer } from '@react-navigation/native';
+import { CreateScrollScreen } from './components/CreateScroll';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 export type RootStackParamList = {
   Home: undefined;
   Scroll: ScrollModel;
+  Create: undefined;
 };
 
 const Screens = {
@@ -18,6 +20,10 @@ const Screens = {
   scroll: {
     name: "Scroll",
     title: "Scroll"
+  },
+  create: {
+    name: "Create",
+    title: "Create"
   }
 }
 
@@ -43,6 +49,15 @@ export default function App() {
             title: Screens.scroll.title,
             headerTintColor: Colors.white,
             headerStyle: { backgroundColor: Colors.primary }, 
+          }}
+        />
+        <Stack.Screen
+          name={Screens.create.name}
+          component={CreateScrollScreen}
+          options={{
+            title: Screens.create.title,
+            headerTintColor: Colors.white,
+            headerStyle: { backgroundColor: Colors.primary },
           }}
         />
       </Stack.Navigator>
