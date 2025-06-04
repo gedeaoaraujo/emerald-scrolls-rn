@@ -4,9 +4,9 @@ import { ScrollModel } from './model/ScrollModel.js';
 import { TouchableOpacity, View, StyleSheet } from 'react-native';
 import { HomeScreen } from './components/HomeSceen';
 import { NavigationContainer } from '@react-navigation/native';
-import { CreateScrollScreen } from './components/CreateScroll';
+import { CreateScrollScreen } from './components/CreateScrollScreen';
 import { createStackNavigator } from '@react-navigation/stack';
-import { ViewScrollScreen as ViewScrollScreen } from './components/ScrollScreen';
+import { ViewScrollScreen } from './components/ViewScrollScreen';
 
 export type RootStackParamList = {
   Home: undefined;
