@@ -3,7 +3,7 @@ import { ScrollModel } from './model/ScrollModel.js';
 import { HomeScreen } from './components/HomeSceen';
 import { NavigationContainer } from '@react-navigation/native';
 import { CreateScrollScreen } from './components/CreateScroll';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createStackNavigator } from '@react-navigation/stack';
 import { ViewScrollScreen as ViewScrollScreen } from './components/ScrollScreen';
 
 export type RootStackParamList = {
@@ -12,7 +12,7 @@ export type RootStackParamList = {
   Create: undefined;
 };
 
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
