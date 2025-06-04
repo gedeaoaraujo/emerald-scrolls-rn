@@ -1,5 +1,7 @@
 import { Colors } from './colors.js';
+import { FontAwesome6 } from '@expo/vector-icons';
 import { ScrollModel } from './model/ScrollModel.js';
+import { TouchableOpacity, View, StyleSheet } from 'react-native';
 import { HomeScreen } from './components/HomeSceen';
 import { NavigationContainer } from '@react-navigation/native';
 import { CreateScrollScreen } from './components/CreateScroll';
@@ -33,7 +35,31 @@ export default function App() {
           options={{
             title: "View Scroll",
             headerTintColor: Colors.white,
-            headerStyle: { backgroundColor: Colors.primary }, 
+            headerStyle: { backgroundColor: Colors.primary },
+            headerRight: () => (
+              <View style={{flexDirection: 'row'}}>
+                <TouchableOpacity
+                  style={styles.option}
+                  onPress={() => alert('Generating pdf file...')}>
+                    <FontAwesome6 name='file-pdf' size={20} color='white'/>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.option}
+                  onPress={() => alert('Sharing text...')}>
+                    <FontAwesome6 name='share-nodes' size={20} color='white'/>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.option}
+                  onPress={() => alert('Editing scroll...')}>
+                    <FontAwesome6 name='pen' size={20} color='white'/>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.option}
+                  onPress={() => alert('Removing scroll...')}>
+                    <FontAwesome6 name='trash' size={20} color='white'/>
+                </TouchableOpacity>
+              </View>
+            ),
           }}
         />
         <Stack.Screen
@@ -49,3 +75,9 @@ export default function App() {
     </NavigationContainer>
   );
 }
+
+const styles = StyleSheet.create({
+  option: {
+    paddingHorizontal: 10
+  }
+})
