@@ -3,7 +3,7 @@
   "preset": "react-native",
   "compilerOptions": {
     "strict": true,
-    "target": "es5",
+    "target": "es2022",
     "module": "commonjs",
     "jsx": "react-native",
     "moduleResolution": "node",
