@@ -6,6 +6,7 @@
     "target": "es2022",
     "module": "commonjs",
     "jsx": "react-native",
+    "noImplicitAny": false,
     "moduleResolution": "node",
     "paths": {
       "*": ["./node_modules/*"]
