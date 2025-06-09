@@ -4,11 +4,15 @@ import { StyleSheet, Text, TextInput, View } from 'react-native';
 import { ScrollsContext } from '../contexts/ScrollsContext';
 
 export const CreateScrollScreen = () => {
+  const dateNow = dateTimeNow()
   const {
     title, text, 
     onChageText,
-    onChageTitle, 
+    onChageTitle,
+    onChageDate
   } = useContext(ScrollsContext)
+  
+  onChageDate(dateNow)
 
   return (
     <View style={styles.content}>
@@ -19,7 +23,7 @@ export const CreateScrollScreen = () => {
         onChangeText={onChageTitle}
       />
       <Text style={styles.date}>
-          {dateTimeNow()}
+          {dateNow}
       </Text>
       <TextInput
         editable

@@ -8,14 +8,17 @@ export const ScrollsContext = createContext({
     createScroll: ()=>{},
     onChageText: (txt: string)=>{},
     removeScroll: (id: number)=>{},
+    onChageDate: (date: string)=>{},
     onChageTitle: (title: string)=>{}
 })
 export function ScrollsProvider({ children }) {
+    const [date, setDate] = useState('')
     const [text, setText] = useState('')
     const [title, setTitle] = useState('')
     const [list, setList] = useState(scrollsList)
 
     const onChageText = (txt: string) => setText(txt)
+    const onChageDate = (date: string) => setDate(date)
     const onChageTitle = (title: string) => setTitle(title)
 
     const removeScroll = (id: number) => {
@@ -25,11 +28,12 @@ export function ScrollsProvider({ children }) {
     const createScroll = () => {
         const newScroll = {
             id: list.length + 1,
-            title: title, date: '', text: text
+            title: title, date: date, text: text
         }
         setList((prevItems) => [...prevItems, newScroll])
         
         setText('')
+        setDate('')
         setTitle('')
     }
 
@@ -40,7 +44,8 @@ export function ScrollsProvider({ children }) {
             title, 
             removeScroll, 
             createScroll, 
-            onChageTitle, 
+            onChageTitle,
+            onChageDate,
             onChageText 
         }}>
             {children}
