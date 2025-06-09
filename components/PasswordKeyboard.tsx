@@ -30,9 +30,8 @@ export const PasswordKeyboard = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: 300,
-    maxHeight: 300,
-    paddingTop: 60,
+    padding: 40,
+    maxHeight: 400,
     alignItems: 'center',
     justifyContent: 'center',
   },
