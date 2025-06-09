@@ -1,5 +1,7 @@
 import React, { createContext, useState } from "react";
 import { scrollsList } from "../data/MockedScrolls";
+import { ScrollModel } from "../model/ScrollModel";
+import { Share } from "react-native";
 
 export const ScrollsContext = createContext({
     text: '',
@@ -9,8 +11,10 @@ export const ScrollsContext = createContext({
     onChageText: (txt: string)=>{},
     removeScroll: (id: number)=>{},
     onChageDate: (date: string)=>{},
-    onChageTitle: (title: string)=>{}
+    onChageTitle: (title: string)=>{},
+    shareScroll: (scroll: ScrollModel)=>{},
 })
+
 export function ScrollsProvider({ children }) {
     const [date, setDate] = useState('')
     const [text, setText] = useState('')
@@ -37,11 +41,18 @@ export function ScrollsProvider({ children }) {
         setTitle('')
     }
 
+    const shareScroll = (scroll: ScrollModel) => {
+        Share.share({ 
+            message: `${scroll.title}\n${scroll.date}\n${scroll.text}`
+        })
+    }
+
     return (
         <ScrollsContext value={{
             list, 
             text, 
-            title, 
+            title,
+            shareScroll,
             removeScroll, 
             createScroll, 
             onChageTitle,

@@ -2,7 +2,7 @@ import { useContext } from "react"
 import { FontAwesome6 } from '@expo/vector-icons'
 import { ScrollModel } from "../model/ScrollModel"
 import { ScrollsContext } from "../contexts/ScrollsContext"
-import { StyleSheet, TouchableOpacity, View } from "react-native"
+import { StyleSheet, TouchableOpacity, View, Share } from "react-native"
 
 type ScrollParams = {
   scroll: ScrollModel,
@@ -10,7 +10,7 @@ type ScrollParams = {
 }
 
 export function ViewScrollMenu({ scroll, navigation }: ScrollParams) {
-  const { removeScroll } = useContext(ScrollsContext)
+  const { shareScroll, removeScroll } = useContext(ScrollsContext)
 
   const deleteScroll = () => {
     removeScroll(scroll.id)
@@ -26,7 +26,7 @@ export function ViewScrollMenu({ scroll, navigation }: ScrollParams) {
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.option}
-        onPress={() => alert('Sharing text...')}>
+        onPress={() => shareScroll(scroll)}>
         <FontAwesome6 name='share-nodes' size={20} color='white' />
       </TouchableOpacity>
       <TouchableOpacity
