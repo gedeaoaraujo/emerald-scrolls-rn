@@ -10,8 +10,10 @@ import { ViewScrollMenu } from './components/ViewScrollMenu';
 import { CreateScrollMenu } from './components/CreateScrollMenu';
 import { EditScrollScreen } from './components/EditScrollScreen';
 import { EditScrollMenu } from './components/EditScrollMenu';
+import { SplashScreen } from './components/SplashScreen';
 
 export type RootStackParamList = {
+  Splash: undefined;
   Home: undefined;
   View: ScrollModel;
   Create: undefined;
@@ -25,6 +27,16 @@ export default function App() {
     <ScrollsProvider>
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen
+          name="Splash"
+          component={SplashScreen}
+          options={{
+            headerShown: false,
+            title: "Splash Screen",
+            headerTintColor: Colors.white,
+            headerStyle: { backgroundColor: Colors.primary },
+          }}
+        />
         <Stack.Screen
           name="Home"
           component={HomeScreen}
