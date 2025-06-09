@@ -36,7 +36,7 @@ export const HomeScreen = (props: HomeScreenProps) => {
             }
           />
       </View>
-      <FloatActionBtn onClick={goToCreate} />
+      <FloatActionBtn text='+' onClick={goToCreate} />
     </View>
   )
 }

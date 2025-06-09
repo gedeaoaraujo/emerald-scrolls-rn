@@ -3,10 +3,11 @@ import { Colors } from '../colors'
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 
 type FloatActionBtnProps = {
+    text: string,
     onClick: () => void
 }
 
-export const FloatActionBtn = ({onClick}: FloatActionBtnProps) => {
+export const FloatActionBtn = ({text, onClick}: FloatActionBtnProps) => {
   const handlePress = () => {
     onClick();
   };
@@ -14,7 +15,7 @@ export const FloatActionBtn = ({onClick}: FloatActionBtnProps) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.fab} onPress={handlePress}>
-        <Text style={styles.fabText}>+</Text>
+        <Text style={styles.fabText}>{text}</Text>
       </TouchableOpacity>
     </View>
   );
