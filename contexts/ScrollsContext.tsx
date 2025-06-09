@@ -53,7 +53,7 @@ export function ScrollsProvider({ children }) {
     }
 
     const editScroll = (scrollId: number) => {
-        const item = scrollsList
+        const item = list
             .filter(el => el.id === scrollId)[0]
         item.title = title
         item.date = date
@@ -64,7 +64,7 @@ export function ScrollsProvider({ children }) {
     return (
         <ScrollsContext value={{
             list, 
-            text, 
+            text,
             date,
             title,
             editScroll, 
