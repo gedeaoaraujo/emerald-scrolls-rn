@@ -23,11 +23,11 @@ export function ViewScrollMenu({ scroll, navigation }: ScrollParams) {
 
   return (
     <View style={{ flexDirection: 'row' }}>
-      <TouchableOpacity
+      {/* <TouchableOpacity
         style={styles.option}
         onPress={() => alert('Generating pdf file...')}>
         <FontAwesome6 name='file-pdf' size={20} color='white' />
-      </TouchableOpacity>
+      </TouchableOpacity> */}
       <TouchableOpacity
         style={styles.option}
         onPress={() => shareScroll(scroll)}>
