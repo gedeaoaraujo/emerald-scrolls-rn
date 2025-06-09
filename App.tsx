@@ -1,14 +1,12 @@
-import { useContext } from 'react';
 import { Colors } from './colors.js';
-import { FontAwesome6 } from '@expo/vector-icons';
 import { ScrollModel } from './model/ScrollModel.js';
-import { TouchableOpacity, View, StyleSheet } from 'react-native';
 import { HomeScreen } from './components/HomeSceen';
 import { NavigationContainer } from '@react-navigation/native';
 import { CreateScrollScreen } from './components/CreateScrollScreen';
 import { createStackNavigator } from '@react-navigation/stack';
 import { ViewScrollScreen } from './components/ViewScrollScreen';
-import { ScrollsContext, ScrollsProvider } from './contexts/ScrollsContext';
+import { ScrollsProvider } from './contexts/ScrollsContext';
+import { ViewScrollMenu } from './components/ViewScrollMenu.js';
 
 export type RootStackParamList = {
   Home: undefined;
@@ -60,48 +58,3 @@ export default function App() {
     </ScrollsProvider>
   );
 }
-
-type ScrollParams = {
-  scroll: ScrollModel,
-  navigation: any
-}
-
-function ViewScrollMenu({scroll, navigation}: ScrollParams) {
-  const { removeItem } = useContext(ScrollsContext)
-  
-  function deleteScroll() {
-    removeItem(scroll.id)
-    navigation.goBack()
-  }
-
-  return (
-    <View style={{flexDirection: 'row'}}>
-      <TouchableOpacity
-        style={styles.option}
-        onPress={() => alert('Generating pdf file...')}>
-          <FontAwesome6 name='file-pdf' size={20} color='white'/>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.option}
-        onPress={() => alert('Sharing text...')}>
-          <FontAwesome6 name='share-nodes' size={20} color='white'/>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.option}
-        onPress={() => alert('Editing scroll...')}>
-          <FontAwesome6 name='pen' size={20} color='white'/>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.option}
-        onPress={() => deleteScroll()}>
-          <FontAwesome6 name='trash' size={20} color='white'/>
-      </TouchableOpacity>
-    </View>
-  )
-}
-
-const styles = StyleSheet.create({
-  option: {
-    paddingHorizontal: 10
-  }
-})
