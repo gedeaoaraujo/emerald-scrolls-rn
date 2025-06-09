@@ -3,17 +3,17 @@ import { scrollsList } from "../data/MockedScrolls";
 
 export const ScrollsContext = createContext({
     list: scrollsList,
-    removeItem: (id: number)=>{}
+    removeScroll: (id: number)=>{}
 })
 export function ScrollsProvider({ children }) {
     const [list, setList] = useState(scrollsList)
 
-    const removeItem = (id: number) => {
+    const removeScroll = (id: number) => {
         setList((prevItems) => prevItems.filter(i => i.id !== id))
     }
 
     return (
-        <ScrollsContext value={{ list, removeItem }}>
+        <ScrollsContext value={{ list, removeScroll }}>
             {children}
         </ScrollsContext>
     )

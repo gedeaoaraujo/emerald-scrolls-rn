@@ -10,10 +10,10 @@ type ScrollParams = {
 }
 
 export function ViewScrollMenu({ scroll, navigation }: ScrollParams) {
-  const { removeItem } = useContext(ScrollsContext)
+  const { removeScroll } = useContext(ScrollsContext)
 
-  function deleteScroll() {
-    removeItem(scroll.id)
+  const deleteScroll = () => {
+    removeScroll(scroll.id)
     navigation.goBack()
   }
 
