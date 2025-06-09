@@ -4,6 +4,14 @@ import { FontAwesome6 } from '@expo/vector-icons';
 import { checkBiometry } from '../utils/biometry';
 import { useEffect } from 'react';
 import { PasswordKeyboard } from './PasswordKeyboard';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+
+const LogoFragment = () => (
+  <View style={styles.logo}>
+    <FontAwesome6 name='scroll' size={50} color='white'/>
+    <Text style={styles.text}>Emerald Scrolls</Text>
+  </View>
+)
 
 export const SplashScreen = ({ navigation }) => {
   useEffect(() => {
@@ -14,8 +22,7 @@ export const SplashScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <FontAwesome6 name='scroll' size={50} color='white'/>
-      <Text style={styles.text}>Emerald Scrolls</Text>
+      <LogoFragment />
       <PasswordKeyboard />
     </View>
   )
@@ -27,6 +34,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: Colors.primary
+  },
+  logo: {
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   text: {
     padding: 10,
