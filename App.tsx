@@ -8,11 +8,14 @@ import { ViewScrollScreen } from './components/ViewScrollScreen';
 import { ScrollsProvider } from './contexts/ScrollsContext';
 import { ViewScrollMenu } from './components/ViewScrollMenu';
 import { CreateScrollMenu } from './components/CreateScrollMenu';
+import { EditScrollScreen } from './components/EditScrollScreen';
+import { EditScrollMenu } from './components/EditScrollMenu';
 
 export type RootStackParamList = {
   Home: undefined;
   View: ScrollModel;
   Create: undefined;
+  Edit: undefined;
 };
 
 const Stack = createStackNavigator();
@@ -54,6 +57,20 @@ export default function App() {
             headerStyle: { backgroundColor: Colors.primary },
             headerRight: () => (
               <CreateScrollMenu 
+                navigation={navigation}/>
+            )
+          })}
+        />
+        <Stack.Screen
+          name="Edit"
+          component={EditScrollScreen}
+          options={({ route, navigation }) => ({
+            title: "Edit Scroll",
+            headerTintColor: Colors.white,
+            headerStyle: { backgroundColor: Colors.primary },
+            headerRight: () => (
+              <EditScrollMenu
+                scroll={route.params} 
                 navigation={navigation}/>
             )
           })}

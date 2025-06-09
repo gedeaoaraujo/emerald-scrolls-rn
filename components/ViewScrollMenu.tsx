@@ -17,6 +17,10 @@ export function ViewScrollMenu({ scroll, navigation }: ScrollParams) {
     navigation.goBack()
   }
 
+  const editScroll = () => {
+    navigation.navigate('Edit', scroll)
+  }
+
   return (
     <View style={{ flexDirection: 'row' }}>
       <TouchableOpacity
@@ -31,7 +35,7 @@ export function ViewScrollMenu({ scroll, navigation }: ScrollParams) {
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.option}
-        onPress={() => alert('Editing scroll...')}>
+        onPress={() => editScroll()}>
         <FontAwesome6 name='pen' size={20} color='white' />
       </TouchableOpacity>
       <TouchableOpacity

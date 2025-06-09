@@ -8,6 +8,7 @@ export const ScrollsContext = createContext({
     title: '',
     list: scrollsList,
     createScroll: ()=>{},
+    editScroll: (id: number)=>{},
     onChageText: (txt: string)=>{},
     removeScroll: (id: number)=>{},
     onChageDate: (date: string)=>{},
@@ -25,20 +26,23 @@ export function ScrollsProvider({ children }) {
     const onChageDate = (date: string) => setDate(date)
     const onChageTitle = (title: string) => setTitle(title)
 
+    const clearScroll = () => {
+        setText('')
+        setDate('')
+        setTitle('')
+    }
+
     const removeScroll = (id: number) => {
         setList((prevItems) => prevItems.filter(i => i.id !== id))
     }
-    
+
     const createScroll = () => {
         const newScroll = {
             id: list.length + 1,
             title: title, date: date, text: text
         }
         setList((prevItems) => [...prevItems, newScroll])
-        
-        setText('')
-        setDate('')
-        setTitle('')
+        clearScroll()
     }
 
     const shareScroll = (scroll: ScrollModel) => {
@@ -47,14 +51,28 @@ export function ScrollsProvider({ children }) {
         })
     }
 
+    const editScroll = (scrollId: number) => {
+        const item = scrollsList
+            .filter(el => el.id === scrollId)[0]
+
+        const str = JSON.stringify(item)
+        console.log(`item: ${str}`)
+        console.log(`list: ${JSON.stringify(scrollsList)}`)
+
+        item.title = title
+        item.text = text
+        clearScroll()
+    }
+
     return (
         <ScrollsContext value={{
             list, 
             text, 
             title,
+            editScroll, 
             shareScroll,
-            removeScroll, 
-            createScroll, 
+            removeScroll,
+            createScroll,
             onChageTitle,
             onChageDate,
             onChageText 
