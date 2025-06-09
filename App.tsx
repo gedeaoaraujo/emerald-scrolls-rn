@@ -6,7 +6,8 @@ import { CreateScrollScreen } from './components/CreateScrollScreen';
 import { createStackNavigator } from '@react-navigation/stack';
 import { ViewScrollScreen } from './components/ViewScrollScreen';
 import { ScrollsProvider } from './contexts/ScrollsContext';
-import { ViewScrollMenu } from './components/ViewScrollMenu.js';
+import { ViewScrollMenu } from './components/ViewScrollMenu';
+import { CreateScrollMenu } from './components/CreateScrollMenu';
 
 export type RootStackParamList = {
   Home: undefined;
@@ -51,6 +52,9 @@ export default function App() {
             title: "Create Scroll",
             headerTintColor: Colors.white,
             headerStyle: { backgroundColor: Colors.primary },
+            headerRight: () => (
+              <CreateScrollMenu/>
+            )
           }}
         />
       </Stack.Navigator>
