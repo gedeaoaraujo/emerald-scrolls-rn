@@ -11,9 +11,9 @@ export const ScrollItem = (props: ScrollItemProps) => {
     <TouchableOpacity
       onPress={() => props.goToScroll(props.item)}>
         <View style={styles.container}>
-          <Text style={styles.title}>{props.item.title}</Text>
-          <Text style={styles.date}>{props.item.date}</Text>
-          <Text style={styles.text}>{props.item.text}</Text>
+          <Text numberOfLines={1} style={styles.title}>{props.item.title}</Text>
+          <Text numberOfLines={1} style={styles.date}>{props.item.date}</Text>
+          <Text numberOfLines={3} style={styles.text}>{props.item.text}</Text>
         </View>
     </TouchableOpacity>
   )
