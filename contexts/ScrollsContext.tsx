@@ -5,6 +5,7 @@ import { Share } from "react-native";
 
 export const ScrollsContext = createContext({
     text: '',
+    date: '',
     title: '',
     list: scrollsList,
     createScroll: ()=>{},
@@ -55,6 +56,7 @@ export function ScrollsProvider({ children }) {
         const item = scrollsList
             .filter(el => el.id === scrollId)[0]
         item.title = title
+        item.date = date
         item.text = text
         clearScroll()
     }
@@ -63,6 +65,7 @@ export function ScrollsProvider({ children }) {
         <ScrollsContext value={{
             list, 
             text, 
+            date,
             title,
             editScroll, 
             shareScroll,

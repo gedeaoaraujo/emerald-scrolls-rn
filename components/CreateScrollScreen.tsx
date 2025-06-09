@@ -1,18 +1,21 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { dateTimeNow } from '../utils/date';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 import { ScrollsContext } from '../contexts/ScrollsContext';
 
 export const CreateScrollScreen = () => {
-  const dateNow = dateTimeNow()
   const {
-    title, text, 
+    title, 
+    text,
+    date,
     onChageText,
     onChageTitle,
     onChageDate
   } = useContext(ScrollsContext)
   
-  onChageDate(dateNow)
+  useEffect(() => {
+    onChageDate(dateTimeNow())
+  }, [])
 
   return (
     <View style={styles.content}>
@@ -23,7 +26,7 @@ export const CreateScrollScreen = () => {
         onChangeText={onChageTitle}
       />
       <Text style={styles.date}>
-          {dateNow}
+          {date}
       </Text>
       <TextInput
         editable
