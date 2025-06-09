@@ -48,14 +48,15 @@ export default function App() {
         <Stack.Screen
           name="Create"
           component={CreateScrollScreen}
-          options={{
+          options={({ route, navigation }) => ({
             title: "Create Scroll",
             headerTintColor: Colors.white,
             headerStyle: { backgroundColor: Colors.primary },
             headerRight: () => (
-              <CreateScrollMenu/>
+              <CreateScrollMenu 
+                navigation={navigation}/>
             )
-          }}
+          })}
         />
       </Stack.Navigator>
     </NavigationContainer>

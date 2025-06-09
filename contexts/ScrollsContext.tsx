@@ -2,18 +2,47 @@ import React, { createContext, useState } from "react";
 import { scrollsList } from "../data/MockedScrolls";
 
 export const ScrollsContext = createContext({
+    text: '',
+    title: '',
     list: scrollsList,
-    removeScroll: (id: number)=>{}
+    createScroll: ()=>{},
+    onChageText: (txt: string)=>{},
+    removeScroll: (id: number)=>{},
+    onChageTitle: (title: string)=>{}
 })
 export function ScrollsProvider({ children }) {
+    const [text, setText] = useState('')
+    const [title, setTitle] = useState('')
     const [list, setList] = useState(scrollsList)
+
+    const onChageText = (txt: string) => setText(txt)
+    const onChageTitle = (title: string) => setTitle(title)
 
     const removeScroll = (id: number) => {
         setList((prevItems) => prevItems.filter(i => i.id !== id))
     }
+    
+    const createScroll = () => {
+        const newScroll = {
+            id: list.length + 1,
+            title: title, date: '', text: text
+        }
+        setList((prevItems) => [...prevItems, newScroll])
+        
+        setText('')
+        setTitle('')
+    }
 
     return (
-        <ScrollsContext value={{ list, removeScroll }}>
+        <ScrollsContext value={{
+            list, 
+            text, 
+            title, 
+            removeScroll, 
+            createScroll, 
+            onChageTitle, 
+            onChageText 
+        }}>
             {children}
         </ScrollsContext>
     )

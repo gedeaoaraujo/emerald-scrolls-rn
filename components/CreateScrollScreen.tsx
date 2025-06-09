@@ -1,10 +1,14 @@
-import { useState } from 'react';
+import { useContext } from 'react';
 import { dateTimeNow } from '../utils/date';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { ScrollsContext } from '../contexts/ScrollsContext';
 
 export const CreateScrollScreen = () => {
-  const [title, onChageTitle] = useState('')
-  const [text, onChageText] = useState('')
+  const {
+    title, text, 
+    onChageText,
+    onChageTitle, 
+  } = useContext(ScrollsContext)
 
   return (
     <View style={styles.content}>
