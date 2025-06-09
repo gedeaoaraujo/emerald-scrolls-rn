@@ -54,11 +54,6 @@ export function ScrollsProvider({ children }) {
     const editScroll = (scrollId: number) => {
         const item = scrollsList
             .filter(el => el.id === scrollId)[0]
-
-        const str = JSON.stringify(item)
-        console.log(`item: ${str}`)
-        console.log(`list: ${JSON.stringify(scrollsList)}`)
-
         item.title = title
         item.text = text
         clearScroll()
