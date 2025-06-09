@@ -14,7 +14,7 @@ export function EditScrollMenu({ scroll, navigation }: EditScrollParams) {
 
   const createNew = () => {
     editScroll(scroll.id)
-    navigation.goBack()
+    navigation.popToTop()
   }
 
   return (
