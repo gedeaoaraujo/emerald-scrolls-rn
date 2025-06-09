@@ -4,18 +4,22 @@ import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 
 type FloatActionBtnProps = {
     text: string,
-    onClick: () => void
+    fabStyle?: any,
+    textStyle?: any,
+    onClick: () => void,
 }
 
-export const FloatActionBtn = ({text, onClick}: FloatActionBtnProps) => {
+export const FloatActionBtn = ({ 
+  text, fabStyle, textStyle, onClick
+}: FloatActionBtnProps) => {
   const handlePress = () => {
     onClick();
   };
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.fab} onPress={handlePress}>
-        <Text style={styles.fabText}>{text}</Text>
+      <TouchableOpacity style={[styles.fab, fabStyle]} onPress={handlePress}>
+        <Text style={[styles.fabText, textStyle]}>{text}</Text>
       </TouchableOpacity>
     </View>
   );
@@ -26,12 +30,8 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#F5FCFF',
   },
   fab: {
-    position: 'absolute',
-    bottom: 30,
-    right: 30,
     width: 56,
     height: 56,
     borderRadius: 28,

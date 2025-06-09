@@ -36,7 +36,11 @@ export const HomeScreen = (props: HomeScreenProps) => {
             }
           />
       </View>
-      <FloatActionBtn text='+' onClick={goToCreate} />
+      <FloatActionBtn
+        fabStyle={styles.buttonFab} 
+        onClick={goToCreate}
+        text='+' 
+      />
     </View>
   )
 }
@@ -49,4 +53,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
+  buttonFab: {
+    right: 15,
+    bottom: 30,
+    position: 'absolute',
+  }
 });
