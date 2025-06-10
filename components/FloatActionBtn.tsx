@@ -1,16 +1,18 @@
 import React from 'react';
 import { Colors } from '../colors'
+import { FontAwesome6 } from '@expo/vector-icons'
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 
 type FloatActionBtnProps = {
-    text: string,
+    icon?: string,
+    text?: string,
     fabStyle?: any,
     textStyle?: any,
     onClick: () => void,
 }
 
 export const FloatActionBtn = ({ 
-  text, fabStyle, textStyle, onClick
+  text, icon, fabStyle, textStyle, onClick
 }: FloatActionBtnProps) => {
   const handlePress = () => {
     onClick();
@@ -19,7 +21,9 @@ export const FloatActionBtn = ({
   return (
     <View style={styles.container}>
       <TouchableOpacity style={[styles.fab, fabStyle]} onPress={handlePress}>
-        <Text style={[styles.fabText, textStyle]}>{text}</Text>
+        {text === undefined 
+          ? <FontAwesome6 name={icon} size={20} color='white'/> 
+          : <Text style={[styles.fabText, textStyle]}>{text}</Text>}
       </TouchableOpacity>
     </View>
   );
