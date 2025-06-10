@@ -22,10 +22,17 @@ export const SplashScreen = ({ navigation }) => {
     <View style={styles.container}>
       <LogoFragment />
       <PasswordKeyboard />
-      <TouchableOpacity
-        onPress={callBiometry}>
-        <FontAwesome6 name='fingerprint' size={50} color='white'/>
-      </TouchableOpacity>
+      <View style={{ flexDirection: 'row' }}>
+        <TouchableOpacity
+          style={{ marginEnd: 40 }}
+          onPress={callBiometry}>
+          <FontAwesome6 name='fingerprint' size={50} color='white'/>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={undefined}>
+          <FontAwesome6 name='circle-check' size={50} color='white'/>
+        </TouchableOpacity>
+      </View>
     </View>
   )
 }
