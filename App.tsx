@@ -11,6 +11,7 @@ import { CreateScrollMenu } from './components/CreateScrollMenu';
 import { EditScrollScreen } from './components/EditScrollScreen';
 import { EditScrollMenu } from './components/EditScrollMenu';
 import { SplashScreen } from './components/SplashScreen';
+import { PasswordProvider } from './contexts/PasswordContext';
 
 export type RootStackParamList = {
   Splash: undefined;
@@ -25,6 +26,7 @@ const Stack = createStackNavigator();
 export default function App() {
   return (
     <ScrollsProvider>
+    <PasswordProvider>
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
@@ -89,6 +91,7 @@ export default function App() {
         />
       </Stack.Navigator>
     </NavigationContainer>
+    </PasswordProvider>
     </ScrollsProvider>
   );
 }
