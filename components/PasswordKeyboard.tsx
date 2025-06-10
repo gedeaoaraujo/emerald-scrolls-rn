@@ -75,6 +75,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     borderColor: '#ccc',
     color: Colors.white,
+    textAlign: 'center',
     backgroundColor: Colors.primary
   },
 })
