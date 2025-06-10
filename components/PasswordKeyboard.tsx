@@ -34,9 +34,12 @@ export const PasswordKeyboard = () => {
       <View style={styles.row}>
         <FloatActionBtn text='#' onClick={()=>setPassword(password+'#')} />
         <FloatActionBtn text='0' onClick={()=>setPassword(password+0)} />
-        <FloatActionBtn text='<<' onClick={()=>{
-          setPassword(password.substring(0, password.length-1))}
-        }/>
+        <FloatActionBtn
+          icon='delete-left'
+          onClick={()=>{
+            setPassword(password.substring(0, password.length-1))}
+          }
+        />
       </View>
     </View>
   )
