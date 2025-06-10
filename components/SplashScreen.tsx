@@ -25,7 +25,7 @@ export const SplashScreen = ({ navigation }) => {
   const startChecking = () => {
     const ok = checkPassword()
     if (ok) {
-      navigation.navigate('Home')
+      navigation.replace('Home')
     } else {
       alert('Senha incorreta.')
     }
