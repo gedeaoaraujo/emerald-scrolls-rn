@@ -1,7 +1,9 @@
 import { Colors } from '../colors';
+import { useContext } from 'react';
 import { FontAwesome6 } from '@expo/vector-icons';
 import { checkBiometry } from '../utils/biometry';
 import { PasswordKeyboard } from './PasswordKeyboard';
+import { PasswordContext } from '../contexts/PasswordContext';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 const LogoFragment = () => (
@@ -12,10 +14,21 @@ const LogoFragment = () => (
 )
 
 export const SplashScreen = ({ navigation }) => {
+  const { checkPassword } = useContext(PasswordContext)
+
   const callBiometry = () => {
     checkBiometry(() => {
       navigation.navigate('Home')
     })
+  }
+
+  const startChecking = () => {
+    const ok = checkPassword()
+    if (ok) {
+      navigation.navigate('Home')
+    } else {
+      alert('Senha incorreta.')
+    }
   }
  
   return (
@@ -29,7 +42,7 @@ export const SplashScreen = ({ navigation }) => {
           <FontAwesome6 name='fingerprint' size={50} color='white'/>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={undefined}>
+          onPress={startChecking}>
           <FontAwesome6 name='circle-check' size={50} color='white'/>
         </TouchableOpacity>
       </View>
