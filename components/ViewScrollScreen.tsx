@@ -1,17 +1,16 @@
 import { ScrollModel } from '../model/ScrollModel';
 import { StyleSheet, Text, View } from 'react-native';
-import { dateTimePtBr } from '../utils/date';
+import { DateHeader } from './DateHeader';
 
 type ViewScrollScreenProps = {
   route: { params: ScrollModel }
 };
 
 export const ViewScrollScreen = ({route}: ViewScrollScreenProps) => {
-  const date = dateTimePtBr(route.params.date)
   return (
     <View style={styles.content}>
+      <DateHeader dateStr={route.params.date} />      
       <Text style={styles.title}>{route.params.title}</Text>
-      <Text style={styles.date}>{date}</Text>
       <Text style={styles.text}>{route.params.text}</Text>
     </View>
   )
@@ -25,9 +24,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: 'bold'
-  },
-  date: {
-    paddingVertical: 8
   },
   text: {
     fontSize: 16

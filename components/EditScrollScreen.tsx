@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { StyleSheet, TextInput, View } from 'react-native';
 import { ScrollsContext } from '../contexts/ScrollsContext';
-import { dateTimePtBr } from '../utils/date';
+import { DateHeader } from './DateHeader';
 
 export const EditScrollScreen = ({ route }) => {
   const {
@@ -19,15 +19,15 @@ export const EditScrollScreen = ({ route }) => {
 
   return (
     <View style={styles.content}>
+      <DateHeader
+        dateStr={route.params.date}
+      />
       <TextInput 
         value={title}
         placeholder="Title"
         style={styles.title}
         onChangeText={onChageTitle}
       />
-      <Text style={styles.date}>
-          {dateTimePtBr(route.params.date)}
-      </Text>
       <TextInput
         editable
         multiline
@@ -49,10 +49,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: 'bold'
-  },
-  date: {
-    paddingVertical: 8,
-    paddingHorizontal: 4
   },
   text: {
     fontSize: 16,

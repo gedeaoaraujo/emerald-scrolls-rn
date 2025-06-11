@@ -1,35 +1,32 @@
-import { dateTimePtBr } from '../utils/date';
 import { useContext, useEffect } from 'react';
 import { ScrollsContext } from '../contexts/ScrollsContext';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { StyleSheet, TextInput, View } from 'react-native';
+import { DateHeader } from './DateHeader';
 
 export const CreateScrollScreen = () => {
   const {
     title, 
     text,
-    date,
     onChageText,
     onChageTitle,
     onChageDate
   } = useContext(ScrollsContext)
 
-  const newDate = new Date().toISOString() 
+  const date = new Date().toISOString() 
   
   useEffect(() => {
-    onChageDate(newDate)
+    onChageDate(date)
   }, [])
 
   return (
     <View style={styles.content}>
+      <DateHeader dateStr={date} />
       <TextInput 
         value={title}
         placeholder="Title"
         style={styles.title}
         onChangeText={onChageTitle}
       />
-      <Text style={styles.date}>
-          {dateTimePtBr(newDate)}
-      </Text>
       <TextInput
         editable
         multiline
@@ -51,10 +48,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: 'bold'
-  },
-  date: {
-    paddingVertical: 8,
-    paddingHorizontal: 4
   },
   text: {
     fontSize: 16,
