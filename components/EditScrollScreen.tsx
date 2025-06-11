@@ -1,6 +1,7 @@
 import { useContext, useEffect } from 'react';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 import { ScrollsContext } from '../contexts/ScrollsContext';
+import { dateTimePtBr } from '../utils/date';
 
 export const EditScrollScreen = ({ route }) => {
   const {
@@ -25,7 +26,7 @@ export const EditScrollScreen = ({ route }) => {
         onChangeText={onChageTitle}
       />
       <Text style={styles.date}>
-          {route.params.date}
+          {dateTimePtBr(route.params.date)}
       </Text>
       <TextInput
         editable
