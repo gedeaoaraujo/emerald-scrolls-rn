@@ -1,10 +1,9 @@
 import { Colors } from '../colors';
-import { useContext } from 'react';
 import { FontAwesome6 } from '@expo/vector-icons';
 import { checkBiometry } from '../utils/biometry';
 import { PasswordKeyboard } from './PasswordKeyboard';
-import { PasswordContext } from '../contexts/PasswordContext';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { usePasswordViewModel } from '../viewmodels/PasswordViewModel';
 
 const LogoFragment = () => (
   <View style={styles.logo}>
@@ -14,7 +13,11 @@ const LogoFragment = () => (
 )
 
 export const SplashScreen = ({ navigation }) => {
-  const { checkPassword } = useContext(PasswordContext)
+  const { 
+    password,
+    checkPassword,
+    onChangePassword 
+  } = usePasswordViewModel()
 
   const callBiometry = () => {
     checkBiometry(() => {
@@ -34,7 +37,10 @@ export const SplashScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <LogoFragment />
-      <PasswordKeyboard />
+      <PasswordKeyboard 
+        password={password}
+        onChangePassword={onChangePassword}
+      />
       <View style={{ flexDirection: 'row' }}>
         <TouchableOpacity
           style={{ marginEnd: 40 }}
