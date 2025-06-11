@@ -42,15 +42,14 @@ export const CreateScrollScreen = () => {
 
 const styles = StyleSheet.create({
   content: {
-    flex: 1,
     padding: 18,
   },
   title: {
     fontSize: 18,
+    marginTop: 16,
     fontWeight: 'bold'
   },
   text: {
-    fontSize: 16,
-    paddingHorizontal: 8
+    fontSize: 16
   }
 });

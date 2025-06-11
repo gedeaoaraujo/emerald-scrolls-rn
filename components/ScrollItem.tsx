@@ -22,15 +22,17 @@ export const ScrollItem = (props: ScrollItemProps) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    padding: 18,
+    padding: 20,
   },
   title: {
     fontSize: 18,
     minWidth: '100%',
+    fontWeight: 'bold',
   },
   date: {
     paddingVertical: 8,
   },
-  text: {}
+  text: {
+    fontSize: 16
+  }
 });

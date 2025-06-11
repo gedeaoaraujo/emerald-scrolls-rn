@@ -18,12 +18,12 @@ export const ViewScrollScreen = ({route}: ViewScrollScreenProps) => {
 
 const styles = StyleSheet.create({
   content: {
-    flex: 1,
     padding: 18,
   },
   title: {
     fontSize: 18,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    paddingVertical: 18,
   },
   text: {
     fontSize: 16
