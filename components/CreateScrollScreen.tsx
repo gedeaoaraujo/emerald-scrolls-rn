@@ -12,9 +12,11 @@ export const CreateScrollScreen = () => {
     onChageTitle,
     onChageDate
   } = useContext(ScrollsContext)
+
+  const newDate = new Date().toISOString() 
   
   useEffect(() => {
-    onChageDate(new Date().toISOString())
+    onChageDate(newDate)
   }, [])
 
   return (
@@ -26,7 +28,7 @@ export const CreateScrollScreen = () => {
         onChangeText={onChageTitle}
       />
       <Text style={styles.date}>
-          {dateTimePtBr(date)}
+          {dateTimePtBr(newDate)}
       </Text>
       <TextInput
         editable
