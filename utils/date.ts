@@ -1,4 +1,4 @@
-export const dateTimeNow = (): string => {
+export const dateTimePtBr = (dateStr: string): string => {
   const options: Intl.DateTimeFormatOptions = {
     year: 'numeric',
     month: '2-digit',
@@ -7,8 +7,8 @@ export const dateTimeNow = (): string => {
     minute: '2-digit',
     hour12: false,
   };
-
+  
   return new Intl
     .DateTimeFormat('pt-BR', options)
-    .format(new Date());
+    .format(new Date(dateStr));
 }
