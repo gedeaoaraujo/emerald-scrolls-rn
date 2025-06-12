@@ -9,7 +9,7 @@ type ViewScrollScreenProps = {
 export const ViewScrollScreen = ({route}: ViewScrollScreenProps) => {
   return (
     <View style={styles.content}>
-      <DateHeader dateStr={route.params.date} />      
+      <DateHeader readOnly dateStr={route.params.date} />      
       <Text style={styles.title}>{route.params.title}</Text>
       <Text style={styles.text}>{route.params.text}</Text>
     </View>
