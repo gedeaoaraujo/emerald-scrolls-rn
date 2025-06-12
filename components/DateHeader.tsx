@@ -1,7 +1,11 @@
-import { View, Text, StyleSheet } from "react-native"
+import { useState } from 'react'
+import DateTimePicker from '@react-native-community/datetimepicker'
+import { View, Text, StyleSheet, TouchableOpacity, Platform } from "react-native"
 
 export const DateHeader = ({ dateStr }) => {
-  const date = new Date(dateStr)
+  const [mode, setMode] = useState("date");
+  const [show, setShow] = useState(false);
+  const [date, setDate] = useState(new Date(dateStr));
   
   const getDayMonth = (): string => {
     const day = date.getDate()
@@ -22,13 +26,37 @@ export const DateHeader = ({ dateStr }) => {
     return `${horas}:${minutos}`
   }
 
+  const onChange = (event: any, selectedDate?: Date) => {
+    setShow(Platform.OS === 'ios') // No Android fecha após seleção
+    if (selectedDate) setDate(selectedDate)
+  }
+
+  const openPicker = (mode: string) => {
+    setMode(mode)
+    setShow(!show)
+  }
+
   return (
     <View style={styles.container}>
-      <View style={{ flex: 1 }}>
+      <TouchableOpacity
+        style={{ flex: 1 }}
+        onPress={() => openPicker("date")}>
         <Text style={styles.dayMonth}>{getDayMonth()}</Text>
         <Text style={styles.yearDayWeek}>{getYearDay()}</Text>
-      </View>
-      <Text style={styles.hour}>{getHour()}</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={{ flex: 1 }}
+        onPress={() => openPicker("time")}>
+        <Text style={styles.hour}>{getHour()}</Text>
+      </TouchableOpacity>
+      {show && (
+        <DateTimePicker
+          value={date}
+          mode={mode} // pode ser 'date', 'time' ou 'datetime'
+          display="default" // pode ser 'default', 'spinner', 'calendar', etc.
+          onChange={onChange}
+        />
+      )}
     </View>
   )
 }
@@ -49,7 +77,6 @@ const styles = StyleSheet.create({
     fontSize: 16
   },
   hour: {
-    flex: 1,
     fontSize: 20,
     textAlign: 'right',
     fontWeight: 'bold',
