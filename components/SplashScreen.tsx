@@ -34,6 +34,8 @@ export const SplashScreen = ({ navigation }) => {
     }
   }
  
+  startChecking()
+  
   return (
     <View style={styles.container}>
       <LogoFragment />
