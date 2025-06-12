@@ -8,7 +8,8 @@ export const EditScrollScreen = ({ route }) => {
     title, text,
     onChageText,
     onChageTitle,
-    onChageDate
+    onChageDate,
+    updateDate
   } = useContext(ScrollsContext)
 
   useEffect(() => {
@@ -20,6 +21,7 @@ export const EditScrollScreen = ({ route }) => {
   return (
     <View style={styles.content}>
       <DateHeader
+        updateDate={updateDate}
         dateStr={route.params.date}
       />
       <TextInput 

@@ -9,7 +9,8 @@ export const CreateScrollScreen = () => {
     text,
     onChageText,
     onChageTitle,
-    onChageDate
+    onChageDate,
+    updateDate
   } = useContext(ScrollsContext)
 
   const date = new Date().toISOString() 
@@ -22,7 +23,10 @@ export const CreateScrollScreen = () => {
 
   return (
     <View style={styles.content}>
-      <DateHeader dateStr={date} />
+      <DateHeader
+        dateStr={date} 
+        updateDate={updateDate} 
+      />
       <TextInput 
         value={title}
         placeholder="Title"

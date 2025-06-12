@@ -2,7 +2,7 @@ import { useState } from 'react'
 import DateTimePicker from '@react-native-community/datetimepicker'
 import { View, Text, StyleSheet, TouchableOpacity, Platform } from "react-native"
 
-export const DateHeader = ({ dateStr }) => {
+export const DateHeader = ({ dateStr, updateDate }) => {
   const [mode, setMode] = useState("date");
   const [show, setShow] = useState(false);
   const [date, setDate] = useState(new Date(dateStr));
@@ -28,7 +28,10 @@ export const DateHeader = ({ dateStr }) => {
 
   const onChange = (event: any, selectedDate?: Date) => {
     setShow(Platform.OS === 'ios') // No Android fecha após seleção
-    if (selectedDate) setDate(selectedDate)
+    if (selectedDate) {
+      setDate(selectedDate)
+      updateDate(selectedDate)
+    }
   }
 
   const openPicker = (mode: string) => {

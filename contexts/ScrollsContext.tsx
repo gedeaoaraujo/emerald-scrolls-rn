@@ -14,6 +14,7 @@ export const ScrollsContext = createContext({
     removeScroll: (id: number)=>{},
     onChageDate: (date: string)=>{},
     onChageTitle: (title: string)=>{},
+    updateDate: (newDate: Date) => {},
     shareScroll: (scroll: ScrollModel)=>{},
 })
 
@@ -61,6 +62,10 @@ export function ScrollsProvider({ children }) {
         clearScroll()
     }
 
+    const updateDate = (newDate: Date) => {
+        setDate(newDate.toISOString())
+    }
+
     return (
         <ScrollsContext value={{
             list, 
@@ -73,7 +78,8 @@ export function ScrollsProvider({ children }) {
             createScroll,
             onChageTitle,
             onChageDate,
-            onChageText 
+            onChageText,
+            updateDate
         }}>
             {children}
         </ScrollsContext>
