@@ -16,6 +16,8 @@ export const CreateScrollScreen = () => {
   
   useEffect(() => {
     onChageDate(date)
+    onChageText('')
+    onChageTitle('')
   }, [])
 
   return (
