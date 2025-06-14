@@ -11,6 +11,8 @@ import { CreateScrollMenu } from './components/CreateScrollMenu';
 import { EditScrollScreen } from './components/EditScrollScreen';
 import { EditScrollMenu } from './components/EditScrollMenu';
 import { SplashScreen } from './components/SplashScreen';
+import { useTranslation } from 'react-i18next'
+import './locales/i18n'
 
 export type RootStackParamList = {
   Splash: undefined;
@@ -23,6 +25,8 @@ export type RootStackParamList = {
 const Stack = createStackNavigator();
 
 export default function App() {
+  const { t } = useTranslation();
+
   return (
     <ScrollsProvider>
     <NavigationContainer>
@@ -41,7 +45,7 @@ export default function App() {
           name="Home"
           component={HomeScreen}
           options={{
-            title: "Emerald Scrolls",
+            title: t('app.name'),
             headerTintColor: Colors.white,
             headerStyle: { backgroundColor: Colors.primary },
           }}
