@@ -19,14 +19,19 @@ export const DateHeader = ({
   
   const getDayMonth = (): string => {
     const day = date.getDate()
-    let month = date.toLocaleDateString(t('language'), { month: 'long' })
-    month = `${month.charAt(0).toUpperCase()}${month.slice(1)}`
+    let month = date.toLocaleDateString(
+      t('language'), { month: 'long' }
+    )
+    const firstUpper = month.charAt(0).toUpperCase()
+    month = `${firstUpper}${month.slice(1)}`
     return `${day}, ${month}`
   }
 
   const getYearDay = (): string => {
     const year = date.getFullYear()
-    const day = date.toLocaleDateString(t('language'), { weekday: 'long' })
+    const day = date.toLocaleDateString(
+      t('language'), { weekday: 'long' }
+    )
     return `${year}, ${day}`
   }
 
