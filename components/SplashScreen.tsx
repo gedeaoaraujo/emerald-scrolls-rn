@@ -26,7 +26,7 @@ export const SplashScreen = ({ navigation }) => {
 
   const callBiometry = () => {
     checkBiometry(t, () => {
-      navigation.navigate('Home')
+      navigation.replace('Home')
     })
   }
 
