@@ -2,6 +2,7 @@ import { useContext, useEffect } from 'react';
 import { ScrollsContext } from '../contexts/ScrollsContext';
 import { StyleSheet, TextInput, View } from 'react-native';
 import { DateHeader } from './DateHeader';
+import { useTranslation } from 'react-i18next';
 
 export const CreateScrollScreen = () => {
   const {
@@ -13,6 +14,7 @@ export const CreateScrollScreen = () => {
     updateDate
   } = useContext(ScrollsContext)
 
+  const { t } = useTranslation()
   const date = new Date().toISOString() 
   
   useEffect(() => {
@@ -29,7 +31,7 @@ export const CreateScrollScreen = () => {
       />
       <TextInput 
         value={title}
-        placeholder="Title"
+        placeholder={t('placeholder.title')}
         style={styles.title}
         onChangeText={onChageTitle}
       />
@@ -39,7 +41,7 @@ export const CreateScrollScreen = () => {
         numberOfLines={30}
         value={text}
         style={styles.text}
-        placeholder="Write here.."
+        placeholder={t('placeholder.text')}
         onChangeText={onChageText}
       />
     </View>

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import DateTimePicker from '@react-native-community/datetimepicker'
 import { View, Text, StyleSheet, TouchableOpacity, Platform } from "react-native"
 
@@ -14,17 +15,18 @@ export const DateHeader = ({
   const [mode, setMode] = useState("date");
   const [show, setShow] = useState(false);
   const [date, setDate] = useState(new Date(dateStr));
+  const { t } = useTranslation()
   
   const getDayMonth = (): string => {
     const day = date.getDate()
-    let month = date.toLocaleDateString('pt-BR', { month: 'long' })
+    let month = date.toLocaleDateString(t('language'), { month: 'long' })
     month = `${month.charAt(0).toUpperCase()}${month.slice(1)}`
     return `${day}, ${month}`
   }
 
   const getYearDay = (): string => {
     const year = date.getFullYear()
-    const day = date.toLocaleDateString('pt-BR', { weekday: 'long' })
+    const day = date.toLocaleDateString(t('language'), { weekday: 'long' })
     return `${year}, ${day}`
   }
 

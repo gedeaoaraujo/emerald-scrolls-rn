@@ -1,24 +1,27 @@
+import { useTranslation } from 'react-i18next';
 import * as LocalAuthentication from 'expo-local-authentication';
 
 export const checkBiometry = async (callback: () => void) => {
+  const { t } = useTranslation()
   const compatible = await LocalAuthentication.hasHardwareAsync();
+
   if (compatible) {
     const biometricRecords = await LocalAuthentication.isEnrolledAsync();
     if (!biometricRecords) {
-      alert('Nenhuma biometria cadastrada.');
+      alert(t('nobiometry'))
     } else {
       const result = await LocalAuthentication.authenticateAsync({
-        promptMessage: 'Autenticar com biometria',
-        fallbackLabel: 'Usar senha',
+        promptMessage: t('authenticate'),
+        fallbackLabel: t('use.password'),
       })
       if (result.success) {
         callback()
       } else {
-        alert('Autenticação falhou')
+        alert(t('authentication.failed'))
         checkBiometry(callback)
       }
     }
   } else {
-    alert('Seu dispositivo não suporta autenticação biométrica.');
+    alert(t('nobiometry.support'))
   }
 }

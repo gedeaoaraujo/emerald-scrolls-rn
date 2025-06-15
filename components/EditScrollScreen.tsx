@@ -1,6 +1,7 @@
 import { useContext, useEffect } from 'react';
 import { StyleSheet, TextInput, View } from 'react-native';
 import { ScrollsContext } from '../contexts/ScrollsContext';
+import { useTranslation } from 'react-i18next'
 import { DateHeader } from './DateHeader';
 
 export const EditScrollScreen = ({ route }) => {
@@ -18,6 +19,8 @@ export const EditScrollScreen = ({ route }) => {
     onChageTitle(route.params.title)
   }, [])
 
+  const { t } = useTranslation()
+
   return (
     <View style={styles.content}>
       <DateHeader
@@ -26,7 +29,7 @@ export const EditScrollScreen = ({ route }) => {
       />
       <TextInput 
         value={title}
-        placeholder="Title"
+        placeholder={t('placeholder.title')}
         style={styles.title}
         onChangeText={onChageTitle}
       />
@@ -36,7 +39,7 @@ export const EditScrollScreen = ({ route }) => {
         value={text}
         numberOfLines={30}
         style={styles.text}
-        placeholder="Write here.."
+        placeholder={t('placeholder.text')}
         onChangeText={onChageText}
       />
     </View>

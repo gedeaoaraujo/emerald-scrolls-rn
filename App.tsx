@@ -54,7 +54,7 @@ export default function App() {
           name="View"
           component={ViewScrollScreen}
           options={({ route, navigation }) => ({
-            title: "View Scroll",
+            title: t('view.scroll'),
             headerTintColor: Colors.white,
             headerStyle: { backgroundColor: Colors.primary },
             headerRight: () => (
@@ -68,7 +68,7 @@ export default function App() {
           name="Create"
           component={CreateScrollScreen}
           options={({ route, navigation }) => ({
-            title: "Create Scroll",
+            title: t('create.scroll'),
             headerTintColor: Colors.white,
             headerStyle: { backgroundColor: Colors.primary },
             headerRight: () => (
@@ -81,7 +81,7 @@ export default function App() {
           name="Edit"
           component={EditScrollScreen}
           options={({ route, navigation }) => ({
-            title: "Edit Scroll",
+            title: t('edit.scroll'),
             headerTintColor: Colors.white,
             headerStyle: { backgroundColor: Colors.primary },
             headerRight: () => (

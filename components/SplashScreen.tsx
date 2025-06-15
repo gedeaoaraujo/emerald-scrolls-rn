@@ -4,13 +4,17 @@ import { checkBiometry } from '../utils/biometry';
 import { PasswordKeyboard } from './PasswordKeyboard';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { usePasswordViewModel } from '../viewmodels/PasswordViewModel';
+import { useTranslation } from 'react-i18next';
 
-const LogoFragment = () => (
-  <View style={styles.logo}>
-    <FontAwesome6 name='scroll' size={50} color='white'/>
-    <Text style={styles.text}>Emerald Scrolls</Text>
-  </View>
-)
+const LogoFragment = () => {
+  const { t } = useTranslation()
+  return (
+    <View style={styles.logo}>
+      <FontAwesome6 name='scroll' size={50} color='white'/>
+      <Text style={styles.text}>{t('app.name')}</Text>
+    </View>
+  )
+}
 
 export const SplashScreen = ({ navigation }) => {
   const { 
@@ -18,6 +22,7 @@ export const SplashScreen = ({ navigation }) => {
     checkPassword,
     onChangePassword 
   } = usePasswordViewModel()
+  const { t } = useTranslation()
 
   const callBiometry = () => {
     checkBiometry(() => {
@@ -30,7 +35,7 @@ export const SplashScreen = ({ navigation }) => {
     if (ok) {
       navigation.replace('Home')
     } else {
-      alert('Senha incorreta.')
+      alert(t('wrong.password'))
     }
   }
  
