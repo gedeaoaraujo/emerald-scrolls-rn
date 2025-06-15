@@ -36,9 +36,11 @@ export const DateHeader = ({
   }
 
   const getHour = (): string => {
-    const horas = date.getHours().toString().padStart(2, '0')
-    const minutos = date.getMinutes().toString().padStart(2, '0')
-    return `${horas}:${minutos}`
+    const language = t('language')
+    const hour12 = language === 'pt-BR' ? false : true
+    return date.toLocaleTimeString(
+      language, { hour12,  hour: '2-digit', minute: '2-digit' }
+    )
   }
 
   const onChange = (event: any, selectedDate?: Date) => {
