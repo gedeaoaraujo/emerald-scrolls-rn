@@ -9,7 +9,6 @@ export function usePasswordViewModel() {
   }
   
   const checkPassword = (): boolean => {
-    if (savedPass === '') return true
     const res = password === savedPass
     if (res) setPassword('')
     return res
