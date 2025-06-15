@@ -1,5 +1,5 @@
 import React from 'react';
-import { Colors } from '../colors'
+import { useTheme } from '../theme/ThemeContext'
 import { FontAwesome6 } from '@expo/vector-icons'
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 
@@ -14,16 +14,25 @@ type FloatActionBtnProps = {
 export const FloatActionBtn = ({ 
   text, icon, fabStyle, textStyle, onClick
 }: FloatActionBtnProps) => {
+  const { theme } = useTheme()
+
   const handlePress = () => {
     onClick();
   };
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={[styles.fab, fabStyle]} onPress={handlePress}>
-        {text === undefined 
-          ? <FontAwesome6 name={icon} size={20} color='white'/> 
-          : <Text style={[styles.fabText, textStyle]}>{text}</Text>}
+      <TouchableOpacity 
+        style={[styles.fab, fabStyle, { 
+          backgroundColor: theme.colors.primary
+        }]}
+        onPress={handlePress}>
+          {text === undefined 
+          ? <FontAwesome6 name={icon} size={20} 
+              color={theme.colors.textOnPrimary}/> 
+          : <Text style={[styles.fabText, textStyle, {
+              color: theme.colors.textOnPrimary,
+            }]}>{text}</Text>}
       </TouchableOpacity>
     </View>
   );
@@ -41,7 +50,6 @@ const styles = StyleSheet.create({
     borderRadius: 28,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: Colors.primary,
     elevation: 6, // Sombra no Android
     shadowColor: '#000', // Sombra no iOS
     shadowOpacity: 0.3,
@@ -49,7 +57,6 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
   },
   fabText: {
-    color: '#FFFFFF',
     fontSize: 24,
   },
 });

@@ -1,20 +1,10 @@
-import { Colors } from '../colors';
 import { FontAwesome6 } from '@expo/vector-icons';
 import { checkBiometry } from '../utils/biometry';
 import { PasswordKeyboard } from './PasswordKeyboard';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { usePasswordViewModel } from '../viewmodels/PasswordViewModel';
+import { useTheme } from '../theme/ThemeContext';
 import { useTranslation } from 'react-i18next';
-
-const LogoFragment = () => {
-  const { t } = useTranslation()
-  return (
-    <View style={styles.logo}>
-      <FontAwesome6 name='scroll' size={50} color='white'/>
-      <Text style={styles.text}>{t('app.name')}</Text>
-    </View>
-  )
-}
 
 export const SplashScreen = ({ navigation }) => {
   const { 
@@ -22,6 +12,8 @@ export const SplashScreen = ({ navigation }) => {
     checkPassword,
     onChangePassword 
   } = usePasswordViewModel()
+  
+  const { theme } = useTheme()
   const { t } = useTranslation()
 
   const callBiometry = () => {
@@ -38,11 +30,21 @@ export const SplashScreen = ({ navigation }) => {
       alert(t('wrong.password'))
     }
   }
- 
-  //startChecking()
-  
+
+  const LogoFragment = () => (
+    <View style={styles.logo}>
+      <FontAwesome6 name='scroll' size={50} 
+        color={theme.colors.textOnPrimary}/>
+      <Text style={[styles.text, {
+        color: theme.colors.textOnPrimary
+      }]}>{t('app.name')}</Text>
+    </View>
+  )
+
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {
+      backgroundColor: theme.colors.primary
+    }]}>
       <LogoFragment />
       <PasswordKeyboard 
         password={password}
@@ -52,11 +54,13 @@ export const SplashScreen = ({ navigation }) => {
         <TouchableOpacity
           style={{ marginEnd: 40 }}
           onPress={callBiometry}>
-          <FontAwesome6 name='fingerprint' size={50} color='white'/>
+          <FontAwesome6 name='fingerprint' size={50} 
+            color={theme.colors.textOnPrimary}/>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={startChecking}>
-          <FontAwesome6 name='circle-check' size={50} color='white'/>
+          <FontAwesome6 name='circle-check' size={50} 
+            color={theme.colors.textOnPrimary}/>
         </TouchableOpacity>
       </View>
     </View>
@@ -68,7 +72,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: Colors.primary
   },
   logo: {
     alignItems: 'center',
@@ -77,6 +80,5 @@ const styles = StyleSheet.create({
   text: {
     padding: 10,
     fontSize: 30,
-    color: Colors.white,
   }
 })

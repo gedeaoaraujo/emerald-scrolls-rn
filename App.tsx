@@ -1,4 +1,3 @@
-import { Colors } from './colors.js';
 import { ScrollModel } from './model/ScrollModel.js';
 import { HomeScreen } from './components/HomeSceen';
 import { NavigationContainer } from '@react-navigation/native';
@@ -9,6 +8,7 @@ import { ScrollsProvider } from './contexts/ScrollsContext';
 import { ViewScrollMenu } from './components/ViewScrollMenu';
 import { CreateScrollMenu } from './components/CreateScrollMenu';
 import { EditScrollScreen } from './components/EditScrollScreen';
+import { useTheme, ThemeProvider } from './theme/ThemeContext';
 import { EditScrollMenu } from './components/EditScrollMenu';
 import { SplashScreen } from './components/SplashScreen';
 import { useTranslation } from 'react-i18next'
@@ -25,9 +25,11 @@ export type RootStackParamList = {
 const Stack = createStackNavigator();
 
 export default function App() {
+  const { theme } = useTheme()
   const { t } = useTranslation();
 
   return (
+    <ThemeProvider>
     <ScrollsProvider>
     <NavigationContainer>
       <Stack.Navigator>
@@ -37,8 +39,8 @@ export default function App() {
           options={{
             headerShown: false,
             title: "Splash Screen",
-            headerTintColor: Colors.white,
-            headerStyle: { backgroundColor: Colors.primary },
+            headerTintColor: theme.colors.textOnPrimary,
+            headerStyle: { backgroundColor: theme.colors.primary },
           }}
         />
         <Stack.Screen
@@ -46,8 +48,8 @@ export default function App() {
           component={HomeScreen}
           options={{
             title: t('app.name'),
-            headerTintColor: Colors.white,
-            headerStyle: { backgroundColor: Colors.primary },
+            headerTintColor: theme.colors.textOnPrimary,
+            headerStyle: { backgroundColor: theme.colors.primary },
           }}
         />
         <Stack.Screen
@@ -55,8 +57,8 @@ export default function App() {
           component={ViewScrollScreen}
           options={({ route, navigation }) => ({
             title: t('view.scroll'),
-            headerTintColor: Colors.white,
-            headerStyle: { backgroundColor: Colors.primary },
+            headerTintColor: theme.colors.textOnPrimary,
+            headerStyle: { backgroundColor: theme.colors.primary },
             headerRight: () => (
               <ViewScrollMenu
                 scroll={route.params} 
@@ -69,8 +71,8 @@ export default function App() {
           component={CreateScrollScreen}
           options={({ route, navigation }) => ({
             title: t('create.scroll'),
-            headerTintColor: Colors.white,
-            headerStyle: { backgroundColor: Colors.primary },
+            headerTintColor: theme.colors.textOnPrimary,
+            headerStyle: { backgroundColor: theme.colors.primary },
             headerRight: () => (
               <CreateScrollMenu 
                 navigation={navigation}/>
@@ -82,8 +84,8 @@ export default function App() {
           component={EditScrollScreen}
           options={({ route, navigation }) => ({
             title: t('edit.scroll'),
-            headerTintColor: Colors.white,
-            headerStyle: { backgroundColor: Colors.primary },
+            headerTintColor: theme.colors.textOnPrimary,
+            headerStyle: { backgroundColor: theme.colors.primary },
             headerRight: () => (
               <EditScrollMenu
                 scroll={route.params} 
@@ -94,5 +96,6 @@ export default function App() {
       </Stack.Navigator>
     </NavigationContainer>
     </ScrollsProvider>
+    </ThemeProvider>
   );
 }

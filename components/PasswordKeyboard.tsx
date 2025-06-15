@@ -1,18 +1,24 @@
-import { Colors } from "../colors"
 import { useTranslation } from "react-i18next"
+import { useTheme } from "../theme/ThemeContext"
 import { FloatActionBtn } from "./FloatActionBtn"
 import { View, Text, StyleSheet, TextInput } from "react-native"
 
 export const PasswordKeyboard = ({ password, onChangePassword }) => { 
+  const { theme } = useTheme()
   const { t } = useTranslation()
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>{t('write.password')}</Text>
+      <Text style={[styles.text, {
+        color: theme.colors.textOnPrimary,
+      }]}>{t('write.password')}</Text>
       <TextInput
         editable={false}
         value={password}
         secureTextEntry={true}
-        style={styles.password}
+        style={[styles.password, {
+          color: theme.colors.textOnPrimary,
+          backgroundColor: theme.colors.primary
+        }]}
         onChangeText={onChangePassword}
       />
       <View style={styles.row}>
@@ -54,7 +60,6 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 18,
-    color: 'white',
     paddingBottom: 16
   },
   row: {
@@ -73,8 +78,6 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginBottom: 10,
     borderColor: '#ccc',
-    color: Colors.white,
     textAlign: 'center',
-    backgroundColor: Colors.primary
   },
 })

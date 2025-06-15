@@ -1,6 +1,7 @@
 import { ScrollModel } from "../model/ScrollModel";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { localizeDateTime } from "../utils/date";
+import { useTheme } from "../theme/ThemeContext";
 
 type ScrollItemProps = {
   item: ScrollModel,
@@ -8,13 +9,20 @@ type ScrollItemProps = {
 };
 
 export const ScrollItem = (props: ScrollItemProps) => {
+  const { theme } = useTheme()
   return (
     <TouchableOpacity
       onPress={() => props.goToScroll(props.item)}>
         <View style={styles.container}>
-          <Text numberOfLines={1} style={styles.title}>{props.item.title}</Text>
-          <Text numberOfLines={1} style={styles.date}>{localizeDateTime(props.item.date)}</Text>
-          <Text numberOfLines={3} style={styles.text}>{props.item.text}</Text>
+          <Text numberOfLines={1} style={[styles.title, {
+            color: theme.colors.text
+          }]}>{props.item.title}</Text>
+          <Text numberOfLines={1} style={[styles.date, {
+            color: theme.colors.text
+          }]}>{localizeDateTime(props.item.date)}</Text>
+          <Text numberOfLines={3} style={[styles.text, {
+            color: theme.colors.text
+          }]}>{props.item.text}</Text>
         </View>
     </TouchableOpacity>
   )

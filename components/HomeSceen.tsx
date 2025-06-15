@@ -6,12 +6,14 @@ import { ScrollModel } from '../model/ScrollModel';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { StyleSheet, View, FlatList } from 'react-native';
 import { ScrollsContext } from '../contexts/ScrollsContext';
+import { useTheme } from '../theme/ThemeContext';
 
 type HomeScreenProps = {
   navigation: StackNavigationProp<RootStackParamList, 'Home'>;
 };
 
 export const HomeScreen = (props: HomeScreenProps) => {
+  const { theme } = useTheme()
   const { list } = useContext(ScrollsContext)
 
   function goToScroll(item: ScrollModel) {
@@ -23,7 +25,9 @@ export const HomeScreen = (props: HomeScreenProps) => {
   }
 
   return (
-    <View style={styles.content}>
+    <View style={[styles.content, { 
+      backgroundColor: theme.colors.background
+    }]}>
       <View style={styles.list}>
           <FlatList
             data={list}

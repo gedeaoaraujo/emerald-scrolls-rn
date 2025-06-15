@@ -2,8 +2,10 @@ import { useContext } from "react";
 import { FontAwesome6 } from '@expo/vector-icons';
 import { ScrollsContext } from "../contexts/ScrollsContext"
 import { StyleSheet, TouchableOpacity } from "react-native"
+import { useTheme } from "../theme/ThemeContext";
 
 export function CreateScrollMenu({ navigation }) {
+  const { theme } = useTheme()
   const { createScroll } = useContext(ScrollsContext)
 
   const createNew = () => {
@@ -15,7 +17,8 @@ export function CreateScrollMenu({ navigation }) {
     <TouchableOpacity
       style={styles.option}
       onPress={() => createNew()}>
-      <FontAwesome6 name='check' size={20} color='white' />
+      <FontAwesome6 name='check' size={20} 
+        color={theme.colors.textOnPrimary} />
     </TouchableOpacity>
   )
 }

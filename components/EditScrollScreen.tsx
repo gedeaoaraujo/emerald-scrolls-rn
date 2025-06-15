@@ -3,6 +3,7 @@ import { StyleSheet, TextInput, View } from 'react-native';
 import { ScrollsContext } from '../contexts/ScrollsContext';
 import { useTranslation } from 'react-i18next'
 import { DateHeader } from './DateHeader';
+import { useTheme } from '../theme/ThemeContext';
 
 export const EditScrollScreen = ({ route }) => {
   const {
@@ -19,10 +20,13 @@ export const EditScrollScreen = ({ route }) => {
     onChageTitle(route.params.title)
   }, [])
 
+  const { theme } = useTheme()
   const { t } = useTranslation()
 
   return (
-    <View style={styles.content}>
+    <View style={[styles.content, {
+      backgroundColor: theme.colors.background
+    }]}>
       <DateHeader
         updateDate={updateDate}
         dateStr={route.params.date}
@@ -30,17 +34,23 @@ export const EditScrollScreen = ({ route }) => {
       <TextInput 
         value={title}
         placeholder={t('placeholder.title')}
-        style={styles.title}
         onChangeText={onChageTitle}
+        style={[styles.title, {
+          color: theme.colors.text,
+          backgroundColor: theme.colors.background
+        }]}
       />
       <TextInput
         editable
         multiline
         value={text}
         numberOfLines={30}
-        style={styles.text}
         placeholder={t('placeholder.text')}
         onChangeText={onChageText}
+        style={[styles.text, {
+          color: theme.colors.text,
+          backgroundColor: theme.colors.background
+        }]}
       />
     </View>
   )
@@ -48,6 +58,7 @@ export const EditScrollScreen = ({ route }) => {
 
 const styles = StyleSheet.create({
   content: {
+    flex: 1,
     padding: 18,
   },
   title: {

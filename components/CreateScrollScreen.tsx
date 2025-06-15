@@ -3,6 +3,7 @@ import { ScrollsContext } from '../contexts/ScrollsContext';
 import { StyleSheet, TextInput, View } from 'react-native';
 import { DateHeader } from './DateHeader';
 import { useTranslation } from 'react-i18next';
+import { useTheme } from '../theme/ThemeContext';
 
 export const CreateScrollScreen = () => {
   const {
@@ -14,6 +15,7 @@ export const CreateScrollScreen = () => {
     updateDate
   } = useContext(ScrollsContext)
 
+  const { theme } = useTheme()
   const { t } = useTranslation()
   const date = new Date().toISOString() 
   
@@ -24,7 +26,9 @@ export const CreateScrollScreen = () => {
   }, [])
 
   return (
-    <View style={styles.content}>
+    <View style={[styles.content, {
+        backgroundColor: theme.colors.background
+    }]}>
       <DateHeader
         dateStr={date} 
         updateDate={updateDate} 
@@ -32,17 +36,25 @@ export const CreateScrollScreen = () => {
       <TextInput 
         value={title}
         placeholder={t('placeholder.title')}
-        style={styles.title}
         onChangeText={onChageTitle}
+        placeholderTextColor={theme.colors.text}
+        style={[styles.title, {
+          color: theme.colors.text,
+          backgroundColor: theme.colors.background
+        }]}
       />
       <TextInput
         editable
         multiline
         numberOfLines={30}
         value={text}
-        style={styles.text}
         placeholder={t('placeholder.text')}
         onChangeText={onChageText}
+        placeholderTextColor={theme.colors.text}
+        style={[styles.text, {
+          color: theme.colors.text,
+          backgroundColor: theme.colors.background
+        }]}
       />
     </View>
   )
@@ -50,6 +62,7 @@ export const CreateScrollScreen = () => {
 
 const styles = StyleSheet.create({
   content: {
+    flex: 1,
     padding: 18,
   },
   title: {

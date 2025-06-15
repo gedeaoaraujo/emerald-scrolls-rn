@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import DateTimePicker from '@react-native-community/datetimepicker'
 import { View, Text, StyleSheet, TouchableOpacity, Platform } from "react-native"
+import { useTheme } from '../theme/ThemeContext'
 
 type DateHeaderProps = {
   dateStr: string,
@@ -15,6 +16,8 @@ export const DateHeader = ({
   const [mode, setMode] = useState("date");
   const [show, setShow] = useState(false);
   const [date, setDate] = useState(new Date(dateStr));
+  
+  const { theme } = useTheme()
   const { t } = useTranslation()
   
   const getDayMonth = (): string => {
@@ -67,14 +70,20 @@ export const DateHeader = ({
         disabled={readOnly}
         style={{ flex: 1 }}
         onPress={() => openPicker("date")}>
-        <Text style={styles.dayMonth}>{getDayMonth()}</Text>
-        <Text style={styles.yearDayWeek}>{getYearDay()}</Text>
+        <Text style={[styles.dayMonth, {
+          color: theme.colors.text
+        }]}>{getDayMonth()}</Text>
+        <Text style={[styles.yearDayWeek, {
+          color: theme.colors.text
+        }]}>{getYearDay()}</Text>
       </TouchableOpacity>
       <TouchableOpacity
         disabled={readOnly}
         style={{ flex: 1 }}
         onPress={() => openPicker("time")}>
-        <Text style={styles.hour}>{getHour()}</Text>
+        <Text style={[styles.hour, {
+          color: theme.colors.text
+        }]}>{getHour()}</Text>
       </TouchableOpacity>
       {show && (
         <DateTimePicker
