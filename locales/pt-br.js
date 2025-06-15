@@ -12,7 +12,7 @@ export const ptBR = {
     'authentication.failed': "Autenticação falhou",
     'use.password': "Use a senha",
     'wrong.password': "Senha incorreta",
-    'athenticate': 'Autenticar com biometria',
+    'authenticate': 'Autenticar com biometria',
     'nobiometry.support': 'Seu dispositivo não suporta autenticação biométrica.',
   }
 }

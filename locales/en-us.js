@@ -12,7 +12,7 @@ export const enUS = {
     'authentication.failed': "Authentication failed",
     'use.password': "Usar senha",
     'wrong.password': "Wrong password",
-    'athenticate': 'Authenticate with biometry',
+    'authenticate': 'Authenticate with biometry',
     'nobiometry.support': 'Seu dispositivo não suporta autenticação biométrica.',
   }
 }
