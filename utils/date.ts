@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 
-export const dateTimePtBr = (dateStr: string): string => {
+export const localizeDateTime = (dateStr: string): string => {
   const { t } = useTranslation()
   const language = t('language')
   const isHour12 = language === 'pt-BR' ? false : true
