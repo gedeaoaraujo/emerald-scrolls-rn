@@ -25,7 +25,7 @@ export const SplashScreen = ({ navigation }) => {
   const { t } = useTranslation()
 
   const callBiometry = () => {
-    checkBiometry(() => {
+    checkBiometry(t, () => {
       navigation.navigate('Home')
     })
   }
@@ -39,7 +39,7 @@ export const SplashScreen = ({ navigation }) => {
     }
   }
  
-  startChecking()
+  //startChecking()
   
   return (
     <View style={styles.container}>
