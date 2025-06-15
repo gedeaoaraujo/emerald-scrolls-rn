@@ -58,8 +58,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   buttonFab: {
-    right: 15,
-    bottom: 30,
+    right: 20,
+    bottom: 60,
     position: 'absolute',
   }
 });
