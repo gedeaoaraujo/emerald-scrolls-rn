@@ -1,4 +1,6 @@
-export const enUS = {
+import { Localization } from "./localization";
+
+export const enUS: Localization = {
   translation: {
     'language': "en-US",
     'app.name': "Emerald Scrolls",

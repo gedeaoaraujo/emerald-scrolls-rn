@@ -1,0 +1,18 @@
+export type Localization = {
+  translation: {
+    'language': string,
+    'app.name': string,
+    'view.scroll': string,
+    'edit.scroll': string,
+    'create.scroll': string,
+    'placeholder.title': string,
+    'placeholder.text': string,
+    'write.password': string,
+    'nobiometry': string,
+    'authentication.failed': string,
+    'use.password': string,
+    'wrong.password': string,
+    'authenticate': string,
+    'nobiometry.support': string,
+  }
+}

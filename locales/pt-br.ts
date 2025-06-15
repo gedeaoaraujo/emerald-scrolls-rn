@@ -1,4 +1,6 @@
-export const ptBR = {
+import { Localization } from "./localization";
+
+export const ptBR: Localization = {
   translation: {
     'language': "pt-BR",
     'app.name': "Pergaminhos de Esmeralda",
