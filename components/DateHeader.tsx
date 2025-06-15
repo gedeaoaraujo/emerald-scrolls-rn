@@ -37,10 +37,14 @@ export const DateHeader = ({
 
   const getHour = (): string => {
     const language = t('language')
-    const hour12 = language === 'pt-BR' ? false : true
     return date.toLocaleTimeString(
-      language, { hour12,  hour: '2-digit', minute: '2-digit' }
+      language, { hour12: isHour12(),  hour: '2-digit', minute: '2-digit' }
     )
+  }
+
+  const isHour12 = (): boolean => {
+    const language = t('language')
+    return language === 'pt-BR' ? false : true
   }
 
   const onChange = (event: any, selectedDate?: Date) => {
@@ -78,6 +82,7 @@ export const DateHeader = ({
           mode={mode} // pode ser 'date', 'time' ou 'datetime'
           display="default" // pode ser 'default', 'spinner', 'calendar', etc.
           onChange={onChange}
+          is24Hour={!isHour12()}
         />
       )}
     </View>
