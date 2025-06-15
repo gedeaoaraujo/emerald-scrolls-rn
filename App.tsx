@@ -11,6 +11,7 @@ import { EditScrollScreen } from './components/EditScrollScreen';
 import { useTheme, ThemeProvider } from './theme/ThemeContext';
 import { EditScrollMenu } from './components/EditScrollMenu';
 import { SplashScreen } from './components/SplashScreen';
+import { HomeMenu } from './components/HomeMenu';
 import { useTranslation } from 'react-i18next'
 import './locales/i18n'
 
@@ -50,6 +51,7 @@ export default function App() {
             title: t('app.name'),
             headerTintColor: theme.colors.textOnPrimary,
             headerStyle: { backgroundColor: theme.colors.primary },
+            headerRight: () => <HomeMenu/>
           }}
         />
         <Stack.Screen
