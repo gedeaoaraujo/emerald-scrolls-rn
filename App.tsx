@@ -1,6 +1,7 @@
 import { ScrollModel } from './model/ScrollModel.js';
 import { HomeScreen } from './components/HomeSceen';
 import { NavigationContainer } from '@react-navigation/native';
+import { LocalizationProvider } from './contexts/LocalizationContext';
 import { CreateScrollScreen } from './components/CreateScrollScreen';
 import { createStackNavigator } from '@react-navigation/stack';
 import { ViewScrollScreen } from './components/ViewScrollScreen';
@@ -30,7 +31,6 @@ function MainContent() {
   const { t } = useTranslation();
 
   return (
-    <ScrollsProvider>
     <NavigationContainer>
     <Stack.Navigator>
       <Stack.Screen
@@ -96,14 +96,17 @@ function MainContent() {
       />
     </Stack.Navigator>
     </NavigationContainer>
-    </ScrollsProvider>
   );
 }
 
 export default function App() {
   return (
     <ThemeProvider>
+    <ScrollsProvider>
+    <LocalizationProvider>
       <MainContent />
+    </LocalizationProvider>
+    </ScrollsProvider>
     </ThemeProvider>
   )
 }
