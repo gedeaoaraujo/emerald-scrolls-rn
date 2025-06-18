@@ -12,10 +12,10 @@ export const enUS: Localization = {
     'write.password': "Write your password",
     'nobiometry': 'No biometry registered.',
     'authentication.failed': "Authentication failed",
-    'use.password': "Usar senha",
+    'use.password': "Use your password",
     'wrong.password': "Wrong password",
     'authenticate': 'Authenticate with biometry',
-    'nobiometry.support': 'Seu dispositivo não suporta autenticação biométrica.',
+    'nobiometry.support': 'Your device does not support biometric authentication.',
     'check.title.text': 'Neither the title nor the text can be empty.'
   }
 }
