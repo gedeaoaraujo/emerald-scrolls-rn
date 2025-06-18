@@ -1,6 +1,7 @@
 import React, { createContext, useState } from "react";
 import { scrollsList } from "../data/MockedScrolls";
 import { ScrollModel } from "../model/ScrollModel";
+import { useTranslation } from 'react-i18next';
 import { isEmpty } from "../utils/strings";
 import { Share } from "react-native";
 
@@ -20,6 +21,7 @@ export const ScrollsContext = createContext({
 })
 
 export function ScrollsProvider({ children }) {
+    const { t } = useTranslation()
     const [date, setDate] = useState('')
     const [text, setText] = useState('')
     const [title, setTitle] = useState('')
@@ -28,7 +30,7 @@ export function ScrollsProvider({ children }) {
     const checkSavable = () => {
         let isSavable = true
         if (isEmpty(title) || isEmpty(text)) {
-            alert('O título ou texto não pode estar vazio.')
+            alert(t('check.title.text'))
             isSavable = false
         }
         return isSavable

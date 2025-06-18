@@ -16,5 +16,6 @@ export const enUS: Localization = {
     'wrong.password': "Wrong password",
     'authenticate': 'Authenticate with biometry',
     'nobiometry.support': 'Seu dispositivo não suporta autenticação biométrica.',
+    'check.title.text': 'Neither the title nor the text can be empty.'
   }
 }

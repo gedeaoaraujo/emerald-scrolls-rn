@@ -14,5 +14,6 @@ export type Localization = {
     'wrong.password': string,
     'authenticate': string,
     'nobiometry.support': string,
+    'check.title.text': string,
   }
 }

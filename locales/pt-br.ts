@@ -16,5 +16,6 @@ export const ptBR: Localization = {
     'wrong.password': "Senha incorreta",
     'authenticate': 'Autenticar com biometria',
     'nobiometry.support': 'Seu dispositivo não suporta autenticação biométrica.',
+    'check.title.text': 'Nem o título nem o texto podem estar vazio.'
   }
 }
