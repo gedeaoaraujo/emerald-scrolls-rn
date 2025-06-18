@@ -25,79 +25,85 @@ export type RootStackParamList = {
 
 const Stack = createStackNavigator();
 
-export default function App() {
+function MainContent() {
   const { theme } = useTheme()
   const { t } = useTranslation();
 
   return (
-    <ThemeProvider>
     <ScrollsProvider>
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Splash"
-          component={SplashScreen}
-          options={{
-            headerShown: false,
-            title: "Splash Screen",
-            headerTintColor: theme.colors.textOnPrimary,
-            headerStyle: { backgroundColor: theme.colors.primary },
-          }}
-        />
-        <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{
-            title: t('app.name'),
-            headerTintColor: theme.colors.textOnPrimary,
-            headerStyle: { backgroundColor: theme.colors.primary },
-            headerRight: () => <HomeMenu/>
-          }}
-        />
-        <Stack.Screen
-          name="View"
-          component={ViewScrollScreen}
-          options={({ route, navigation }) => ({
-            title: t('view.scroll'),
-            headerTintColor: theme.colors.textOnPrimary,
-            headerStyle: { backgroundColor: theme.colors.primary },
-            headerRight: () => (
-              <ViewScrollMenu
-                scroll={route.params} 
-                navigation={navigation}/>
-            ),
-          })}
-        />
-        <Stack.Screen
-          name="Create"
-          component={CreateScrollScreen}
-          options={({ route, navigation }) => ({
-            title: t('create.scroll'),
-            headerTintColor: theme.colors.textOnPrimary,
-            headerStyle: { backgroundColor: theme.colors.primary },
-            headerRight: () => (
-              <CreateScrollMenu 
-                navigation={navigation}/>
-            )
-          })}
-        />
-        <Stack.Screen
-          name="Edit"
-          component={EditScrollScreen}
-          options={({ route, navigation }) => ({
-            title: t('edit.scroll'),
-            headerTintColor: theme.colors.textOnPrimary,
-            headerStyle: { backgroundColor: theme.colors.primary },
-            headerRight: () => (
-              <EditScrollMenu
-                scroll={route.params} 
-                navigation={navigation}/>
-            )
-          })}
-        />
-      </Stack.Navigator>
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Splash"
+        component={SplashScreen}
+        options={{
+          headerShown: false,
+          title: "Splash Screen",
+          headerTintColor: theme.colors.textOnPrimary,
+          headerStyle: { backgroundColor: theme.colors.primary },
+        }}
+      />
+      <Stack.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          title: t('app.name'),
+          headerTintColor: theme.colors.textOnPrimary,
+          headerStyle: { backgroundColor: theme.colors.primary },
+          headerRight: () => <HomeMenu/>
+        }}
+      />
+      <Stack.Screen
+        name="View"
+        component={ViewScrollScreen}
+        options={({ route, navigation }) => ({
+          title: t('view.scroll'),
+          headerTintColor: theme.colors.textOnPrimary,
+          headerStyle: { backgroundColor: theme.colors.primary },
+          headerRight: () => (
+            <ViewScrollMenu
+              scroll={route.params}
+              navigation={navigation}/>
+          ),
+        })}
+      />
+      <Stack.Screen
+        name="Create"
+        component={CreateScrollScreen}
+        options={({ route, navigation }) => ({
+          title: t('create.scroll'),
+          headerTintColor: theme.colors.textOnPrimary,
+          headerStyle: { backgroundColor: theme.colors.primary },
+          headerRight: () => (
+            <CreateScrollMenu
+              navigation={navigation}/>
+          )
+        })}
+      />
+      <Stack.Screen
+        name="Edit"
+        component={EditScrollScreen}
+        options={({ route, navigation }) => ({
+          title: t('edit.scroll'),
+          headerTintColor: theme.colors.textOnPrimary,
+          headerStyle: { backgroundColor: theme.colors.primary },
+          headerRight: () => (
+            <EditScrollMenu
+              scroll={route.params}
+              navigation={navigation}/>
+          )
+        })}
+      />
+    </Stack.Navigator>
     </NavigationContainer>
     </ScrollsProvider>
-    </ThemeProvider>
   );
+}
+
+export default function App() {
+  return (
+    <ThemeProvider>
+      <MainContent />
+    </ThemeProvider>
+  )
 }
