@@ -1,6 +1,7 @@
 import React, { createContext, useState } from "react";
 import { scrollsList } from "../data/MockedScrolls";
 import { ScrollModel } from "../model/ScrollModel";
+import { isEmpty } from "../utils/strings";
 import { Share } from "react-native";
 
 export const ScrollsContext = createContext({
@@ -8,11 +9,11 @@ export const ScrollsContext = createContext({
     date: '',
     title: '',
     list: scrollsList,
-    createScroll: ()=>{},
     editScroll: (id: number)=>{},
     onChageText: (txt: string)=>{},
     removeScroll: (id: number)=>{},
     onChageDate: (date: string)=>{},
+    createScroll: (): boolean=>false,
     onChageTitle: (title: string)=>{},
     updateDate: (newDate: Date) => {},
     shareScroll: (scroll: ScrollModel)=>{},
@@ -23,6 +24,15 @@ export function ScrollsProvider({ children }) {
     const [text, setText] = useState('')
     const [title, setTitle] = useState('')
     const [list, setList] = useState(scrollsList)
+
+    const checkSavable = () => {
+        let isSavable = true
+        if (isEmpty(title) || isEmpty(text)) {
+            alert('O título ou texto não pode estar vazio.')
+            isSavable = false
+        }
+        return isSavable
+    }
 
     const onChageText = (txt: string) => setText(txt)
     const onChageDate = (date: string) => setDate(date)
@@ -38,13 +48,17 @@ export function ScrollsProvider({ children }) {
         setList((prevItems) => prevItems.filter(i => i.id !== id))
     }
 
-    const createScroll = () => {
+    const createScroll = (): boolean => {
+        if (!checkSavable()) {
+            return false
+        }
         const newScroll = {
             id: list.length + 1,
             title: title, date: date, text: text
         }
         setList((prevItems) => [...prevItems, newScroll])
         clearScroll()
+        return true
     }
 
     const shareScroll = (scroll: ScrollModel) => {

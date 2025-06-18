@@ -9,8 +9,8 @@ export function CreateScrollMenu({ navigation }) {
   const { createScroll } = useContext(ScrollsContext)
 
   const createNew = () => {
-    createScroll()
-    navigation.goBack()
+    if (createScroll())
+      navigation.goBack()
   }
 
   return (
