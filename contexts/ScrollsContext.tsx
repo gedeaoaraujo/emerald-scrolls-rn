@@ -1,3 +1,4 @@
+import { deleteScroll, insertScroll, updateScroll } from "../database/scrolls.dao";
 import React, { createContext, useState } from "react";
 import { scrollsList } from "../data/MockedScrolls";
 import { ScrollModel } from "../model/ScrollModel";
@@ -17,6 +18,7 @@ export const ScrollsContext = createContext({
     createScroll: (): boolean=>false,
     onChageTitle: (title: string)=>{},
     updateDate: (newDate: Date) => {},
+    init: (scrolls: ScrollModel[]) => {},
     shareScroll: (scroll: ScrollModel)=>{},
 })
 
@@ -26,6 +28,10 @@ export function ScrollsProvider({ children }) {
     const [text, setText] = useState('')
     const [title, setTitle] = useState('')
     const [list, setList] = useState(scrollsList)
+
+    const init = (scrolls: ScrollModel[]) => {
+        setList(scrolls)
+    }
 
     const checkSavable = () => {
         let isSavable = true
@@ -48,6 +54,7 @@ export function ScrollsProvider({ children }) {
 
     const removeScroll = (id: number) => {
         setList((prevItems) => prevItems.filter(i => i.id !== id))
+        deleteScroll(id)
     }
 
     const createScroll = (): boolean => {
@@ -59,6 +66,7 @@ export function ScrollsProvider({ children }) {
             title: title, date: date, text: text
         }
         setList((prevItems) => [...prevItems, newScroll])
+        insertScroll(newScroll)
         clearScroll()
         return true
     }
@@ -75,6 +83,7 @@ export function ScrollsProvider({ children }) {
         item.title = title
         item.date = date
         item.text = text
+        updateScroll(item)
         clearScroll()
     }
 
@@ -88,6 +97,7 @@ export function ScrollsProvider({ children }) {
             text,
             date,
             title,
+            init,
             editScroll, 
             shareScroll,
             removeScroll,
