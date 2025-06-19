@@ -17,7 +17,7 @@ export async function insertScroll(scroll: ScrollModel) {
 
 export async function deleteScroll(id: number) {
   const db = await SQLite.openDatabaseAsync('emerald.db')
-  await db.runAsync(`DELETE FROM scroll WHERE id = $id`, { id })
+  await db.runAsync(`DELETE FROM scroll WHERE id = $id`, { $id: id })
 }
 
 export async function updateScroll(scroll: ScrollModel){
@@ -27,6 +27,6 @@ export async function updateScroll(scroll: ScrollModel){
     `UPDATE scroll 
       SET title = $title, date = $date, text = $text
       WHERE id = $id
-    `, { id, title, date, text }
+    `, { $id: id, $title: title, $date: date, $text: text }
   )
 }
