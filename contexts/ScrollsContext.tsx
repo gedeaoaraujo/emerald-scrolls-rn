@@ -1,6 +1,5 @@
 import { deleteScroll, insertScroll, updateScroll } from "../database/scrolls.dao";
 import React, { createContext, useState } from "react";
-import { scrollsList } from "../data/MockedScrolls";
 import { ScrollModel } from "../model/ScrollModel";
 import { useTranslation } from 'react-i18next';
 import { isEmpty } from "../utils/strings";
@@ -10,7 +9,7 @@ export const ScrollsContext = createContext({
     text: '',
     date: '',
     title: '',
-    list: scrollsList,
+    list: ([] as ScrollModel[]),
     editScroll: (id: number)=>{},
     onChageText: (txt: string)=>{},
     removeScroll: (id: number)=>{},
@@ -27,7 +26,7 @@ export function ScrollsProvider({ children }) {
     const [date, setDate] = useState('')
     const [text, setText] = useState('')
     const [title, setTitle] = useState('')
-    const [list, setList] = useState(scrollsList)
+    const [list, setList] = useState<ScrollModel[]>([])
 
     const init = (scrolls: ScrollModel[]) => {
         setList(scrolls)
