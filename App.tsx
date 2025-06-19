@@ -12,9 +12,11 @@ import { EditScrollScreen } from './components/EditScrollScreen';
 import { useTheme, ThemeProvider } from './theme/ThemeContext';
 import { EditScrollMenu } from './components/EditScrollMenu';
 import { SplashScreen } from './components/SplashScreen';
+import { migrateDbIfNeeded } from './database/migration';
 import { HomeMenu } from './components/HomeMenu';
-import { useTranslation } from 'react-i18next'
-import './locales/i18n'
+import { useTranslation } from 'react-i18next';
+import { SQLiteProvider } from 'expo-sqlite';
+import './locales/i18n';
 
 export type RootStackParamList = {
   Splash: undefined;
@@ -28,7 +30,7 @@ const Stack = createStackNavigator();
 
 function MainContent() {
   const { theme } = useTheme()
-  const { t } = useTranslation();
+  const { t } = useTranslation()
 
   return (
     <NavigationContainer>
@@ -100,7 +102,11 @@ function MainContent() {
 }
 
 export default function App() {
+  const DB_NAME = 'emerald.db'
   return (
+    <SQLiteProvider 
+      databaseName={DB_NAME}
+      onInit={migrateDbIfNeeded}>
     <ThemeProvider>
     <ScrollsProvider>
     <LocalizationProvider>
@@ -108,5 +114,6 @@ export default function App() {
     </LocalizationProvider>
     </ScrollsProvider>
     </ThemeProvider>
+    </SQLiteProvider>
   )
 }
