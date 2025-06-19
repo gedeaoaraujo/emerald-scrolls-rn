@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { ScrollItem } from './ScrollItem';
 import { RootStackParamList } from '../App';
 import { FloatActionBtn } from './FloatActionBtn';
@@ -6,6 +6,7 @@ import { ScrollModel } from '../model/ScrollModel';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { StyleSheet, View, FlatList } from 'react-native';
 import { ScrollsContext } from '../contexts/ScrollsContext';
+import { getAllScrolls } from '../database/scrolls.dao';
 import { useTheme } from '../theme/ThemeContext';
 
 type HomeScreenProps = {
@@ -14,7 +15,11 @@ type HomeScreenProps = {
 
 export const HomeScreen = (props: HomeScreenProps) => {
   const { theme } = useTheme()
-  const { list } = useContext(ScrollsContext)
+  const { list, init } = useContext(ScrollsContext)
+
+  async function getScrolls() {
+    init(await getAllScrolls())
+  }
 
   function goToScroll(item: ScrollModel) {
     props.navigation.navigate('View', item)
@@ -23,6 +28,10 @@ export const HomeScreen = (props: HomeScreenProps) => {
   function goToCreate() {
     props.navigation.navigate('Create')
   }
+
+  useEffect(() => {
+    getScrolls()
+  }, [])
 
   return (
     <View style={[styles.content, { 
