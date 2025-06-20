@@ -1,9 +1,13 @@
-import { deleteScroll, insertScroll, updateScroll } from "../database/scrolls.dao";
 import React, { createContext, useState } from "react";
 import { ScrollModel } from "../model/ScrollModel";
 import { useTranslation } from 'react-i18next';
 import { isEmpty } from "../utils/strings";
 import { Share } from "react-native";
+import { 
+    deleteScrolls, 
+    insertScrolls, 
+    updateScrolls 
+} from "../database/scrolls.dao";
 
 export const ScrollsContext = createContext({
     text: '',
@@ -53,7 +57,7 @@ export function ScrollsProvider({ children }) {
 
     const removeScroll = (id: number) => {
         setList((prevItems) => prevItems.filter(i => i.id !== id))
-        deleteScroll(id)
+        deleteScrolls(id)
     }
 
     const createScroll = (): boolean => {
@@ -65,7 +69,7 @@ export function ScrollsProvider({ children }) {
             title: title, date: date, text: text
         }
         setList((prevItems) => [...prevItems, newScroll])
-        insertScroll(newScroll)
+        insertScrolls(newScroll)
         clearScroll()
         return true
     }
@@ -82,7 +86,7 @@ export function ScrollsProvider({ children }) {
         item.title = title
         item.date = date
         item.text = text
-        updateScroll(item)
+        updateScrolls(item)
         clearScroll()
     }
 
