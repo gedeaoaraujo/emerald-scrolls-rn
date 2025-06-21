@@ -2,6 +2,8 @@ import { Localization } from "./localization";
 
 export const ptBR: Localization = {
   translation: {
+    'no': 'Não',
+    'yes': 'Sim',
     'language': "pt-BR",
     'app.name': "Emerald Scrolls",
     'view.scroll': "Visualizar Pergaminho",
@@ -16,6 +18,8 @@ export const ptBR: Localization = {
     'wrong.password': "Senha incorreta",
     'authenticate': 'Autenticar com biometria',
     'nobiometry.support': 'Seu dispositivo não suporta autenticação biométrica.',
-    'check.title.text': 'Nem o título nem o texto podem estar vazios.'
+    'check.title.text': 'Nem o título nem o texto podem estar vazios.',
+    'dialog.discart.title': 'Descartar mudanças',
+    'dialog.discart.message': 'Você deseja descartar todas as mudanças já feitas?',
   }
 }

@@ -1,5 +1,7 @@
 export type Localization = {
   translation: {
+    'no': string,
+    'yes': string,
     'language': string,
     'app.name': string,
     'view.scroll': string,
@@ -15,5 +17,7 @@ export type Localization = {
     'authenticate': string,
     'nobiometry.support': string,
     'check.title.text': string,
+    'dialog.discart.title': string,
+    'dialog.discart.message': string,
   }
 }
