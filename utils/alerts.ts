@@ -1,10 +1,8 @@
-import { useTranslation } from "react-i18next";
 import { Alert } from "react-native";
 
-export default function Dialog() {
-  const { t } = useTranslation()
+function Dialog() {
 
-  const discartChanges = (onYesPress: ()=>void) => {
+  const discartChanges = (t: any, onYesPress: ()=> void) => {
     Alert.alert(
       t('dialog.discart.title'),
       t('dialog.discart.message'),
@@ -22,4 +20,7 @@ export default function Dialog() {
   return {
     discartChanges
   }
+
 }
+
+export default Dialog()
