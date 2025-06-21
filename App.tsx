@@ -10,12 +10,14 @@ import { ViewScrollMenu } from './components/ViewScrollMenu';
 import { CreateScrollMenu } from './components/CreateScrollMenu';
 import { EditScrollScreen } from './components/EditScrollScreen';
 import { useTheme, ThemeProvider } from './theme/ThemeContext';
+import { HeaderBackButton } from '@react-navigation/elements';
 import { EditScrollMenu } from './components/EditScrollMenu';
 import { SplashScreen } from './components/SplashScreen';
 import { migrateDbIfNeeded } from './database/migration';
 import { HomeMenu } from './components/HomeMenu';
 import { useTranslation } from 'react-i18next';
 import { SQLiteProvider } from 'expo-sqlite';
+import Dialog from './utils/alerts';
 import './locales/i18n';
 
 export type RootStackParamList = {
@@ -76,6 +78,12 @@ function MainContent() {
           title: t('create.scroll'),
           headerTintColor: theme.colors.textOnPrimary,
           headerStyle: { backgroundColor: theme.colors.primary },
+          headerLeft: () => (
+            <HeaderBackButton
+              tintColor={ theme.colors.textOnPrimary }
+              onPress={() => Dialog.discartChanges(t, navigation.goBack)}
+            />
+          ),
           headerRight: () => (
             <CreateScrollMenu
               navigation={navigation}/>

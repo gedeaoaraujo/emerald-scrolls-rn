@@ -1,11 +1,12 @@
 import { useContext, useEffect } from 'react';
 import { ScrollsContext } from '../contexts/ScrollsContext';
-import { StyleSheet, TextInput, View } from 'react-native';
+import { BackHandler, StyleSheet, TextInput, View } from 'react-native';
 import { DateHeader } from './DateHeader';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '../theme/ThemeContext';
+import Dialog from '../utils/alerts';
 
-export const CreateScrollScreen = () => {
+export const CreateScrollScreen = ({ navigation }) => {
   const {
     title, 
     text,
@@ -23,6 +24,13 @@ export const CreateScrollScreen = () => {
     onChageDate(date)
     onChageText('')
     onChageTitle('')
+  
+    const handler = BackHandler.addEventListener('hardwareBackPress', () => {
+      Dialog.discartChanges(t, navigation.goBack)
+      return true
+    });
+
+    return () => handler.remove()
   }, [])
 
   return (
