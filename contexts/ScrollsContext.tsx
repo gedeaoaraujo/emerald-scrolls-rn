@@ -20,7 +20,7 @@ export const ScrollsContext = createContext({
     onChageDate: (date: string)=>{},
     createScroll: (): boolean=>false,
     onChageTitle: (title: string)=>{},
-    updateDate: (newDate: Date) => {},
+    updateDate: (date: Date) => {},
     init: (scrolls: ScrollModel[]) => {},
     shareScroll: (scroll: ScrollModel)=>{},
 })
