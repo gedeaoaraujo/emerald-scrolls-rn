@@ -7,12 +7,12 @@ function Dialog() {
       t('dialog.discart.title'),
       t('dialog.discart.message'),
       [{
-        text: t('yes'),
-        onPress: () => onYesPress()
-      }, {
         text: t('no'),
         style: 'cancel',
         onPress: () => { }
+      },{
+        text: t('yes'),
+        onPress: () => onYesPress()
       }]
     )
   }
