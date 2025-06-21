@@ -19,7 +19,7 @@ export const enUS: Localization = {
     'authenticate': 'Authenticate with biometry',
     'nobiometry.support': 'Your device does not support biometric authentication.',
     'check.title.text': 'Neither the title nor the text can be empty.',
-    'dialog.discart.title': 'Discart changes',
-    'dialog.discart.message': 'Do you want to discard all changes already made?',
+    'dialog.discart.title': 'Discard scroll',
+    'dialog.discart.message': 'Are you sure you want to discard this scroll?',
   }
 }

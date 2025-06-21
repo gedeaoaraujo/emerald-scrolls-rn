@@ -19,7 +19,7 @@ export const ptBR: Localization = {
     'authenticate': 'Autenticar com biometria',
     'nobiometry.support': 'Seu dispositivo não suporta autenticação biométrica.',
     'check.title.text': 'Nem o título nem o texto podem estar vazios.',
-    'dialog.discart.title': 'Descartar mudanças',
-    'dialog.discart.message': 'Você deseja descartar todas as mudanças já feitas?',
+    'dialog.discart.title': 'Descartar pergaminho',
+    'dialog.discart.message': 'Você tem certeza que deseja descartar esse pergaminho?',
   }
 }
