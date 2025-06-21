@@ -7,7 +7,7 @@ import { useTheme } from '../theme/ThemeContext'
 type DateHeaderProps = {
   dateStr: string,
   readOnly?: boolean,
-  updateDate?: (date: Date) => {}
+  updateDate?: (date: Date) => void
 }
 
 export const DateHeader = ({ 
