@@ -2,7 +2,9 @@ import { useContext } from "react"
 import { FontAwesome6 } from '@expo/vector-icons'
 import { ScrollModel } from "../model/ScrollModel"
 import { ScrollsContext } from "../contexts/ScrollsContext"
-import { StyleSheet, TouchableOpacity, View, Share } from "react-native"
+import { StyleSheet, TouchableOpacity, View } from "react-native"
+import { useTranslation } from "react-i18next"
+import Dialog from '../utils/alerts'
 
 type ScrollParams = {
   scroll: ScrollModel,
@@ -10,11 +12,14 @@ type ScrollParams = {
 }
 
 export function ViewScrollMenu({ scroll, navigation }: ScrollParams) {
+  const { t } = useTranslation()
   const { shareScroll, removeScroll } = useContext(ScrollsContext)
 
   const deleteScroll = () => {
-    removeScroll(scroll.id)
-    navigation.goBack()
+    Dialog.deleteScroll(t, ()=>{
+      removeScroll(scroll.id)
+      navigation.goBack()
+    })
   }
 
   const editScroll = () => {
