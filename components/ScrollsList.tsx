@@ -44,16 +44,18 @@ export const ScrollsList = ({
   )
 
   const FilledList = () => (
-    <FlatList
-      data={list}
-      keyExtractor={(item) => String(item.id)}
-      renderItem={({ item }) => (
-        <ScrollItem
-          item={item}
-          goToScroll={goToScroll}
-        />
-      )}
-    />
+    <View style={{ flex: 1, height: '100%' }}>
+      <FlatList
+        data={list}
+        keyExtractor={(item) => String(item.id)}
+        renderItem={({ item }) => (
+          <ScrollItem
+            item={item}
+            goToScroll={goToScroll}
+          />
+        )}
+      />
+    </View>
   )
 
   return (
@@ -66,13 +68,15 @@ export const ScrollsList = ({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    minHeight: '100%',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'flex-start',
   },
   card: {
     padding: 32,
     width: '90%',
     elevation: 6,
+    marginTop: 20,
     borderRadius: 10,
     shadowColor: '#000',
     shadowRadius: 3.84,
