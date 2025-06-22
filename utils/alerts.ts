@@ -17,8 +17,24 @@ function Dialog() {
     )
   }
 
+  const deleteScroll = (t: any, onYesPress: ()=> void) => {
+    Alert.alert(
+      t('dialog.delete.title'),
+      t('dialog.delete.message'),
+      [{
+        text: t('no'),
+        style: 'cancel',
+        onPress: () => { }
+      },{
+        text: t('yes'),
+        onPress: () => onYesPress()
+      }]
+    )
+  }
+
   return {
-    discartChanges
+    discartChanges,
+    deleteScroll
   }
 
 }

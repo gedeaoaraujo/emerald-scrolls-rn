@@ -19,6 +19,8 @@ export type Localization = {
     'check.title.text': string,
     'dialog.discart.title': string,
     'dialog.discart.message': string,
+    'dialog.delete.title': string,
+    'dialog.delete.message': string,
     'empty.scrolls.title': string,
     'empty.scrolls.text': string,
   }
