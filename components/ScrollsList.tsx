@@ -2,6 +2,7 @@ import { FlatList, StyleSheet, Text, View } from "react-native"
 import { ScrollModel } from "../model/ScrollModel"
 import { FontAwesome6 } from '@expo/vector-icons'
 import { ThemeType } from "../theme/ThemeType"
+import { useTranslation } from "react-i18next"
 import { ScrollItem } from './ScrollItem'
 import { isEmpty } from "../utils/arrays"
 
@@ -14,6 +15,7 @@ type ScrollsListProps = {
 export const ScrollsList = ({ 
   list, navigation, theme 
 }: ScrollsListProps) => {
+  const { t } = useTranslation()
 
   function goToScroll(item: ScrollModel) {
     navigation.navigate('View', item)
@@ -31,12 +33,12 @@ export const ScrollsList = ({
       <Text style={[styles.title, {
         color: theme.colors.textOnPrimary
       }]}>
-        Nenhum pergaminho foi escrito
+        {t('empty.scrolls.title')}
       </Text>
       <Text style={[styles.text, {
         color: theme.colors.textOnPrimary
       }]}>
-        Aperte o botão '+' para escrever um pergaminho novo.
+        {t('empty.scrolls.text')}
       </Text>
     </View >
   )

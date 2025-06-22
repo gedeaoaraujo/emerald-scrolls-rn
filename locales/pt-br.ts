@@ -21,5 +21,7 @@ export const ptBR: Localization = {
     'check.title.text': 'Nem o título nem o texto podem estar vazios.',
     'dialog.discart.title': 'Descartar pergaminho',
     'dialog.discart.message': 'Você tem certeza que deseja descartar esse pergaminho?',
+    'empty.scrolls.title': 'Nenhum pergaminho foi escrito',
+    'empty.scrolls.text': "Aperte o botão '+' para escrever um pergaminho novo.",
   }
 }

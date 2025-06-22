@@ -21,5 +21,7 @@ export const enUS: Localization = {
     'check.title.text': 'Neither the title nor the text can be empty.',
     'dialog.discart.title': 'Discard scroll',
     'dialog.discart.message': 'Are you sure you want to discard this scroll?',
+    'empty.scrolls.title': 'No scroll was written',
+    'empty.scrolls.text': "Press the '+' button to write a new scroll.",
   }
 }
