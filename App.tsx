@@ -12,6 +12,7 @@ import { EditScrollScreen } from './components/EditScrollScreen';
 import { useTheme, ThemeProvider } from './theme/ThemeContext';
 import { HeaderBackButton } from '@react-navigation/elements';
 import { EditScrollMenu } from './components/EditScrollMenu';
+import { SettingsScreen } from './components/SettingsScreen';
 import { SplashScreen } from './components/SplashScreen';
 import { migrateDbIfNeeded } from './database/migration';
 import { HomeMenu } from './components/HomeMenu';
@@ -26,6 +27,7 @@ export type RootStackParamList = {
   View: ScrollModel;
   Create: undefined;
   Edit: undefined;
+  Settings: undefined;
 };
 
 const Stack = createStackNavigator();
@@ -103,6 +105,15 @@ function MainContent() {
               navigation={navigation}/>
           )
         })}
+      />
+      <Stack.Screen
+        name="Settings"
+        component={SettingsScreen}
+        options={{
+          title: "Settings",
+          headerTintColor: theme.colors.textOnPrimary,
+          headerStyle: { backgroundColor: theme.colors.primary },
+        }}
       />
     </Stack.Navigator>
     </NavigationContainer>
