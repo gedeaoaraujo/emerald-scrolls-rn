@@ -1,12 +1,13 @@
+import { useLocalization } from "../contexts/LocalizationContext"
 import { StyleSheet, Text, View } from "react-native"
 import { useTheme } from "../theme/ThemeContext"
+import { LightTheme } from "../theme/LightTheme"
+import { DarkTheme } from "../theme/DarkTheme"
 import { RadioButton } from "./RadioButton"
-import { useState } from "react"
 
 export const SettingsScreen = () => {
-  const { theme } = useTheme()
-  const [themeSelected, setThemeSelected] = useState(1)
-  const [languageSelected, setLanguageSelected] = useState(1)
+  const { theme, selectTheme } = useTheme()
+  const { language, selectLang } = useLocalization()
 
   return (
     <View style={[styles.container, {
@@ -21,16 +22,16 @@ export const SettingsScreen = () => {
           style={[styles.text, {
             color: theme.colors.text
           }]}
-          onPress={() => setThemeSelected(1)}
-          selected={themeSelected === 1}
+          onPress={() => selectTheme(LightTheme)}
+          selected={theme === LightTheme}
           />
         <RadioButton
           label='Dark'
           style={[styles.text, {
             color: theme.colors.text
           }]}
-          onPress={() => setThemeSelected(2)}
-          selected={themeSelected === 2}
+          onPress={() => selectTheme(DarkTheme)}
+          selected={theme === DarkTheme}
           />
         <View style={styles.divider}/>
       </>
@@ -44,16 +45,16 @@ export const SettingsScreen = () => {
           style={[styles.text, {
             color: theme.colors.text
           }]}
-          onPress={() => setLanguageSelected(1)}
-          selected={languageSelected === 1}
+          onPress={() => selectLang('enUS')}
+          selected={language === 'enUS'}
           />
         <RadioButton
           label='Portuguese (Brazilian)'
           style={[styles.text, {
             color: theme.colors.text
           }]}
-          onPress={() => setLanguageSelected(2)}
-          selected={languageSelected === 2}
+          onPress={() => selectLang('ptBR')}
+          selected={language === 'ptBR'}
           />
       </>
     </View>
