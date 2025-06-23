@@ -52,12 +52,12 @@ function MainContent() {
       <Stack.Screen
         name="Home"
         component={HomeScreen}
-        options={{
+        options={({ navigation }) => ({
           title: t('app.name'),
           headerTintColor: theme.colors.textOnPrimary,
           headerStyle: { backgroundColor: theme.colors.primary },
-          headerRight: () => <HomeMenu/>
-        }}
+          headerRight: () => <HomeMenu navigation={navigation} />
+        })}
       />
       <Stack.Screen
         name="View"

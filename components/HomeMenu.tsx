@@ -1,31 +1,37 @@
-import { LocalizationContext } from "../contexts/LocalizationContext";
 import { StyleSheet, TouchableOpacity } from "react-native";
 import { FontAwesome6 } from '@expo/vector-icons';
 import { useTheme } from '../theme/ThemeContext';
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 
-export const HomeMenu = () => {
+export const HomeMenu = ({ navigation }) => {
   const { theme, toggleTheme } = useTheme()
   const [themeIcon, setThemeIcon] = useState('moon')
-  const { toggleLang } = useContext(LocalizationContext)
 
   const onPress = () => {
     setThemeIcon(themeIcon === 'moon' ? 'sun' : 'moon')
     toggleTheme()
   }
 
+  const goToSettings = () => {
+    navigation.navigate('Settings')
+  }
+
   return (
     <>
       <TouchableOpacity
-        style={styles.option}
-        onPress={toggleLang}>
-        <FontAwesome6 name='closed-captioning' size={20}
+        style={[styles.option, {
+          paddingHorizontal: 10
+        }]}
+        onPress={onPress}>
+        <FontAwesome6 name={themeIcon} size={20}
           color={theme.colors.textOnPrimary} />
       </TouchableOpacity>
       <TouchableOpacity
-        style={styles.option}
-        onPress={onPress}>
-        <FontAwesome6 name={themeIcon} size={20}
+        style={[styles.option, {
+          paddingHorizontal: 15
+        }]}
+        onPress={goToSettings}>
+        <FontAwesome6 name='ellipsis-vertical' size={20}
           color={theme.colors.textOnPrimary} />
       </TouchableOpacity>
     </>
@@ -34,6 +40,6 @@ export const HomeMenu = () => {
 
 const styles = StyleSheet.create({
   option: {
-    marginRight: 20
+    marginEnd: 4,
   }
 })
