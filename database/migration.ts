@@ -30,5 +30,12 @@ async function migrateV1(db: SQLiteDatabase){
       date TEXT NOT NULL,
       text TEXT NOT NULL
     );
-  `);
+    CREATE TABLE IF NOT EXISTS configs(
+      id INTEGER PRIMARY KEY NOT NULL,
+      key TEXT NOT NULL,
+      value TEXT NOT NULL
+    );
+    INSERT INTO configs(key, value) VALUES ('theme', 'light');
+    INSERT INTO configs(key, value) VALUES ('language', 'enUS');
+  `.trim());
 }
