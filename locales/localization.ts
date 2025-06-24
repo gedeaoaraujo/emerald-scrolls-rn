@@ -23,6 +23,7 @@ export type Localization = {
     'dialog.delete.message': string,
     'empty.scrolls.title': string,
     'empty.scrolls.text': string,
+    'settings': string,
     'settings.theme': string,
     'settings.theme.light': string,
     'settings.theme.dark': string,

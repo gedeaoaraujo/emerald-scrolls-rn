@@ -113,7 +113,7 @@ function MainContent() {
         name="Settings"
         component={SettingsScreen}
         options={{
-          title: "Settings",
+          title: t('settings'),
           headerTintColor: theme.colors.textOnPrimary,
           headerStyle: { backgroundColor: theme.colors.primary },
         }}
