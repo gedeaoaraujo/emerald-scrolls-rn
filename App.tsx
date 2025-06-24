@@ -1,7 +1,7 @@
-import { ScrollModel } from './model/ScrollModel.js';
+import { LocalizationProvider } from './contexts/LocalizationContext';
+import { ScrollModel } from './model/ScrollModel';
 import { HomeScreen } from './components/HomeSceen';
 import { NavigationContainer } from '@react-navigation/native';
-import { LocalizationProvider } from './contexts/LocalizationContext';
 import { CreateScrollScreen } from './components/CreateScrollScreen';
 import { createStackNavigator } from '@react-navigation/stack';
 import { ViewScrollScreen } from './components/ViewScrollScreen';
@@ -19,6 +19,7 @@ import { HomeMenu } from './components/HomeMenu';
 import { useTranslation } from 'react-i18next';
 import { SQLiteProvider } from 'expo-sqlite';
 import Dialog from './utils/alerts';
+import { useEffect } from 'react';
 import './locales/i18n';
 
 export type RootStackParamList = {
@@ -33,8 +34,10 @@ export type RootStackParamList = {
 const Stack = createStackNavigator();
 
 function MainContent() {
-  const { theme } = useTheme()
   const { t } = useTranslation()
+  const { theme, initTheme } = useTheme()
+
+  useEffect(() => { initTheme() }, [])
 
   return (
     <NavigationContainer>
