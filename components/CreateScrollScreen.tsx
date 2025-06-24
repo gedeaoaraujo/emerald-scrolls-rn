@@ -1,10 +1,13 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { ScrollsContext } from '../contexts/ScrollsContext';
-import { BackHandler, StyleSheet, TextInput, View } from 'react-native';
 import { DateHeader } from './DateHeader';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '../theme/ThemeContext';
 import Dialog from '../utils/alerts';
+import { 
+  BackHandler, StyleSheet, TextInput, View,
+  KeyboardAvoidingView, Platform, SafeAreaView, Keyboard 
+} from 'react-native';
 
 export const CreateScrollScreen = ({ navigation }) => {
   const {
@@ -19,6 +22,7 @@ export const CreateScrollScreen = ({ navigation }) => {
   const { theme } = useTheme()
   const { t } = useTranslation()
   const date = new Date().toISOString() 
+  const [keyboardOffset, setKeyboardOffset] = useState(0);
   
   useEffect(() => {
     onChageDate(date)
@@ -30,10 +34,23 @@ export const CreateScrollScreen = ({ navigation }) => {
       return true
     });
 
-    return () => handler.remove()
+    const show = Keyboard.addListener('keyboardDidShow', () => setKeyboardOffset(50));
+    const hide = Keyboard.addListener('keyboardDidHide', () => setKeyboardOffset(0));
+
+    return () => {
+      handler.remove()
+      show.remove();
+      hide.remove();
+    }
   }, [])
 
   return (
+    <SafeAreaView style={{ 
+      flex: 1, backgroundColor: theme.colors.background,
+    }}>
+    <KeyboardAvoidingView
+      style={{ flex: 1, paddingBottom: keyboardOffset }}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
     <View style={[styles.content, {
         backgroundColor: theme.colors.background
     }]}>
@@ -65,6 +82,8 @@ export const CreateScrollScreen = ({ navigation }) => {
         }]}
       />
     </View>
+    </KeyboardAvoidingView>
+    </SafeAreaView>
   )
 }
 
@@ -72,6 +91,7 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     padding: 18,
+    paddingBottom: 50
   },
   title: {
     fontSize: 18,
@@ -79,6 +99,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   text: {
-    fontSize: 16
+    flex: 1,
+    fontSize: 16,
+    textAlignVertical: 'top'
   }
 });
