@@ -1,4 +1,5 @@
 export type ThemeType = {
+  name: string,
   colors: {
     text: string,
     title: string,

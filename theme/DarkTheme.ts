@@ -1,6 +1,7 @@
 import { ThemeType } from "./ThemeType";
 
 export const DarkTheme: ThemeType = {
+  name: 'dark',
   colors: {
     text: '#ffffff',
     title: '#009f00',
