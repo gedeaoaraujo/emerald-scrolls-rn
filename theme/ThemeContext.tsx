@@ -16,14 +16,12 @@ export const ThemeProvider = ({ children }) => {
 
   const initTheme = async () => {
     const res = await getThemeConfig()
-    console.log('getDefaultTheme:', res)
     const nullOrLight = res === null || res === 'light'
     setTheme(nullOrLight ? LightTheme : DarkTheme)
   }
 
   const saveTheme = async (theme: ThemeType) => {
     await setThemeConfig(theme.name)
-    console.log('saveTheme:', theme.name)
   }
 
   const toggleTheme = () => {
