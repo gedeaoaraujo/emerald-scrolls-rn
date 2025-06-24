@@ -1,7 +1,7 @@
 import { ScrollModel } from '../model/ScrollModel';
-import { StyleSheet, Text, View } from 'react-native';
 import { DateHeader } from './DateHeader';
 import { useTheme } from '../theme/ThemeContext';
+import { SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 type ViewScrollScreenProps = {
   route: { params: ScrollModel }
@@ -10,6 +10,12 @@ type ViewScrollScreenProps = {
 export const ViewScrollScreen = ({route}: ViewScrollScreenProps) => {
   const { theme } = useTheme()
   return (
+    <SafeAreaView style={{ 
+      flex: 1, paddingBottom: 50,
+      backgroundColor: theme.colors.background
+    }}>
+    <ScrollView 
+      contentContainerStyle={{ flexGrow: 1 }}>
     <View style={[styles.content, {
       backgroundColor: theme.colors.background
     }]}>
@@ -21,13 +27,15 @@ export const ViewScrollScreen = ({route}: ViewScrollScreenProps) => {
         color: theme.colors.text
       }]}>{route.params.text}</Text>
     </View>
+    </ScrollView>
+    </SafeAreaView>
   )
 }
 
 const styles = StyleSheet.create({
   content: {
     flex: 1,
-    padding: 18,
+    padding: 18
   },
   title: {
     fontSize: 18,
