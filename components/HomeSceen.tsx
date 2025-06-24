@@ -2,7 +2,7 @@ import { useContext, useEffect } from 'react';
 import { RootStackParamList } from '../App';
 import { FloatActionBtn } from './FloatActionBtn';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, SafeAreaView } from 'react-native';
 import { ScrollsContext } from '../contexts/ScrollsContext';
 import { getAllScrolls } from '../database/scrolls.dao';
 import { useTheme } from '../theme/ThemeContext';
@@ -29,6 +29,10 @@ export const HomeScreen = (props: HomeScreenProps) => {
   }, [])
 
   return (
+    <SafeAreaView style={{
+      flex: 1, paddingBottom: 50,
+      backgroundColor: theme.colors.background
+    }}>
     <View style={[styles.content, { 
       backgroundColor: theme.colors.background
     }]}>
@@ -43,6 +47,7 @@ export const HomeScreen = (props: HomeScreenProps) => {
         text='+' 
       />
     </View>
+    </SafeAreaView>
   )
 }
 
@@ -52,7 +57,7 @@ const styles = StyleSheet.create({
   },
   buttonFab: {
     right: 20,
-    bottom: 60,
+    bottom: 20,
     position: 'absolute',
   }
 });
