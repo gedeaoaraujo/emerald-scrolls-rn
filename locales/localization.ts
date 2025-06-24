@@ -23,5 +23,11 @@ export type Localization = {
     'dialog.delete.message': string,
     'empty.scrolls.title': string,
     'empty.scrolls.text': string,
+    'settings.theme': string,
+    'settings.theme.light': string,
+    'settings.theme.dark': string,
+    'settings.lang': string,
+    'settings.lang.english': string,
+    'settings.lang.portuguese': string
   }
 }

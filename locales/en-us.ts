@@ -25,5 +25,11 @@ export const enUS: Localization = {
     'dialog.delete.message': 'Are you sure you want to delete this scroll?',
     'empty.scrolls.title': 'No scroll was written',
     'empty.scrolls.text': "Press the '+' button to write a new scroll.",
+    'settings.theme': 'Theme',
+    'settings.theme.light': 'Light',
+    'settings.theme.dark': 'Dark',
+    'settings.lang': 'Language',
+    'settings.lang.english': 'English',
+    'settings.lang.portuguese': 'Portuguese (Brazilian)',
   }
 }

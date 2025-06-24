@@ -4,8 +4,10 @@ import { useTheme } from "../theme/ThemeContext"
 import { LightTheme } from "../theme/LightTheme"
 import { DarkTheme } from "../theme/DarkTheme"
 import { RadioButton } from "./RadioButton"
+import { useTranslation } from "react-i18next"
 
 export const SettingsScreen = () => {
+  const { t } = useTranslation()
   const { theme, selectTheme } = useTheme()
   const { language, selectLang } = useLocalization()
 
@@ -16,9 +18,9 @@ export const SettingsScreen = () => {
       <>
         <Text style={[styles.title, {
           color: theme.colors.title
-        }]}>Theme</Text>
+        }]}>{t('settings.theme')}</Text>
         <RadioButton
-          label='Light'
+          label={t('settings.theme.light')}
           style={[styles.text, {
             color: theme.colors.text
           }]}
@@ -26,7 +28,7 @@ export const SettingsScreen = () => {
           selected={theme === LightTheme}
           />
         <RadioButton
-          label='Dark'
+          label={t('settings.theme.dark')}
           style={[styles.text, {
             color: theme.colors.text
           }]}
@@ -39,9 +41,9 @@ export const SettingsScreen = () => {
       <>
         <Text style={[styles.title, {
           color: theme.colors.title
-        }]}>Language</Text>
+        }]}>{t('settings.lang')}</Text>
         <RadioButton
-          label='English'
+          label={t('settings.lang.english')}
           style={[styles.text, {
             color: theme.colors.text
           }]}
@@ -49,7 +51,7 @@ export const SettingsScreen = () => {
           selected={language === 'enUS'}
           />
         <RadioButton
-          label='Portuguese (Brazilian)'
+          label={t('settings.lang.portuguese')}
           style={[styles.text, {
             color: theme.colors.text
           }]}

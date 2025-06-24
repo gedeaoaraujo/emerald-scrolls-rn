@@ -25,5 +25,11 @@ export const ptBR: Localization = {
     'dialog.delete.message': 'Você tem certeza que deseja deletar esse pergaminho?',
     'empty.scrolls.title': 'Nenhum pergaminho foi escrito',
     'empty.scrolls.text': "Aperte o botão '+' para escrever um pergaminho novo.",
+    'settings.theme': 'Tema',
+    'settings.theme.light': 'Claro',
+    'settings.theme.dark': 'Escuro',
+    'settings.lang': 'Idioma',
+    'settings.lang.english': 'Inglês',
+    'settings.lang.portuguese': 'Português (Brasileiro)',
   }
 }
