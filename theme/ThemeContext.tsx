@@ -29,9 +29,9 @@ export const ThemeProvider = ({ children }) => {
     saveTheme(theme === LightTheme ? DarkTheme : LightTheme)
   }
 
-  const selectTheme = (theme: ThemeType) => {
-    setTheme(theme)
-    saveTheme(theme)
+  const selectTheme = (param: ThemeType) => {
+    if (param === theme) return
+    setTheme(param); saveTheme(param)
   }
 
   return (
