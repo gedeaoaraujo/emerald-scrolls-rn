@@ -1,4 +1,4 @@
-import { LocalizationProvider } from './contexts/LocalizationContext';
+import { LocalizationProvider, useLocalization } from './contexts/LocalizationContext';
 import { ScrollModel } from './model/ScrollModel';
 import { HomeScreen } from './components/HomeSceen';
 import { NavigationContainer } from '@react-navigation/native';
@@ -36,8 +36,12 @@ const Stack = createStackNavigator();
 function MainContent() {
   const { t } = useTranslation()
   const { theme, initTheme } = useTheme()
+  const { initLanguage } = useLocalization()
 
-  useEffect(() => { initTheme() }, [])
+  useEffect(() => { 
+    initLanguage()
+    initTheme() 
+  }, [])
 
   return (
     <NavigationContainer>
