@@ -31,81 +31,77 @@ export const PasswordDialog = ({
     onCancel(false)
   }
 
-  const Content = () => (
-    <View style={[styles.card, {
-      backgroundColor: theme.colors.primary
-    }]}>
-      <Text style={[styles.title, {
-        color: theme.colors.textOnPrimary 
-      }]}>
-        {t('dialog.title')}
-      </Text>
-
-      <Text style={{
-        width: '100%',
-        color: theme.colors.textOnPrimary
-      }}>
-        {t('dialog.first.password')}
-      </Text>
-      <TextInput
-        editable
-        value={password}
-        keyboardType="numeric"
-        secureTextEntry={true}
-        style={styles.password}
-        onChangeText={setPassword}
-      />
-
-      <Text style={{
-        width: '100%',
-        marginTop: 20,
-        color: theme.colors.textOnPrimary 
-      }}>
-        {t('dialog.second.password')}
-      </Text>
-      <TextInput
-        editable
-        value={confirmPass}
-        secureTextEntry={true}
-        keyboardType="numeric"
-        style={styles.password}
-        onChangeText={setConfirmPass}
-      />
-
-      <View style={{
-        minWidth: '100%',
-        flexDirection: 'row',
-        justifyContent: 'space-between'
-      }}>
-        <TouchableOpacity style={{
-          padding: 10,
-          marginTop: 16,
-          borderRadius: 10,
-        }} onPress={() => onCancelPressed()}>
-          <Text style={{
-            textAlign: 'center',
-            color: theme.colors.textOnPrimary
-          }}>{t('dialog.cancel')}</Text>
-        </TouchableOpacity>
-        
-        <TouchableOpacity style={{
-          padding: 8,
-          marginTop: 16,
-          borderRadius: 10
-        }} onPress={() => onOkPressed()}>
-          <Text style={{
-            textAlign: 'center',
-            color: theme.colors.textOnPrimary
-          }}>{t('dialog.ok')}</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
-  )
-
   return (
     <>{!visible ? <></> :
       <View style={styles.background}>
-        <Content/>
+        <View style={[styles.card, {
+          backgroundColor: theme.colors.primary
+        }]}>
+          <Text style={[styles.title, {
+            color: theme.colors.textOnPrimary 
+          }]}>
+            {t('dialog.title')}
+          </Text>
+
+          <Text style={{
+            width: '100%',
+            color: theme.colors.textOnPrimary
+          }}>
+            {t('dialog.first.password')}
+          </Text>
+          <TextInput
+            editable
+            value={password}
+            keyboardType="numeric"
+            secureTextEntry={true}
+            style={styles.password}
+            onChangeText={setPassword}
+          />
+
+          <Text style={{
+            width: '100%',
+            marginTop: 20,
+            color: theme.colors.textOnPrimary 
+          }}>
+            {t('dialog.second.password')}
+          </Text>
+          <TextInput
+            editable
+            value={confirmPass}
+            secureTextEntry={true}
+            keyboardType="numeric"
+            style={styles.password}
+            onChangeText={setConfirmPass}
+          />
+
+          <View style={{
+            minWidth: '100%',
+            flexDirection: 'row',
+            justifyContent: 'space-between'
+          }}>
+            <TouchableOpacity style={{
+              padding: 10,
+              marginTop: 16,
+              borderRadius: 10,
+            }} onPress={() => onCancelPressed()}>
+              <Text style={{
+                textAlign: 'center',
+                color: theme.colors.textOnPrimary
+              }}>{t('dialog.cancel')}</Text>
+            </TouchableOpacity>
+            
+            <TouchableOpacity style={{
+              padding: 8,
+              marginTop: 16,
+              borderRadius: 10
+            }} onPress={() => onOkPressed()}>
+              <Text style={{
+                textAlign: 'center',
+                color: theme.colors.textOnPrimary
+              }}>{t('dialog.ok')}</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
       </View> }
     </>
   )
