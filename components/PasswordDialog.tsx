@@ -1,6 +1,7 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { TextInput } from "react-native-gesture-handler"
 import { useTheme } from "../theme/ThemeContext"
+import { useTranslation } from "react-i18next"
 import { useState } from "react"
 
 export const PasswordDialog = ({
@@ -9,6 +10,7 @@ export const PasswordDialog = ({
   onCancel = (_: boolean)=>{},
 }) => {
   const { theme } = useTheme()
+  const { t } = useTranslation()
   const [password, setPassword] = useState('')
   const [confirmPass, setConfirmPass] = useState('')
 
@@ -37,14 +39,14 @@ export const PasswordDialog = ({
         <Text style={[styles.title, {
           color: theme.colors.textOnPrimary 
         }]}>
-          Mudar senha
+          {t('dialog.title')}
         </Text>
 
         <Text style={{
           width: '100%',
           color: theme.colors.textOnPrimary
         }}>
-          Digite sua senha:
+          {t('dialog.first.password')}
         </Text>
         <TextInput
           editable
@@ -60,7 +62,7 @@ export const PasswordDialog = ({
           marginTop: 20,
           color: theme.colors.textOnPrimary 
         }}>
-          Confirme sua senha:
+          {t('dialog.second.password')}
         </Text>
         <TextInput
           editable
@@ -84,7 +86,7 @@ export const PasswordDialog = ({
             <Text style={{
               textAlign: 'center',
               color: theme.colors.textOnPrimary
-            }}>Cancelar</Text>
+            }}>{t('dialog.cancel')}</Text>
           </TouchableOpacity>
           
           <TouchableOpacity style={{
@@ -95,7 +97,7 @@ export const PasswordDialog = ({
             <Text style={{
               textAlign: 'center',
               color: theme.colors.textOnPrimary
-            }}>OK</Text>
+            }}>{t('dialog.ok')}</Text>
           </TouchableOpacity>
         </View>
       </View>}

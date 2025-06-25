@@ -34,5 +34,10 @@ export const enUS: Localization = {
     'settings.lang.portuguese': 'Portuguese (Brazilian)',
     'settings.password': 'Password',
     'settings.password.modify': 'Change Password',
+    'dialog.title': "Pasword change",
+    'dialog.first.password': "Write the new password:",
+    'dialog.second.password': "Confirm the new password:",
+    'dialog.cancel': "Cancel",
+    'dialog.ok': "OK",
   }
 }
