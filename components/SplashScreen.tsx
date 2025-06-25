@@ -1,66 +1,85 @@
-import { FontAwesome6 } from '@expo/vector-icons';
-import { checkBiometry } from '../utils/biometry';
-import { PasswordKeyboard } from './PasswordKeyboard';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { usePasswordViewModel } from '../viewmodels/PasswordViewModel';
-import { useTheme } from '../theme/ThemeContext';
-import { useTranslation } from 'react-i18next';
+import { View, Text, StyleSheet, Animated } from 'react-native'
+import { FontAwesome6 } from '@expo/vector-icons'
+import { useTheme } from '../theme/ThemeContext'
+import { useTranslation } from 'react-i18next'
+import { useEffect, useRef, useState } from 'react'
+import { usePasswordViewModel } from '../viewmodels/PasswordViewModel'
 
 export const SplashScreen = ({ navigation }) => {
   const { 
-    password,
     checkPassword,
-    onChangePassword 
   } = usePasswordViewModel()
-  
+
   const { theme } = useTheme()
   const { t } = useTranslation()
 
-  const callBiometry = () => {
-    checkBiometry(t, () => {
-      navigation.replace('Home')
-    })
-  }
+  const [dots, setDots] = useState('')
+  const translateY = useRef(new Animated.Value(0)).current
 
   const startChecking = async () => {
     if (await checkPassword()) {
       navigation.replace('Home')
     } else {
-      alert(t('wrong.password'))
+      navigation.replace('Password')
     }
   }
 
-  const LogoFragment = () => (
-    <View style={styles.logo}>
-      <FontAwesome6 name='scroll' size={50} 
-        color={theme.colors.textOnPrimary}/>
-      <Text style={[styles.text, {
-        color: theme.colors.textOnPrimary
-      }]}>{t('app.name')}</Text>
-    </View>
-  )
+  useEffect(() => {
+    const animacao = Animated.loop(
+      Animated.sequence([
+        Animated.timing(translateY, {
+          toValue: -30,
+          duration: 1000,
+          useNativeDriver: true,
+        }),
+        Animated.timing(translateY, {
+          toValue: 0,
+          duration: 1000,
+          useNativeDriver: true,
+        }),
+      ])
+    )
+
+    animacao.start()
+
+    const interval = setInterval(() => {
+      setDots(prev => {
+        if (prev.length >= 3) return ''
+        return prev + '.'
+      })
+    }, 400)
+
+    startChecking()
+
+    return () => {
+      animacao.stop()
+      clearInterval(interval)
+    }
+  }, [translateY])
 
   return (
     <View style={[styles.container, {
       backgroundColor: theme.colors.primary
     }]}>
-      <LogoFragment />
-      <PasswordKeyboard 
-        password={password}
-        onChangePassword={onChangePassword}
-      />
-      <View style={{ flexDirection: 'row' }}>
-        <TouchableOpacity
-          style={{ marginEnd: 40 }}
-          onPress={callBiometry}>
-          <FontAwesome6 name='fingerprint' size={50} 
-            color={theme.colors.textOnPrimary}/>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={startChecking}>
-          <FontAwesome6 name='circle-check' size={50} 
-            color={theme.colors.textOnPrimary}/>
-        </TouchableOpacity>
+      <Animated.View style={{ transform: [{ translateY }] }}>
+        <FontAwesome6 name='scroll' size={50} 
+          color={theme.colors.textOnPrimary}
+          style={{ marginBottom: 20 }}/>
+      </Animated.View>
+
+      <Text style={[styles.title, {
+        color: theme.colors.textOnPrimary
+      }]}>{t('app.name')}</Text>
+
+      <View style={{ width: '60%', flexDirection: 'row' }}>
+        <Text style={[styles.text, {
+          color: theme.colors.textOnPrimary
+        }]}>Loading configurations</Text>
+        <Text style={[styles.text, {
+          padding: 0,
+          paddingTop: 10,
+          color: theme.colors.textOnPrimary
+        }]}>{dots}</Text>
       </View>
     </View>
   )
@@ -72,12 +91,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  logo: {
-    alignItems: 'center',
-    justifyContent: 'center',
+  title: {
+    fontSize: 30,
   },
   text: {
     padding: 10,
-    fontSize: 30,
-  }
+    fontSize: 18,
+    marginBottom: 200,
+  },
 })
