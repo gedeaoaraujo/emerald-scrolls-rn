@@ -6,12 +6,21 @@ import { DarkTheme } from "../theme/DarkTheme"
 import { RadioButton } from "./RadioButton"
 import { useTranslation } from "react-i18next"
 import { usePasswordViewModel } from "../viewmodels/PasswordViewModel"
+import { PasswordDialog } from "./PasswordDialog"
+import { useState } from "react"
 
 export const SettingsScreen = () => {
   const { t } = useTranslation()
   const { theme, selectTheme } = useTheme()
   const { savePassword } = usePasswordViewModel()
   const { language, selectLang } = useLocalization()
+  
+  const [visible, setVisibility] = useState(false)
+
+  const onOkDialogPressed = () => {
+    setVisibility(false)
+    savePassword('123')
+  }
 
   return (
     <View style={[styles.container, {
@@ -66,12 +75,18 @@ export const SettingsScreen = () => {
         <Text style={[styles.title, {
           color: theme.colors.title
         }]}>{t('settings.password')}</Text>
-        <TouchableOpacity onPress={() => savePassword('123')}>
+        <TouchableOpacity
+          onPress={() => setVisibility(true)}>
           <Text style={[styles.text, {
             color: theme.colors.text
           }]}>{t('settings.password.modify')}</Text>
         </TouchableOpacity>
       </>
+      <PasswordDialog 
+        visible={visible}
+        onCancel={setVisibility}
+        onOk={() => onOkDialogPressed()}
+        />
     </View>
   )
 }
