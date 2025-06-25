@@ -35,7 +35,8 @@ async function migrateV1(db: SQLiteDatabase){
       key TEXT NOT NULL,
       value TEXT NOT NULL
     );
-    INSERT INTO configs(key, value) VALUES ('theme', 'light');
-    INSERT INTO configs(key, value) VALUES ('language', 'enUS');
+    INSERT INTO configs(id, key, value) VALUES (1, 'password', '');
+    INSERT INTO configs(id, key, value) VALUES (2, 'theme', 'light');
+    INSERT INTO configs(id, key, value) VALUES (3, 'language', 'enUS');
   `.trim());
 }
