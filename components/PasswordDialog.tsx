@@ -41,6 +41,7 @@ export const PasswordDialog = ({
         <TextInput
           editable
           value={password}
+          secureTextEntry={true}
           style={styles.password}
           onChangeText={setPassword}
         />
@@ -55,6 +56,7 @@ export const PasswordDialog = ({
         <TextInput
           editable
           value={confirmPass}
+          secureTextEntry={true}
           style={styles.password}
           onChangeText={setConfirmPass}
         />
