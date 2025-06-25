@@ -1,7 +1,7 @@
-import { useState } from "react"
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { TextInput } from "react-native-gesture-handler"
 import { useTheme } from "../theme/ThemeContext"
+import { useState } from "react"
 
 export const PasswordDialog = ({
   onOk = (_: string)=>{},
@@ -17,8 +17,16 @@ export const PasswordDialog = ({
       alert('As senhas não são iguais.')
     } else {
       onOk(password)
+      setPassword('')
+      setConfirmPass('')
       alert('Senha modificada com sucesso.')
     }
+  }
+
+  const onCancelPressed = () => {
+    setPassword('')
+    setConfirmPass('')
+    onCancel(false)
   }
 
   return (
@@ -70,7 +78,7 @@ export const PasswordDialog = ({
             padding: 10,
             marginTop: 16,
             borderRadius: 10,
-          }} onPress={() => onCancel(false)}>
+          }} onPress={() => onCancelPressed()}>
             <Text style={{
               textAlign: 'center',
               color: theme.colors.textOnPrimary
