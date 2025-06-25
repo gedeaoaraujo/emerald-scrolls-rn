@@ -17,9 +17,9 @@ export const SettingsScreen = () => {
   
   const [visible, setVisibility] = useState(false)
 
-  const onOkDialogPressed = () => {
+  const onOkDialogPressed = (pass: string) => {
     setVisibility(false)
-    savePassword('123')
+    savePassword(pass)
   }
 
   return (
@@ -85,7 +85,7 @@ export const SettingsScreen = () => {
       <PasswordDialog 
         visible={visible}
         onCancel={setVisibility}
-        onOk={() => onOkDialogPressed()}
+        onOk={(pass) => onOkDialogPressed(pass)}
         />
     </View>
   )
