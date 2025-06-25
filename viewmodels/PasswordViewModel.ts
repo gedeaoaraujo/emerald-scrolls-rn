@@ -18,7 +18,6 @@ export function usePasswordViewModel() {
     const digited = await cryptPass(password)
     const saved = await getPassword() ?? ''
     const res = digited === saved
-    console.log('dig:', digited, 'saved:', saved)
     if (res) setPassword('')
     return res
   }
