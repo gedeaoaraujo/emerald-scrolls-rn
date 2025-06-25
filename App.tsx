@@ -13,6 +13,7 @@ import { useTheme, ThemeProvider } from './theme/ThemeContext';
 import { HeaderBackButton } from '@react-navigation/elements';
 import { EditScrollMenu } from './components/EditScrollMenu';
 import { SettingsScreen } from './components/SettingsScreen';
+import { PasswordScreen } from './components/PasswordScreen';
 import { SplashScreen } from './components/SplashScreen';
 import { migrateDbIfNeeded } from './database/migration';
 import { HomeMenu } from './components/HomeMenu';
@@ -24,6 +25,7 @@ import './locales/i18n';
 
 export type RootStackParamList = {
   Splash: undefined;
+  Password: undefined;
   Home: undefined;
   View: ScrollModel;
   Create: undefined;
@@ -52,6 +54,16 @@ function MainContent() {
         options={{
           headerShown: false,
           title: "Splash Screen",
+          headerTintColor: theme.colors.textOnPrimary,
+          headerStyle: { backgroundColor: theme.colors.primary },
+        }}
+      />
+      <Stack.Screen
+        name="Password"
+        component={PasswordScreen}
+        options={{
+          headerShown: false,
+          title: "Password Screen",
           headerTintColor: theme.colors.textOnPrimary,
           headerStyle: { backgroundColor: theme.colors.primary },
         }}
