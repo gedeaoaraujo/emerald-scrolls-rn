@@ -1,14 +1,16 @@
 import { useLocalization } from "../contexts/LocalizationContext"
-import { StyleSheet, Text, View } from "react-native"
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { useTheme } from "../theme/ThemeContext"
 import { LightTheme } from "../theme/LightTheme"
 import { DarkTheme } from "../theme/DarkTheme"
 import { RadioButton } from "./RadioButton"
 import { useTranslation } from "react-i18next"
+import { usePasswordViewModel } from "../viewmodels/PasswordViewModel"
 
 export const SettingsScreen = () => {
   const { t } = useTranslation()
   const { theme, selectTheme } = useTheme()
+  const { savePassword } = usePasswordViewModel()
   const { language, selectLang } = useLocalization()
 
   return (
@@ -58,6 +60,17 @@ export const SettingsScreen = () => {
           onPress={() => selectLang('ptBR')}
           selected={language === 'ptBR'}
           />
+        <View style={styles.divider}/>
+      </>
+      <>
+        <Text style={[styles.title, {
+          color: theme.colors.title
+        }]}>{t('settings.password')}</Text>
+        <TouchableOpacity onPress={() => savePassword('123')}>
+          <Text style={[styles.text, {
+            color: theme.colors.text
+          }]}>{t('settings.password.modify')}</Text>
+        </TouchableOpacity>
       </>
     </View>
   )
