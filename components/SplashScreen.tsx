@@ -22,9 +22,8 @@ export const SplashScreen = ({ navigation }) => {
     })
   }
 
-  const startChecking = () => {
-    const ok = checkPassword()
-    if (ok) {
+  const startChecking = async () => {
+    if (await checkPassword()) {
       navigation.replace('Home')
     } else {
       alert(t('wrong.password'))
