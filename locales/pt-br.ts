@@ -32,5 +32,7 @@ export const ptBR: Localization = {
     'settings.lang': 'Idioma',
     'settings.lang.english': 'Inglês',
     'settings.lang.portuguese': 'Português (Brasileiro)',
+    'settings.password': 'Senha',
+    'settings.password.modify': 'Modificar Senha',
   }
 }

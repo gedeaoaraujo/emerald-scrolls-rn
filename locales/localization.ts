@@ -29,6 +29,8 @@ export type Localization = {
     'settings.theme.dark': string,
     'settings.lang': string,
     'settings.lang.english': string,
-    'settings.lang.portuguese': string
+    'settings.lang.portuguese': string,
+    'settings.password': string,
+    'settings.password.modify': string,
   }
 }

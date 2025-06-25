@@ -32,5 +32,7 @@ export const enUS: Localization = {
     'settings.lang': 'Language',
     'settings.lang.english': 'English',
     'settings.lang.portuguese': 'Portuguese (Brazilian)',
+    'settings.password': 'Password',
+    'settings.password.modify': 'Change Password',
   }
 }
