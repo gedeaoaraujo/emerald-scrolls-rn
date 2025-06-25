@@ -1,17 +1,13 @@
 import { useState } from "react"
 import { getPassword, savePasswordConfig } from "../database/configs.dao"
+import { cryptPass } from "../utils/password"
 
 export function usePasswordViewModel() {
   const [password, setPassword] = useState('')
 
-  const getSavedPass = async () => {
-    const pass = await getPassword()
-    console.log('password:', pass)
-    return pass ?? ''
-  }
-
   const savePassword = async (pass: string) => {
-    await savePasswordConfig(pass)
+    const res = await cryptPass(pass)
+    await savePasswordConfig(res)
   }
 
   const onChangePassword = (str: string) => {
@@ -19,7 +15,10 @@ export function usePasswordViewModel() {
   }
   
   const checkPassword = async (): Promise<boolean> => {
-    const res = password === await getSavedPass()
+    const digited = await cryptPass(password)
+    const saved = await getPassword() ?? ''
+    const res = digited === saved
+    console.log('dig:', digited, 'saved:', saved)
     if (res) setPassword('')
     return res
   }
