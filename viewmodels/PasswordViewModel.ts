@@ -16,8 +16,8 @@ export function usePasswordViewModel() {
   
   const checkPassword = async (): Promise<boolean> => {
     const digited = await cryptPass(password)
-    const saved = await getPassword() ?? ''
-    const res = digited === saved
+    const saved = await getPassword()
+    const res = !saved || digited === saved
     if (res) setPassword('')
     return res
   }
