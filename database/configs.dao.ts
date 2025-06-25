@@ -49,3 +49,28 @@ export async function setLanguageConfig(value: string) {
     throw error;
   }
 }
+
+export async function getPassword(): Promise<string|null> {
+  try {
+    const db = await SQLite.openDatabaseAsync('emerald.db')
+    const res = await db.getFirstAsync<{ value: string }>(
+      "SELECT value FROM configs WHERE key = 'password'"
+    )
+    return res?.value ?? null
+  } catch (error) {
+    console.log('Error: ', error);
+    throw error;
+  }
+}
+
+export async function savePasswordConfig(value: string) {
+  try {
+    const db = await SQLite.openDatabaseAsync('emerald.db')
+    await db.runAsync(
+      "UPDATE configs SET value = ? WHERE key = 'password'", value
+    )
+  } catch (error) {
+    console.log('Error: ', error);
+    throw error;
+  }
+}
