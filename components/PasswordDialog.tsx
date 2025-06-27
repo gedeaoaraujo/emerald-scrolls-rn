@@ -1,12 +1,13 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
-import { TextInput } from "react-native-gesture-handler"
 import { useTheme } from "../theme/ThemeContext"
 import { useTranslation } from "react-i18next"
 import { useState } from "react"
+import { 
+  StyleSheet, Text, TouchableOpacity, View, TextInput 
+} from "react-native"
 
 export default function PasswordDialog({
-  onOk = (_: string)=>{},
   visible = false,
+  onOk = (_: string)=>{},
   onCancel = (_: boolean)=>{},
 }){
   const { theme } = useTheme()
