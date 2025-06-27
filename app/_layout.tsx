@@ -48,7 +48,7 @@ function MainContent() {
         }}
       />
       <Stack.Screen
-        name="PasswordScreen"
+        name="password"
         options={{
           headerShown: false,
           title: "Password Screen",
@@ -57,7 +57,7 @@ function MainContent() {
         }}
       />
       <Stack.Screen
-        name="HomeScreen"
+        name="home"
         options={() => ({
           title: t('app.name'),
           headerTintColor: theme.colors.textOnPrimary,
@@ -66,7 +66,7 @@ function MainContent() {
         })}
       />
       <Stack.Screen
-        name="ViewScrollScreen"
+        name="view"
         options={({ route, navigation }) => ({
           title: t('view.scroll'),
           headerTintColor: theme.colors.textOnPrimary,
@@ -75,7 +75,7 @@ function MainContent() {
         })}
       />
       <Stack.Screen
-        name="CreateScrollScreen"
+        name="create"
         options={({ route, navigation }) => ({
           title: t('create.scroll'),
           headerTintColor: theme.colors.textOnPrimary,
@@ -90,7 +90,7 @@ function MainContent() {
         })}
       />
       <Stack.Screen
-        name="EditScrollScreen"
+        name="edit"
         options={({ route }) => ({
           title: t('edit.scroll'),
           headerTintColor: theme.colors.textOnPrimary,
@@ -99,7 +99,7 @@ function MainContent() {
         })}
       />
       <Stack.Screen
-        name="SettingsScreen"
+        name="settings"
         options={{
           title: t('settings'),
           headerTintColor: theme.colors.textOnPrimary,

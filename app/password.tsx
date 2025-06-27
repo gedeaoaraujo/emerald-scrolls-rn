@@ -7,7 +7,7 @@ import { useTheme } from '../theme/ThemeContext';
 import { useTranslation } from 'react-i18next';
 import { useRouter } from 'expo-router';
 
-const PasswordScreen = () => {
+export default function PasswordScreen() {
   const { 
     password,
     checkPassword,
@@ -20,13 +20,13 @@ const PasswordScreen = () => {
 
   const callBiometry = () => {
     checkBiometry(t, () => {
-      router.replace('/HomeScreen')
+      router.replace('/home')
     })
   }
 
   const startChecking = async () => {
     if (await checkPassword()) {
-      router.replace('/HomeScreen')
+      router.replace('/home')
     } else {
       alert(t('wrong.password'))
     }
@@ -83,5 +83,3 @@ const styles = StyleSheet.create({
     fontSize: 30,
   }
 })
-
-export default PasswordScreen;

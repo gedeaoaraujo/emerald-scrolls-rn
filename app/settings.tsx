@@ -9,7 +9,7 @@ import { usePasswordViewModel } from "../viewmodels/PasswordViewModel"
 import PasswordDialog from "../components/PasswordDialog"
 import { useState } from "react"
 
-const SettingsScreen = () => {
+export default function SettingsScreen() {
   const { t } = useTranslation()
   const { theme, selectTheme } = useTheme()
   const { savePassword } = usePasswordViewModel()
@@ -113,5 +113,3 @@ const styles = StyleSheet.create({
     backgroundColor: 'gray' 
   }
 })
-
-export default SettingsScreen;

@@ -15,7 +15,7 @@ const HomeMenu = () => {
   }
 
   const goToSettings = () => {
-    router.navigate('/SettingsScreen')
+    router.navigate('/settings')
   }
 
   return (

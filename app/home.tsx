@@ -8,7 +8,7 @@ import { ScrollsList } from '../components/ScrollsList';
 import { useRouter } from 'expo-router';
 
 
-const HomeScreen = () => {
+export default function HomeScreen() {
   const router = useRouter()
   const { theme } = useTheme()
   const { list, init } = useContext(ScrollsContext)
@@ -18,7 +18,7 @@ const HomeScreen = () => {
   }
 
   function goToCreate() {
-    router.navigate('/CreateScrollScreen')
+    router.navigate('/create')
   }
 
   useEffect(() => {
@@ -58,5 +58,3 @@ const styles = StyleSheet.create({
     position: 'absolute',
   }
 });
-
-export default HomeScreen

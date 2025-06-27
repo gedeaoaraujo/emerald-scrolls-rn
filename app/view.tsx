@@ -7,7 +7,7 @@ type ViewScrollScreenProps = {
   route: { params: ScrollModel }
 };
 
-const ViewScrollScreen = ({route}: ViewScrollScreenProps) => {
+export default function ViewScrollScreen({route}: ViewScrollScreenProps) {
   const { theme } = useTheme()
   return (
     <SafeAreaView style={{ 
@@ -46,5 +46,3 @@ const styles = StyleSheet.create({
     fontSize: 16
   }
 });
-
-export default ViewScrollScreen;

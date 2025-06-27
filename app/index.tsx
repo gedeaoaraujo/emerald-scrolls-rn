@@ -21,9 +21,9 @@ export default function SplashScreen() {
 
   const startChecking = async () => {
     if (await checkPassword()) {
-      router.replace('/HomeScreen')
+      router.replace('/home')
     } else {
-      router.replace('/PasswordScreen')
+      router.replace('/password')
     }
   }
 

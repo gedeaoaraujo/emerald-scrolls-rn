@@ -18,7 +18,7 @@ export const ScrollsList = ({
   const { t } = useTranslation()
 
   function goToScroll(item: ScrollModel) {
-    router.navigate('/ViewScrollScreen', item)
+    router.navigate('/view', item)
   }
 
   const EmptyList = () => (

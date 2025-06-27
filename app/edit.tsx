@@ -1,50 +1,40 @@
 import { useContext, useEffect, useState } from 'react';
 import { ScrollsContext } from '../contexts/ScrollsContext';
+import { useTranslation } from 'react-i18next'
 import { DateHeader } from '../components/DateHeader';
-import { useTranslation } from 'react-i18next';
 import { useTheme } from '../theme/ThemeContext';
-import Dialog from '../utils/alerts';
 import { 
-  BackHandler, StyleSheet, TextInput, View,
-  KeyboardAvoidingView, Platform, SafeAreaView, Keyboard 
+  Keyboard, KeyboardAvoidingView, Platform, 
+  SafeAreaView, StyleSheet, TextInput, View 
 } from 'react-native';
-import { useRouter } from 'expo-router';
 
-const CreateScrollScreen = () => {
+export default function EditScrollScreen({ route }) {
   const {
-    title, 
-    text,
+    title, text,
     onChageText,
     onChageTitle,
     onChageDate,
     updateDate
   } = useContext(ScrollsContext)
 
-  const router = useRouter()
-  const { theme } = useTheme()
-  const { t } = useTranslation()
-  const date = new Date().toISOString() 
   const [keyboardOffset, setKeyboardOffset] = useState(0);
-  
+
   useEffect(() => {
-    onChageDate(date)
-    onChageText('')
-    onChageTitle('')
-  
-    const handler = BackHandler.addEventListener('hardwareBackPress', () => {
-      Dialog.discartChanges(t, router.back)
-      return true
-    });
+    onChageDate(route.params.date)
+    onChageText(route.params.text)
+    onChageTitle(route.params.title)
 
     const show = Keyboard.addListener('keyboardDidShow', () => setKeyboardOffset(50));
     const hide = Keyboard.addListener('keyboardDidHide', () => setKeyboardOffset(0));
 
     return () => {
-      handler.remove()
       show.remove();
       hide.remove();
     }
   }, [])
+
+  const { theme } = useTheme()
+  const { t } = useTranslation()
 
   return (
     <SafeAreaView style={{ 
@@ -54,17 +44,16 @@ const CreateScrollScreen = () => {
       style={{ flex: 1, paddingBottom: keyboardOffset }}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
     <View style={[styles.content, {
-        backgroundColor: theme.colors.background
+      backgroundColor: theme.colors.background
     }]}>
       <DateHeader
-        dateStr={date} 
-        updateDate={updateDate} 
+        updateDate={updateDate}
+        dateStr={route.params.date}
       />
       <TextInput 
         value={title}
         placeholder={t('placeholder.title')}
         onChangeText={onChageTitle}
-        placeholderTextColor={theme.colors.text}
         style={[styles.title, {
           color: theme.colors.text,
           backgroundColor: theme.colors.background
@@ -73,11 +62,10 @@ const CreateScrollScreen = () => {
       <TextInput
         editable
         multiline
-        numberOfLines={30}
         value={text}
+        numberOfLines={30}
         placeholder={t('placeholder.text')}
         onChangeText={onChageText}
-        placeholderTextColor={theme.colors.text}
         style={[styles.text, {
           color: theme.colors.text,
           backgroundColor: theme.colors.background
@@ -106,5 +94,3 @@ const styles = StyleSheet.create({
     textAlignVertical: 'top'
   }
 });
-
-export default CreateScrollScreen;
