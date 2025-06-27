@@ -22,7 +22,7 @@ const HomeMenu = () => {
     <>
       <TouchableOpacity
         style={[styles.option, {
-          paddingHorizontal: 10
+          paddingHorizontal: 15
         }]}
         onPress={onPress}>
         <FontAwesome6 name={themeIcon} size={20}
@@ -30,7 +30,7 @@ const HomeMenu = () => {
       </TouchableOpacity>
       <TouchableOpacity
         style={[styles.option, {
-          paddingHorizontal: 15
+          paddingHorizontal: 10
         }]}
         onPress={goToSettings}>
         <FontAwesome6 name='ellipsis-vertical' size={20}
@@ -41,9 +41,7 @@ const HomeMenu = () => {
 }
 
 const styles = StyleSheet.create({
-  option: {
-    marginEnd: 4,
-  }
+  option: {}
 })
 
 export default HomeMenu;
