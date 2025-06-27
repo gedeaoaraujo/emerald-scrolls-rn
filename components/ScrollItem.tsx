@@ -31,11 +31,11 @@ export const ScrollItem = (props: ScrollItemProps) => {
             }]}>{localizeDateTime(props.item.date)}</Text>
           </View>
           
-          <View style={{ marginEnd: 20 }}>
+          <>
             <Text numberOfLines={3} style={[styles.text, {
               color: theme.colors.text
             }]}>{props.item.text}</Text>
-          </View>
+          </>
         </View>
     </TouchableOpacity>
   )
@@ -44,6 +44,7 @@ export const ScrollItem = (props: ScrollItemProps) => {
 const styles = StyleSheet.create({
   container: {
     padding: 20,
+    minWidth: '100%',
   },
   title: {
     fontSize: 18,

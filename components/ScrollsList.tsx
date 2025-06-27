@@ -45,7 +45,7 @@ export const ScrollsList = ({
   )
 
   const FilledList = () => (
-    <View style={{ flex: 1, height: '100%' }}>
+    <View style={styles.filledContainer}>
       <FlatList
         data={list}
         keyExtractor={(item) => String(item.id)}
@@ -72,6 +72,11 @@ const styles = StyleSheet.create({
     minHeight: '100%',
     alignItems: 'center',
     justifyContent: 'flex-start',
+  },
+  filledContainer: { 
+    flex: 1,
+    height: '100%',
+    paddingHorizontal: 8,
   },
   card: {
     padding: 32,
