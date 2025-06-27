@@ -1,5 +1,6 @@
 {
   "expo": {
+    "scheme": "app-scheme",
     "name": "emerald-scrolls",
     "slug": "emerald-scrolls",
     "version": "1.0.0",
@@ -28,7 +29,8 @@
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
-      "expo-sqlite"
+      "expo-sqlite",
+      "expo-router"
     ]
   }
 }
