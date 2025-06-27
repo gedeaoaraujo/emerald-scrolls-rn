@@ -11,7 +11,7 @@ export default function EditScrollMenu({ params }) {
   const { editScroll } = useContext(ScrollsContext)
 
   const createNew = () => {
-    editScroll(Number(params.id))
+    editScroll(params.id)
     router.dismissTo('/home')
   }
 

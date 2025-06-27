@@ -1,5 +1,5 @@
 export type ScrollModel = {
-  id: number,
+  id: string,
   title: string,
   date: string,
   text: string,

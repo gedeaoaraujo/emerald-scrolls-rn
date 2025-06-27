@@ -6,7 +6,7 @@ import { SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 export default function ViewScrollScreen() {
   const { theme } = useTheme()
-  const params = useLocalSearchParams<Omit<ScrollModel, 'id'>>()
+  const params = useLocalSearchParams<ScrollModel>()
   return (
     <SafeAreaView style={{ 
       flex: 1, paddingBottom: 50,

@@ -13,7 +13,7 @@ export default function ViewScrollMenu({ params }) {
 
   const deleteScroll = () => {
     Dialog.deleteScroll(t, ()=>{
-      removeScroll(Number(params.id))
+      removeScroll(params.id)
       router.back()
     })
   }

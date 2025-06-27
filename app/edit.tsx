@@ -20,7 +20,7 @@ export default function EditScrollScreen() {
   } = useContext(ScrollsContext)
   
   const [keyboardOffset, setKeyboardOffset] = useState(0);
-  const params = useLocalSearchParams<Omit<ScrollModel,'id'>>()
+  const params = useLocalSearchParams<ScrollModel>()
 
   useEffect(() => {
     onChageDate(params.date)

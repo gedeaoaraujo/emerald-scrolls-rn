@@ -12,8 +12,8 @@ export async function insertScrolls(...scrolls: ScrollModel[]) {
     await db.withExclusiveTransactionAsync(async (tx) => {
       await Promise.all(scrolls.map(({ id, title, date, text }) =>
         tx.runAsync(`
-          INSERT INTO scroll(title, date, text) VALUES ($title, $date, $text)
-        `, { $title: title, $date: date, $text: text }
+          INSERT INTO scroll(id, title, date, text) VALUES ($id, $title, $date, $text)
+        `, { $id: id, $title: title, $date: date, $text: text }
         )
       ))
     })
@@ -22,7 +22,7 @@ export async function insertScrolls(...scrolls: ScrollModel[]) {
   }
 }
 
-export async function deleteScrolls(...ids: number[]) {
+export async function deleteScrolls(...ids: string[]) {
   try {
     const db = await SQLite.openDatabaseAsync('emerald.db')
     await db.withExclusiveTransactionAsync(async (tx) => {

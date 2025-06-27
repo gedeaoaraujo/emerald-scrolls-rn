@@ -25,7 +25,7 @@ async function migrateV1(db: SQLiteDatabase){
   await db.execAsync(`
     PRAGMA journal_mode = WAL;
     CREATE TABLE IF NOT EXISTS scroll(
-      id INTEGER PRIMARY KEY NOT NULL,
+      id TEXT PRIMARY KEY NOT NULL,
       title TEXT NOT NULL,
       date TEXT NOT NULL,
       text TEXT NOT NULL

@@ -2,6 +2,7 @@ import React, { createContext, useState } from "react";
 import { ScrollModel } from "../model/ScrollModel";
 import { useTranslation } from 'react-i18next';
 import { isEmpty } from "../utils/strings";
+import { randomUUID } from "expo-crypto";
 import { Share } from "react-native";
 import { 
     deleteScrolls, 
@@ -14,9 +15,9 @@ export const ScrollsContext = createContext({
     date: '',
     title: '',
     list: ([] as ScrollModel[]),
-    editScroll: (id: number)=>{},
+    editScroll: (id: string)=>{},
     onChageText: (txt: string)=>{},
-    removeScroll: (id: number)=>{},
+    removeScroll: (id: string)=>{},
     onChageDate: (date: string)=>{},
     createScroll: (): boolean=>false,
     onChageTitle: (title: string)=>{},
@@ -55,7 +56,7 @@ export function ScrollsProvider({ children }) {
         setTitle('')
     }
 
-    const removeScroll = (id: number) => {
+    const removeScroll = (id: string) => {
         setList((prevItems) => prevItems.filter(i => i.id !== id))
         deleteScrolls(id)
     }
@@ -65,7 +66,7 @@ export function ScrollsProvider({ children }) {
             return false
         }
         const newScroll = {
-            id: list.length + 1,
+            id: randomUUID(),
             title: title, date: date, text: text
         }
         setList((prevItems) => [...prevItems, newScroll])
@@ -80,7 +81,7 @@ export function ScrollsProvider({ children }) {
         })
     }
 
-    const editScroll = (scrollId: number) => {
+    const editScroll = (scrollId: string) => {
         const item = list
             .filter(el => el.id === scrollId)[0]
         item.title = title
