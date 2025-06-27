@@ -7,7 +7,6 @@ import { useTheme } from '../theme/ThemeContext';
 import { ScrollsList } from '../components/ScrollsList';
 import { useRouter } from 'expo-router';
 
-
 export default function HomeScreen() {
   const router = useRouter()
   const { theme } = useTheme()

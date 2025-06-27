@@ -15,17 +15,6 @@ import { Stack } from 'expo-router';
 import { useEffect } from 'react';
 import '../locales/i18n';
 
-export type RootStackParamList = {
-  Splash: undefined;
-  Password: undefined;
-  Home: undefined;
-  View: ScrollModel;
-  Create: undefined;
-  Edit: undefined;
-  Settings: undefined;
-};
-
-
 function MainContent() {
   const { t } = useTranslation()
   const { theme, initTheme } = useTheme()
