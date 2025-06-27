@@ -5,11 +5,12 @@ import { ThemeType } from "../theme/ThemeType"
 import { useTranslation } from "react-i18next"
 import { ScrollItem } from './ScrollItem'
 import { isEmpty } from "../utils/arrays"
+import { Router } from "expo-router"
 
 type ScrollsListProps = {
   list: ScrollModel[],
   theme: ThemeType
-  router: any,
+  router: Router,
 }
 
 export const ScrollsList = ({ 
@@ -18,7 +19,7 @@ export const ScrollsList = ({
   const { t } = useTranslation()
 
   function goToScroll(item: ScrollModel) {
-    router.navigate('/view', item)
+    router.navigate({ pathname: '/view', params: item })
   }
 
   const EmptyList = () => (

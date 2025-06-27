@@ -1,14 +1,12 @@
-import { ScrollModel } from '../model/ScrollModel';
-import { DateHeader } from '../components/DateHeader';
 import { useTheme } from '../theme/ThemeContext';
+import { ScrollModel } from '../model/ScrollModel';
+import { useLocalSearchParams } from 'expo-router';
+import { DateHeader } from '../components/DateHeader';
 import { SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
 
-type ViewScrollScreenProps = {
-  route: { params: ScrollModel }
-};
-
-export default function ViewScrollScreen({route}: ViewScrollScreenProps) {
+export default function ViewScrollScreen() {
   const { theme } = useTheme()
+  const params = useLocalSearchParams<Omit<ScrollModel, 'id'>>()
   return (
     <SafeAreaView style={{ 
       flex: 1, paddingBottom: 50,
@@ -19,13 +17,13 @@ export default function ViewScrollScreen({route}: ViewScrollScreenProps) {
     <View style={[styles.content, {
       backgroundColor: theme.colors.background
     }]}>
-      <DateHeader readOnly dateStr={route.params.date} />      
+      <DateHeader readOnly dateStr={params.date} />      
       <Text style={[styles.title, {
         color: theme.colors.text
-      }]}>{route.params.title}</Text>
+      }]}>{params.title}</Text>
       <Text style={[styles.text, {
         color: theme.colors.text
-      }]}>{route.params.text}</Text>
+      }]}>{params.text}</Text>
     </View>
     </ScrollView>
     </SafeAreaView>
