@@ -1,18 +1,15 @@
 import { useContext, useEffect } from 'react';
-import { RootStackParamList } from '../App';
-import { FloatActionBtn } from './FloatActionBtn';
-import { StackNavigationProp } from '@react-navigation/stack';
+import { FloatActionBtn } from '../components/FloatActionBtn';
 import { StyleSheet, View, SafeAreaView } from 'react-native';
 import { ScrollsContext } from '../contexts/ScrollsContext';
 import { getAllScrolls } from '../database/scrolls.dao';
 import { useTheme } from '../theme/ThemeContext';
-import { ScrollsList } from './ScrollsList';
+import { ScrollsList } from '../components/ScrollsList';
+import { useRouter } from 'expo-router';
 
-type HomeScreenProps = {
-  navigation: StackNavigationProp<RootStackParamList, 'Home'>;
-};
 
-export const HomeScreen = (props: HomeScreenProps) => {
+const HomeScreen = () => {
+  const router = useRouter()
   const { theme } = useTheme()
   const { list, init } = useContext(ScrollsContext)
 
@@ -21,7 +18,7 @@ export const HomeScreen = (props: HomeScreenProps) => {
   }
 
   function goToCreate() {
-    props.navigation.navigate('Create')
+    router.navigate('/CreateScrollScreen')
   }
 
   useEffect(() => {
@@ -39,7 +36,7 @@ export const HomeScreen = (props: HomeScreenProps) => {
       <ScrollsList 
         list={list}
         theme={theme} 
-        navigation={props.navigation} 
+        router={router} 
       />
       <FloatActionBtn
         fabStyle={styles.buttonFab} 
@@ -61,3 +58,5 @@ const styles = StyleSheet.create({
     position: 'absolute',
   }
 });
+
+export default HomeScreen

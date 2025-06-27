@@ -1,5 +1,5 @@
 import { ScrollModel } from '../model/ScrollModel';
-import { DateHeader } from './DateHeader';
+import { DateHeader } from '../components/DateHeader';
 import { useTheme } from '../theme/ThemeContext';
 import { SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
 
@@ -7,7 +7,7 @@ type ViewScrollScreenProps = {
   route: { params: ScrollModel }
 };
 
-export const ViewScrollScreen = ({route}: ViewScrollScreenProps) => {
+const ViewScrollScreen = ({route}: ViewScrollScreenProps) => {
   const { theme } = useTheme()
   return (
     <SafeAreaView style={{ 
@@ -46,3 +46,5 @@ const styles = StyleSheet.create({
     fontSize: 16
   }
 });
+
+export default ViewScrollScreen;

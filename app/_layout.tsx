@@ -1,27 +1,19 @@
-import { LocalizationProvider, useLocalization } from './contexts/LocalizationContext';
-import { ScrollModel } from './model/ScrollModel';
-import { HomeScreen } from './components/HomeSceen';
-import { NavigationContainer } from '@react-navigation/native';
-import { CreateScrollScreen } from './components/CreateScrollScreen';
-import { createStackNavigator } from '@react-navigation/stack';
-import { ViewScrollScreen } from './components/ViewScrollScreen';
-import { ScrollsProvider } from './contexts/ScrollsContext';
-import { ViewScrollMenu } from './components/ViewScrollMenu';
-import { CreateScrollMenu } from './components/CreateScrollMenu';
-import { EditScrollScreen } from './components/EditScrollScreen';
-import { useTheme, ThemeProvider } from './theme/ThemeContext';
+import { LocalizationProvider, useLocalization } from '../contexts/LocalizationContext';
+import { useTheme, ThemeProvider } from '../theme/ThemeContext';
+import CreateScrollMenu from '../components/CreateScrollMenu';
 import { HeaderBackButton } from '@react-navigation/elements';
-import { EditScrollMenu } from './components/EditScrollMenu';
-import { SettingsScreen } from './components/SettingsScreen';
-import { PasswordScreen } from './components/PasswordScreen';
-import { SplashScreen } from './components/SplashScreen';
-import { migrateDbIfNeeded } from './database/migration';
-import { HomeMenu } from './components/HomeMenu';
+import { ScrollsProvider } from '../contexts/ScrollsContext';
+import EditScrollMenu from '../components/EditScrollMenu';
+import { migrateDbIfNeeded } from '../database/migration';
+import ViewScrollMenu from '../components/ViewScrollMenu';
+import { ScrollModel } from '../model/ScrollModel';
+import HomeMenu from '../components/HomeMenu';
 import { useTranslation } from 'react-i18next';
 import { SQLiteProvider } from 'expo-sqlite';
-import Dialog from './utils/alerts';
+import Dialog from '../utils/alerts';
+import { Stack } from 'expo-router';
 import { useEffect } from 'react';
-import './locales/i18n';
+import '../locales/i18n';
 
 export type RootStackParamList = {
   Splash: undefined;
@@ -33,7 +25,6 @@ export type RootStackParamList = {
   Settings: undefined;
 };
 
-const Stack = createStackNavigator();
 
 function MainContent() {
   const { t } = useTranslation()
@@ -46,11 +37,9 @@ function MainContent() {
   }, [])
 
   return (
-    <NavigationContainer>
-    <Stack.Navigator>
+    <Stack>
       <Stack.Screen
-        name="Splash"
-        component={SplashScreen}
+        name="index"
         options={{
           headerShown: false,
           title: "Splash Screen",
@@ -59,8 +48,7 @@ function MainContent() {
         }}
       />
       <Stack.Screen
-        name="Password"
-        component={PasswordScreen}
+        name="PasswordScreen"
         options={{
           headerShown: false,
           title: "Password Screen",
@@ -69,32 +57,25 @@ function MainContent() {
         }}
       />
       <Stack.Screen
-        name="Home"
-        component={HomeScreen}
-        options={({ navigation }) => ({
+        name="HomeScreen"
+        options={() => ({
           title: t('app.name'),
           headerTintColor: theme.colors.textOnPrimary,
           headerStyle: { backgroundColor: theme.colors.primary },
-          headerRight: () => <HomeMenu navigation={navigation} />
+          headerRight: () => <HomeMenu />
         })}
       />
       <Stack.Screen
-        name="View"
-        component={ViewScrollScreen}
+        name="ViewScrollScreen"
         options={({ route, navigation }) => ({
           title: t('view.scroll'),
           headerTintColor: theme.colors.textOnPrimary,
           headerStyle: { backgroundColor: theme.colors.primary },
-          headerRight: () => (
-            <ViewScrollMenu
-              scroll={route.params}
-              navigation={navigation}/>
-          ),
+          headerRight: () => <ViewScrollMenu scroll={route.params} />
         })}
       />
       <Stack.Screen
-        name="Create"
-        component={CreateScrollScreen}
+        name="CreateScrollScreen"
         options={({ route, navigation }) => ({
           title: t('create.scroll'),
           headerTintColor: theme.colors.textOnPrimary,
@@ -105,53 +86,43 @@ function MainContent() {
               onPress={() => Dialog.discartChanges(t, navigation.goBack)}
             />
           ),
-          headerRight: () => (
-            <CreateScrollMenu
-              navigation={navigation}/>
-          )
+          headerRight: () => <CreateScrollMenu />
         })}
       />
       <Stack.Screen
-        name="Edit"
-        component={EditScrollScreen}
-        options={({ route, navigation }) => ({
+        name="EditScrollScreen"
+        options={({ route }) => ({
           title: t('edit.scroll'),
           headerTintColor: theme.colors.textOnPrimary,
           headerStyle: { backgroundColor: theme.colors.primary },
-          headerRight: () => (
-            <EditScrollMenu
-              scroll={route.params}
-              navigation={navigation}/>
-          )
+          headerRight: () => <EditScrollMenu scroll={route.params} />
         })}
       />
       <Stack.Screen
-        name="Settings"
-        component={SettingsScreen}
+        name="SettingsScreen"
         options={{
           title: t('settings'),
           headerTintColor: theme.colors.textOnPrimary,
           headerStyle: { backgroundColor: theme.colors.primary },
         }}
       />
-    </Stack.Navigator>
-    </NavigationContainer>
+    </Stack>
   );
 }
 
 export default function App() {
   const DB_NAME = 'emerald.db'
   return (
+    <LocalizationProvider>
     <SQLiteProvider 
       databaseName={DB_NAME}
       onInit={migrateDbIfNeeded}>
     <ThemeProvider>
     <ScrollsProvider>
-    <LocalizationProvider>
       <MainContent />
-    </LocalizationProvider>
     </ScrollsProvider>
     </ThemeProvider>
     </SQLiteProvider>
+    </LocalizationProvider>
   )
 }

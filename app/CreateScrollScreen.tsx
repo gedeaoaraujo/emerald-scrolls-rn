@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { ScrollsContext } from '../contexts/ScrollsContext';
-import { DateHeader } from './DateHeader';
+import { DateHeader } from '../components/DateHeader';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '../theme/ThemeContext';
 import Dialog from '../utils/alerts';
@@ -8,8 +8,9 @@ import {
   BackHandler, StyleSheet, TextInput, View,
   KeyboardAvoidingView, Platform, SafeAreaView, Keyboard 
 } from 'react-native';
+import { useRouter } from 'expo-router';
 
-export const CreateScrollScreen = ({ navigation }) => {
+const CreateScrollScreen = () => {
   const {
     title, 
     text,
@@ -19,6 +20,7 @@ export const CreateScrollScreen = ({ navigation }) => {
     updateDate
   } = useContext(ScrollsContext)
 
+  const router = useRouter()
   const { theme } = useTheme()
   const { t } = useTranslation()
   const date = new Date().toISOString() 
@@ -30,7 +32,7 @@ export const CreateScrollScreen = ({ navigation }) => {
     onChageTitle('')
   
     const handler = BackHandler.addEventListener('hardwareBackPress', () => {
-      Dialog.discartChanges(t, navigation.goBack)
+      Dialog.discartChanges(t, router.back)
       return true
     });
 
@@ -104,3 +106,5 @@ const styles = StyleSheet.create({
     textAlignVertical: 'top'
   }
 });
+
+export default CreateScrollScreen;

@@ -2,21 +2,17 @@ import { useContext } from "react";
 import { FontAwesome6 } from '@expo/vector-icons';
 import { ScrollsContext } from "../contexts/ScrollsContext"
 import { StyleSheet, TouchableOpacity } from "react-native"
-import { ScrollModel } from "../model/ScrollModel";
 import { useTheme } from "../theme/ThemeContext";
+import { useRouter } from "expo-router";
 
-type EditScrollParams = {
-  scroll: ScrollModel,
-  navigation: any
-}
-
-export function EditScrollMenu({ scroll, navigation }: EditScrollParams) {
+export default function EditScrollMenu({ scroll }) {
+  const router = useRouter()
   const { theme } = useTheme()
   const { editScroll } = useContext(ScrollsContext)
 
   const createNew = () => {
     editScroll(scroll.id)
-    navigation.popToTop()
+    router.dismiss(2)
   }
 
   return (

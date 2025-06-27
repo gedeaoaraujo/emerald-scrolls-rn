@@ -2,8 +2,10 @@ import { StyleSheet, TouchableOpacity } from "react-native";
 import { FontAwesome6 } from '@expo/vector-icons';
 import { useTheme } from '../theme/ThemeContext';
 import { useState } from 'react';
+import { useRouter } from "expo-router";
 
-export const HomeMenu = ({ navigation }) => {
+const HomeMenu = () => {
+  const router = useRouter()
   const { theme, toggleTheme } = useTheme()
   const [themeIcon, setThemeIcon] = useState('moon')
 
@@ -13,7 +15,7 @@ export const HomeMenu = ({ navigation }) => {
   }
 
   const goToSettings = () => {
-    navigation.navigate('Settings')
+    router.navigate('/SettingsScreen')
   }
 
   return (
@@ -43,3 +45,5 @@ const styles = StyleSheet.create({
     marginEnd: 4,
   }
 })
+
+export default HomeMenu;

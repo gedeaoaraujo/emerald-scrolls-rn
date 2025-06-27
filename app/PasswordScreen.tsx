@@ -1,30 +1,32 @@
 import { FontAwesome6 } from '@expo/vector-icons';
 import { checkBiometry } from '../utils/biometry';
-import { PasswordKeyboard } from './PasswordKeyboard';
+import { PasswordKeyboard } from '../components/PasswordKeyboard';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { usePasswordViewModel } from '../viewmodels/PasswordViewModel';
 import { useTheme } from '../theme/ThemeContext';
 import { useTranslation } from 'react-i18next';
+import { useRouter } from 'expo-router';
 
-export const PasswordScreen = ({ navigation }) => {
+const PasswordScreen = () => {
   const { 
     password,
     checkPassword,
     onChangePassword 
   } = usePasswordViewModel()
   
+  const router = useRouter()
   const { theme } = useTheme()
   const { t } = useTranslation()
 
   const callBiometry = () => {
     checkBiometry(t, () => {
-      navigation.replace('Home')
+      router.replace('/HomeScreen')
     })
   }
 
   const startChecking = async () => {
     if (await checkPassword()) {
-      navigation.replace('Home')
+      router.replace('/HomeScreen')
     } else {
       alert(t('wrong.password'))
     }
@@ -81,3 +83,5 @@ const styles = StyleSheet.create({
     fontSize: 30,
   }
 })
+
+export default PasswordScreen;

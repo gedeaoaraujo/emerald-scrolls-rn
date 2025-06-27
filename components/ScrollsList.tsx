@@ -9,16 +9,16 @@ import { isEmpty } from "../utils/arrays"
 type ScrollsListProps = {
   list: ScrollModel[],
   theme: ThemeType
-  navigation: any,
+  router: any,
 }
 
 export const ScrollsList = ({ 
-  list, navigation, theme 
+  list, router, theme 
 }: ScrollsListProps) => {
   const { t } = useTranslation()
 
   function goToScroll(item: ScrollModel) {
-    navigation.navigate('View', item)
+    router.navigate('/ViewScrollScreen', item)
   }
 
   const EmptyList = () => (

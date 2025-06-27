@@ -1,14 +1,14 @@
 import { useContext, useEffect, useState } from 'react';
 import { ScrollsContext } from '../contexts/ScrollsContext';
 import { useTranslation } from 'react-i18next'
-import { DateHeader } from './DateHeader';
+import { DateHeader } from '../components/DateHeader';
 import { useTheme } from '../theme/ThemeContext';
 import { 
   Keyboard, KeyboardAvoidingView, Platform, 
   SafeAreaView, StyleSheet, TextInput, View 
 } from 'react-native';
 
-export const EditScrollScreen = ({ route }) => {
+const EditScrollScreen = ({ route }) => {
   const {
     title, text,
     onChageText,
@@ -94,3 +94,5 @@ const styles = StyleSheet.create({
     textAlignVertical: 'top'
   }
 });
+
+export default EditScrollScreen;

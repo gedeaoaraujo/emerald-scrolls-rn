@@ -3,13 +3,13 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { useTheme } from "../theme/ThemeContext"
 import { LightTheme } from "../theme/LightTheme"
 import { DarkTheme } from "../theme/DarkTheme"
-import { RadioButton } from "./RadioButton"
+import { RadioButton } from "../components/RadioButton"
 import { useTranslation } from "react-i18next"
 import { usePasswordViewModel } from "../viewmodels/PasswordViewModel"
-import { PasswordDialog } from "./PasswordDialog"
+import PasswordDialog from "../components/PasswordDialog"
 import { useState } from "react"
 
-export const SettingsScreen = () => {
+const SettingsScreen = () => {
   const { t } = useTranslation()
   const { theme, selectTheme } = useTheme()
   const { savePassword } = usePasswordViewModel()
@@ -113,3 +113,5 @@ const styles = StyleSheet.create({
     backgroundColor: 'gray' 
   }
 })
+
+export default SettingsScreen;

@@ -1,29 +1,25 @@
 import { useContext } from "react"
 import { FontAwesome6 } from '@expo/vector-icons'
-import { ScrollModel } from "../model/ScrollModel"
 import { ScrollsContext } from "../contexts/ScrollsContext"
 import { StyleSheet, TouchableOpacity, View } from "react-native"
 import { useTranslation } from "react-i18next"
 import Dialog from '../utils/alerts'
+import { useRouter } from "expo-router"
 
-type ScrollParams = {
-  scroll: ScrollModel,
-  navigation: any
-}
-
-export function ViewScrollMenu({ scroll, navigation }: ScrollParams) {
+export default function ViewScrollMenu({ scroll }) {
+  const router = useRouter()
   const { t } = useTranslation()
   const { shareScroll, removeScroll } = useContext(ScrollsContext)
 
   const deleteScroll = () => {
     Dialog.deleteScroll(t, ()=>{
       removeScroll(scroll.id)
-      navigation.goBack()
+      router.back()
     })
   }
 
   const editScroll = () => {
-    navigation.navigate('Edit', scroll)
+    router.navigate('Edit', scroll)
   }
 
   return (

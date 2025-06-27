@@ -4,12 +4,15 @@ import { useTheme } from '../theme/ThemeContext'
 import { useTranslation } from 'react-i18next'
 import { useEffect, useRef, useState } from 'react'
 import { usePasswordViewModel } from '../viewmodels/PasswordViewModel'
+import { useRouter } from 'expo-router'
+import { StatusBar } from 'expo-status-bar'
 
-export const SplashScreen = ({ navigation }) => {
+export default function SplashScreen() {
   const { 
     checkPassword,
   } = usePasswordViewModel()
 
+  const router = useRouter()
   const { theme } = useTheme()
   const { t } = useTranslation()
 
@@ -18,9 +21,9 @@ export const SplashScreen = ({ navigation }) => {
 
   const startChecking = async () => {
     if (await checkPassword()) {
-      navigation.replace('Home')
+      router.replace('/HomeScreen')
     } else {
-      navigation.replace('Password')
+      router.replace('/PasswordScreen')
     }
   }
 
@@ -81,6 +84,7 @@ export const SplashScreen = ({ navigation }) => {
           color: theme.colors.textOnPrimary
         }]}>{dots}</Text>
       </View>
+      <StatusBar style='light' />
     </View>
   )
 }

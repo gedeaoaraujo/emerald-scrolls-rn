@@ -4,11 +4,11 @@ import { useTheme } from "../theme/ThemeContext"
 import { useTranslation } from "react-i18next"
 import { useState } from "react"
 
-export const PasswordDialog = ({
+export default function PasswordDialog({
   onOk = (_: string)=>{},
   visible = false,
   onCancel = (_: boolean)=>{},
-}) => {
+}){
   const { theme } = useTheme()
   const { t } = useTranslation()
   const [password, setPassword] = useState('')
