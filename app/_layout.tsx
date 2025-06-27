@@ -113,16 +113,16 @@ function MainContent() {
 export default function App() {
   const DB_NAME = 'emerald.db'
   return (
-    <LocalizationProvider>
     <SQLiteProvider 
       databaseName={DB_NAME}
       onInit={migrateDbIfNeeded}>
     <ThemeProvider>
+    <LocalizationProvider>
     <ScrollsProvider>
       <MainContent />
     </ScrollsProvider>
+    </LocalizationProvider>
     </ThemeProvider>
     </SQLiteProvider>
-    </LocalizationProvider>
   )
 }
