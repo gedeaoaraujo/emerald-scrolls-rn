@@ -10,12 +10,14 @@ type DateHeaderProps = {
   updateDate?: (date: Date) => void
 }
 
+type AndroidMode = 'date'|'time'|undefined
+
 export const DateHeader = ({ 
   dateStr, readOnly, updateDate 
 }: DateHeaderProps) => {
-  const [mode, setMode] = useState("date");
   const [show, setShow] = useState(false);
   const [date, setDate] = useState(new Date(dateStr));
+  const [mode, setMode] = useState<AndroidMode>("date");
   
   const { theme } = useTheme()
   const { t } = useTranslation()
@@ -51,14 +53,14 @@ export const DateHeader = ({
   }
 
   const onChange = (event: any, selectedDate?: Date) => {
-    setShow(Platform.OS === 'ios') // No Android fecha após seleção
+    setShow(Platform.OS === 'ios')
     if (selectedDate) {
       setDate(selectedDate)
       updateDate?.(selectedDate)
     }
   }
 
-  const openPicker = (mode: string) => {
+  const openPicker = (mode: AndroidMode) => {
     if (readOnly) return
     setMode(mode)
     setShow(!show)
@@ -88,8 +90,8 @@ export const DateHeader = ({
       {show && (
         <DateTimePicker
           value={date}
-          mode={mode} // pode ser 'date', 'time' ou 'datetime'
-          display="default" // pode ser 'default', 'spinner', 'calendar', etc.
+          mode={mode}
+          display="default"
           onChange={onChange}
           is24Hour={!isHour12()}
         />
