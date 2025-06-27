@@ -1,6 +1,5 @@
-import { useContext } from "react";
 import { FontAwesome6 } from '@expo/vector-icons';
-import { ScrollsContext } from "../contexts/ScrollsContext"
+import { useScrolls } from "../contexts/ScrollsContext"
 import { StyleSheet, TouchableOpacity } from "react-native"
 import { useTheme } from "../theme/ThemeContext";
 import { useRouter } from "expo-router";
@@ -8,7 +7,7 @@ import { useRouter } from "expo-router";
 export default function CreateScrollMenu() {
   const router = useRouter()
   const { theme } = useTheme()
-  const { createScroll } = useContext(ScrollsContext)
+  const { createScroll } = useScrolls()
 
   const createNew = () => {
     if (createScroll())

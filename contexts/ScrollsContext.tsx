@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 import { ScrollModel } from "../model/ScrollModel";
 import { useTranslation } from 'react-i18next';
 import { isEmpty } from "../utils/strings";
@@ -10,7 +10,7 @@ import {
     updateScrolls 
 } from "../database/scrolls.dao";
 
-export const ScrollsContext = createContext({
+const ScrollsContext = createContext({
     text: '',
     date: '',
     title: '',
@@ -115,3 +115,5 @@ export function ScrollsProvider({ children }) {
         </ScrollsContext>
     )
 }
+
+export const useScrolls = () => useContext(ScrollsContext)

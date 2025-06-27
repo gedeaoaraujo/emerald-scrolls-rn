@@ -1,7 +1,7 @@
-import { useContext, useEffect } from 'react';
+import { useEffect } from 'react';
 import { FloatActionBtn } from '../components/FloatActionBtn';
 import { StyleSheet, View, SafeAreaView } from 'react-native';
-import { ScrollsContext } from '../contexts/ScrollsContext';
+import { useScrolls } from '../contexts/ScrollsContext';
 import { getAllScrolls } from '../database/scrolls.dao';
 import { useTheme } from '../theme/ThemeContext';
 import { ScrollsList } from '../components/ScrollsList';
@@ -11,7 +11,7 @@ import { useRouter } from 'expo-router';
 export default function HomeScreen() {
   const router = useRouter()
   const { theme } = useTheme()
-  const { list, init } = useContext(ScrollsContext)
+  const { list, init } = useScrolls()
 
   async function getScrolls() {
     init(await getAllScrolls())

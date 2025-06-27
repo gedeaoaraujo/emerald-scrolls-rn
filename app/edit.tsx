@@ -1,5 +1,5 @@
-import { useContext, useEffect, useState } from 'react';
-import { ScrollsContext } from '../contexts/ScrollsContext';
+import { useEffect, useState } from 'react';
+import { useScrolls } from '../contexts/ScrollsContext';
 import { useTranslation } from 'react-i18next'
 import { DateHeader } from '../components/DateHeader';
 import { useTheme } from '../theme/ThemeContext';
@@ -17,7 +17,7 @@ export default function EditScrollScreen() {
     onChageTitle,
     onChageDate,
     updateDate
-  } = useContext(ScrollsContext)
+  } = useScrolls()
   
   const [keyboardOffset, setKeyboardOffset] = useState(0);
   const params = useLocalSearchParams<ScrollModel>()

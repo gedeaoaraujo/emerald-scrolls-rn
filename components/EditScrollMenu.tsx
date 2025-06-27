@@ -1,6 +1,5 @@
-import { useContext } from "react";
 import { FontAwesome6 } from '@expo/vector-icons';
-import { ScrollsContext } from "../contexts/ScrollsContext"
+import { useScrolls } from "../contexts/ScrollsContext"
 import { StyleSheet, TouchableOpacity } from "react-native"
 import { useTheme } from "../theme/ThemeContext";
 import { useRouter } from "expo-router"
@@ -8,7 +7,7 @@ import { useRouter } from "expo-router"
 export default function EditScrollMenu({ params }) {
   const router = useRouter()
   const { theme } = useTheme()
-  const { editScroll } = useContext(ScrollsContext)
+  const { editScroll } = useScrolls()
 
   const createNew = () => {
     editScroll(params.id)

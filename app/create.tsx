@@ -1,5 +1,5 @@
-import { useContext, useEffect, useState } from 'react';
-import { ScrollsContext } from '../contexts/ScrollsContext';
+import { useEffect, useState } from 'react';
+import { useScrolls } from '../contexts/ScrollsContext';
 import { DateHeader } from '../components/DateHeader';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '../theme/ThemeContext';
@@ -18,7 +18,7 @@ export default function CreateScrollScreen() {
     onChageTitle,
     onChageDate,
     updateDate
-  } = useContext(ScrollsContext)
+  } = useScrolls()
 
   const router = useRouter()
   const { theme } = useTheme()
