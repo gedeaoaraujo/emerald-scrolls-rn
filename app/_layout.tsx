@@ -67,16 +67,16 @@ function MainContent() {
       />
       <Stack.Screen
         name="view"
-        options={({ route, navigation }) => ({
+        options={({ route: { params } }) => ({
           title: t('view.scroll'),
           headerTintColor: theme.colors.textOnPrimary,
           headerStyle: { backgroundColor: theme.colors.primary },
-          headerRight: () => <ViewScrollMenu scroll={route.params} />
+          headerRight: () => <ViewScrollMenu params={params} />
         })}
       />
       <Stack.Screen
         name="create"
-        options={({ route, navigation }) => ({
+        options={({ navigation }) => ({
           title: t('create.scroll'),
           headerTintColor: theme.colors.textOnPrimary,
           headerStyle: { backgroundColor: theme.colors.primary },
@@ -91,11 +91,11 @@ function MainContent() {
       />
       <Stack.Screen
         name="edit"
-        options={({ route }) => ({
+        options={({ route: { params } }) => ({
           title: t('edit.scroll'),
           headerTintColor: theme.colors.textOnPrimary,
           headerStyle: { backgroundColor: theme.colors.primary },
-          headerRight: () => <EditScrollMenu scroll={route.params} />
+          headerRight: () => <EditScrollMenu params={params} />
         })}
       />
       <Stack.Screen

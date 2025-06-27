@@ -6,20 +6,20 @@ import { useTranslation } from "react-i18next"
 import Dialog from '../utils/alerts'
 import { useRouter } from "expo-router"
 
-export default function ViewScrollMenu({ scroll }) {
+export default function ViewScrollMenu({ params }) {
   const router = useRouter()
   const { t } = useTranslation()
   const { shareScroll, removeScroll } = useContext(ScrollsContext)
 
   const deleteScroll = () => {
     Dialog.deleteScroll(t, ()=>{
-      removeScroll(scroll.id)
+      removeScroll(Number(params.id))
       router.back()
     })
   }
 
   const editScroll = () => {
-    router.navigate('Edit', scroll)
+    router.navigate({ pathname: '/edit', params })
   }
 
   return (
@@ -31,7 +31,7 @@ export default function ViewScrollMenu({ scroll }) {
       </TouchableOpacity> */}
       <TouchableOpacity
         style={styles.option}
-        onPress={() => shareScroll(scroll)}>
+        onPress={() => shareScroll(params)}>
         <FontAwesome6 name='share-nodes' size={20} color='white' />
       </TouchableOpacity>
       <TouchableOpacity

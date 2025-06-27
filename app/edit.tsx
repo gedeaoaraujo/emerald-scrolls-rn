@@ -3,12 +3,14 @@ import { ScrollsContext } from '../contexts/ScrollsContext';
 import { useTranslation } from 'react-i18next'
 import { DateHeader } from '../components/DateHeader';
 import { useTheme } from '../theme/ThemeContext';
+import { useLocalSearchParams } from 'expo-router';
+import { ScrollModel } from '../model/ScrollModel';
 import { 
   Keyboard, KeyboardAvoidingView, Platform, 
   SafeAreaView, StyleSheet, TextInput, View 
 } from 'react-native';
 
-export default function EditScrollScreen({ route }) {
+export default function EditScrollScreen() {
   const {
     title, text,
     onChageText,
@@ -16,13 +18,14 @@ export default function EditScrollScreen({ route }) {
     onChageDate,
     updateDate
   } = useContext(ScrollsContext)
-
+  
   const [keyboardOffset, setKeyboardOffset] = useState(0);
+  const params = useLocalSearchParams<Omit<ScrollModel,'id'>>()
 
   useEffect(() => {
-    onChageDate(route.params.date)
-    onChageText(route.params.text)
-    onChageTitle(route.params.title)
+    onChageDate(params.date)
+    onChageText(params.text)
+    onChageTitle(params.title)
 
     const show = Keyboard.addListener('keyboardDidShow', () => setKeyboardOffset(50));
     const hide = Keyboard.addListener('keyboardDidHide', () => setKeyboardOffset(0));
@@ -48,7 +51,7 @@ export default function EditScrollScreen({ route }) {
     }]}>
       <DateHeader
         updateDate={updateDate}
-        dateStr={route.params.date}
+        dateStr={params.date}
       />
       <TextInput 
         value={title}
