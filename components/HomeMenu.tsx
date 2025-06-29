@@ -1,16 +1,25 @@
 import { StyleSheet, TouchableOpacity } from "react-native";
 import { FontAwesome6 } from '@expo/vector-icons';
 import { useTheme } from '../theme/ThemeContext';
-import { useState } from 'react';
 import { useRouter } from "expo-router";
+import { LightTheme } from "../theme/LightTheme";
+import { ThemeType } from "../theme/ThemeType";
+import { useEffect, useState } from 'react';
+
+const icon = (theme: ThemeType|string) => (
+  theme === LightTheme ? 'moon' : 'sun'
+)
 
 const HomeMenu = () => {
   const router = useRouter()
   const { theme, toggleTheme } = useTheme()
-  const [themeIcon, setThemeIcon] = useState('moon')
+  const [themeIcon, setThemeIcon] = useState(icon(theme))
+
+  useEffect(() => {
+    setThemeIcon(icon(theme))
+  }, [theme])
 
   const onPress = () => {
-    setThemeIcon(themeIcon === 'moon' ? 'sun' : 'moon')
     toggleTheme()
   }
 
