@@ -79,7 +79,7 @@ export default function SplashScreen() {
       <View style={{ width: '60%', flexDirection: 'row' }}>
         <Text style={[styles.text, {
           color: theme.colors.textOnPrimary
-        }]}>Loading configurations</Text>
+        }]}>{t('loading.configs')}</Text>
         <Text style={[styles.text, {
           padding: 0,
           paddingTop: 10,

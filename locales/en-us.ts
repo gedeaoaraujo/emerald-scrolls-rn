@@ -39,5 +39,6 @@ export const enUS: Localization = {
     'dialog.second.password': "Confirm the new password:",
     'dialog.cancel': "Cancel",
     'dialog.ok': "OK",
+    'loading.configs': 'Loading configurations'
   }
 }

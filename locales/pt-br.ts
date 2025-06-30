@@ -39,5 +39,6 @@ export const ptBR: Localization = {
     'dialog.second.password': "Confirme a nova senha:",
     'dialog.cancel': "Cancelar",
     'dialog.ok': "OK",
+    'loading.configs': 'Carregando configurações'
   }
 }
