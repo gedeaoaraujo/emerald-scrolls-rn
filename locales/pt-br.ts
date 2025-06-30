@@ -34,6 +34,8 @@ export const ptBR: Localization = {
     'settings.lang.portuguese': 'Português (Brasileiro)',
     'settings.password': 'Senha',
     'settings.password.modify': 'Modificar Senha',
+    'settings.password.wrong': 'As senhas não são iguais.',
+    'settings.password.changed': 'Senha modificada com sucesso.',
     'dialog.title': "Mudar Senha",
     'dialog.notification': 'Notificação',
     'dialog.first.password': "Digite a nova senha:",

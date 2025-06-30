@@ -32,6 +32,8 @@ export type Localization = {
     'settings.lang.portuguese': string,
     'settings.password': string,
     'settings.password.modify': string,
+    'settings.password.wrong': string,
+    'settings.password.changed': string,
     'dialog.title': string,
     'dialog.notification': string,
     'dialog.first.password': string,
