@@ -49,7 +49,8 @@ export default function HomeScreen() {
 
 const styles = StyleSheet.create({
   content: {
-    flex: 1
+    flex: 1,
+    paddingVertical: 16,
   },
   buttonFab: {
     right: 20,

@@ -43,7 +43,7 @@ export const ScrollItem = (props: ScrollItemProps) => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
+    padding: 10,
     minWidth: '100%',
   },
   title: {
