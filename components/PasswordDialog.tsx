@@ -1,6 +1,7 @@
 import { useTheme } from "../theme/ThemeContext"
 import { useTranslation } from "react-i18next"
 import { useState } from "react"
+import Dialog from "../utils/alerts";
 import { 
   StyleSheet, Text, TouchableOpacity, View, TextInput 
 } from "react-native"
@@ -17,12 +18,12 @@ export default function PasswordDialog({
 
   const onOkPressed = () => {
     if (password !== confirmPass){
-      alert('As senhas não são iguais.')
+      Dialog.notify(t, 'settings.password.wrong')
     } else {
       onOk(password)
       setPassword('')
       setConfirmPass('')
-      alert('Senha modificada com sucesso.')
+      Dialog.notify(t, 'settings.password.changed')
     }
   }
 

@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { isEmpty } from "../utils/strings";
 import { randomUUID } from "expo-crypto";
 import { Share } from "react-native";
+import Dialog from "../utils/alerts";
 import { 
     deleteScrolls, 
     insertScrolls, 
@@ -40,7 +41,7 @@ export function ScrollsProvider({ children }) {
     const checkSavable = () => {
         let isSavable = true
         if (isEmpty(title) || isEmpty(text)) {
-            alert(t('check.title.text'))
+            Dialog.notify(t, 'check.title.text')
             isSavable = false
         }
         return isSavable

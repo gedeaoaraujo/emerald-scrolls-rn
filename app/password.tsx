@@ -6,6 +6,7 @@ import { usePasswordViewModel } from '../viewmodels/PasswordViewModel';
 import { useTheme } from '../theme/ThemeContext';
 import { useTranslation } from 'react-i18next';
 import { useRouter } from 'expo-router';
+import Dialog from "../utils/alerts";
 
 export default function PasswordScreen() {
   const { 
@@ -28,7 +29,7 @@ export default function PasswordScreen() {
     if (await checkPassword()) {
       router.replace('/home')
     } else {
-      alert(t('wrong.password'))
+      Dialog.notify(t, 'wrong.password')
     }
   }
 
