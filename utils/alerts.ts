@@ -2,8 +2,8 @@ import { Alert } from "react-native";
 
 function Dialog() {
 
-  const notify = (t: any, msgKey: string) => {
-    Alert.alert(t('dialog.notification'), t(msgKey))
+  const notify = (t: any, msgKey: string, suffixMsg: string = '') => {
+    Alert.alert(t('dialog.notification'), t(msgKey) + suffixMsg)
   }
   
   const discartChanges = (t: any, onYesPress: ()=> void) => {
