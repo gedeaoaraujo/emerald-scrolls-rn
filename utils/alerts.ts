@@ -2,6 +2,10 @@ import { Alert } from "react-native";
 
 function Dialog() {
 
+  const notify = (t: any, msgKey: string) => {
+    Alert.alert(t('dialog.notification'), t(msgKey))
+  }
+  
   const discartChanges = (t: any, onYesPress: ()=> void) => {
     Alert.alert(
       t('dialog.discart.title'),
@@ -34,7 +38,8 @@ function Dialog() {
 
   return {
     discartChanges,
-    deleteScroll
+    deleteScroll,
+    notify
   }
 
 }

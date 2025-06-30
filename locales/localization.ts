@@ -33,6 +33,7 @@ export type Localization = {
     'settings.password': string,
     'settings.password.modify': string,
     'dialog.title': string,
+    'dialog.notification': string,
     'dialog.first.password': string,
     'dialog.second.password': string,
     'dialog.cancel': string,

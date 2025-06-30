@@ -35,6 +35,7 @@ export const enUS: Localization = {
     'settings.password': 'Password',
     'settings.password.modify': 'Change Password',
     'dialog.title': "Pasword change",
+    'dialog.notification': 'Notification',
     'dialog.first.password': "Write the new password:",
     'dialog.second.password': "Confirm the new password:",
     'dialog.cancel': "Cancel",
