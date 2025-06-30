@@ -12,7 +12,6 @@ export default function SplashScreen() {
     checkPassword,
   } = usePasswordViewModel()
 
-  const router = useRouter()
   const { theme } = useTheme()
   const { t } = useTranslation()
 
@@ -20,11 +19,14 @@ export default function SplashScreen() {
   const translateY = useRef(new Animated.Value(0)).current
 
   const startChecking = async () => {
-    if (await checkPassword()) {
-      router.replace('/home')
-    } else {
-      router.replace('/password')
-    }
+    setTimeout(async () => {
+      const router = useRouter()
+      if (await checkPassword()) {
+        router.replace('/home')
+      } else {
+        router.replace('/password')
+      }
+    }, 2_000);
   }
 
   useEffect(() => {
