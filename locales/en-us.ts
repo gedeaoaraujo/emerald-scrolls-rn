@@ -36,6 +36,7 @@ export const enUS: Localization = {
     'settings.password.modify': 'Change Password',
     'settings.password.wrong': 'The passwords are not the same.',
     'settings.password.changed': 'Password changed successfully.',
+    'settings.export.saved': 'Scrolls exported successfully:',
     'dialog.title': "Pasword change",
     'dialog.notification': 'Notification',
     'dialog.first.password': "Write the new password:",
