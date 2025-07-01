@@ -1,0 +1,55 @@
+import { unzip, zip } from 'react-native-zip-archive';
+import { getAllScrolls, insertScrolls } from '../database/scrolls.dao';
+import { readString } from 'react-native-csv';
+import Dialog from "../utils/alerts";
+import RNFS from 'react-native-fs';
+import { ScrollModel } from '../model/ScrollModel';
+
+const zipName: string = `EmeraldScrolls-123`;
+
+export const generateCsvZipped = async (t: any) => {
+  try {
+    const date = Date.now().toString();
+    const header = "id,title,date,text";
+
+    const allScrolls = await getAllScrolls();
+    const rows = allScrolls.map(item => (
+      `${item.id},"${item.title}",${item.date},"${item.text}"`
+    ));
+
+    const csvContent = [header, ...rows].join('\n');
+    const csvPath = `${RNFS.DownloadDirectoryPath}/csv-${date}.csv`;
+    await RNFS.writeFile(csvPath, csvContent, 'utf8');
+
+    // let zipName: string = `EmeraldScrolls-${date}.zip`;
+    const zipPath = `${RNFS.DownloadDirectoryPath}/${zipName}.zip`;
+    await zip([csvPath], zipPath);
+
+    RNFS.unlink(csvPath);
+    const finalName = `\nDownload/${zipName}`;
+    Dialog.notify(t, 'settings.export.saved', finalName);
+  } catch (error) {
+    console.log('Error on generateCsvZipped:', error);
+  }
+}
+
+export const readCsvZipped = async (t: any) => {
+  try {
+    const zipPath = `${RNFS.DownloadDirectoryPath}/${zipName}.zip`;
+    const targetPath = `${RNFS.DownloadDirectoryPath}/${zipName}`;
+    await unzip(zipPath, targetPath);
+
+    const files = await RNFS.readDir(targetPath);
+    const csvFile = files.find(file => file.name.endsWith('.csv'));
+    const csvFilePath = csvFile?.path ?? '';
+
+    const csvString = await RNFS.readFile(csvFilePath, 'utf8');
+    const results = readString(csvString, { header: true });
+    const data = results.data
+    await insertScrolls(...(data as ScrollModel[]))
+  } catch (error) {
+    console.log('Error on readCsvZipped:', error)
+  } finally {
+    Dialog.notify(t, '', 'Todos os pergaminhos foram importados com sucesso!')
+  }
+}
