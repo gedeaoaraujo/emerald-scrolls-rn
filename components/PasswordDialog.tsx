@@ -138,7 +138,9 @@ const styles = StyleSheet.create({
   password: {
     marginTop: 8,
     width: '100%',
+    color: 'black',
     borderRadius: 10,
+    paddingHorizontal: 8,
     backgroundColor: 'white'
   }
 })
