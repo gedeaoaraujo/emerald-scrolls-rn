@@ -6,7 +6,7 @@ import { DarkTheme } from "../theme/DarkTheme"
 import { RadioButton } from "../components/RadioButton"
 import { useTranslation } from "react-i18next"
 import { usePasswordViewModel } from "../viewmodels/PasswordViewModel"
-import { generateCsvZipped, readCsvZipped } from "../utils/export-compact"
+import { generateCsvZipped, pickDocument } from "../utils/export-compact"
 import PasswordDialog from "../components/PasswordDialog"
 import { useState } from "react"
 
@@ -28,7 +28,7 @@ export default function SettingsScreen() {
   }
 
   const importScrolls = async () => {
-    await readCsvZipped(t)
+    await pickDocument(t)
   }
 
   return (
