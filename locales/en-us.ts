@@ -43,6 +43,9 @@ export const enUS: Localization = {
     'dialog.second.password': "Confirm the new password:",
     'dialog.cancel': "Cancel",
     'dialog.ok': "OK",
-    'loading.configs': 'Loading configurations'
+    'loading.configs': 'Loading configurations',
+    'backup.title': 'Backup',
+    'backup.export': 'Export scrolls',
+    'backup.import': 'Import scrolls',
   }
 }

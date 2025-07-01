@@ -43,6 +43,9 @@ export const ptBR: Localization = {
     'dialog.second.password': "Confirme a nova senha:",
     'dialog.cancel': "Cancelar",
     'dialog.ok': "OK",
-    'loading.configs': 'Carregando configurações'
+    'loading.configs': 'Carregando configurações',
+    'backup.title': 'Backup',
+    'backup.export': 'Exportar pergaminhos',
+    'backup.import': 'Importar pergaminhos',
   }
 }

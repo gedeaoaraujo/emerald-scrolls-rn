@@ -41,6 +41,9 @@ export type Localization = {
     'dialog.second.password': string,
     'dialog.cancel': string,
     'dialog.ok': string,
-    'loading.configs': string
+    'loading.configs': string,
+    'backup.title': string,
+    'backup.export': string,
+    'backup.import': string,
   }
 }
