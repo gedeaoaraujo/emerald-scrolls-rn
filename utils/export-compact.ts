@@ -26,8 +26,8 @@ export const generateCsvZipped = async (t: any) => {
     await zip([csvPath], zipPath);
 
     RNFS.unlink(csvPath);
-    const finalName = `\nDownload/${zipName}`;
-    Dialog.notify(t, 'settings.export.saved', finalName);
+    const finalName = `\n\n${zipName}`;
+    Dialog.notify(t, 'backup.export.saved', finalName);
   } catch (error) {
     console.log('Error on generateCsvZipped:', error);
   }

@@ -36,7 +36,6 @@ export const ptBR: Localization = {
     'settings.password.modify': 'Modificar Senha',
     'settings.password.wrong': 'As senhas não são iguais.',
     'settings.password.changed': 'Senha modificada com sucesso.',
-    'settings.export.saved': 'Pergaminhos exportados com sucesso:',
     'dialog.title': "Mudar Senha",
     'dialog.notification': 'Notificação',
     'dialog.first.password': "Digite a nova senha:",
@@ -46,6 +45,7 @@ export const ptBR: Localization = {
     'loading.configs': 'Carregando configurações',
     'backup.title': 'Backup',
     'backup.export': 'Exportar pergaminhos',
+    'backup.export.saved': 'Pergaminhos exportados com sucesso na pasta Download:',
     'backup.import': 'Importar pergaminhos',
     'backup.import.success': 'Todos os pergaminhos foram importados com sucesso!',
   }

@@ -34,7 +34,6 @@ export type Localization = {
     'settings.password.modify': string,
     'settings.password.wrong': string,
     'settings.password.changed': string,
-    'settings.export.saved': string,
     'dialog.title': string,
     'dialog.notification': string,
     'dialog.first.password': string,
@@ -44,6 +43,7 @@ export type Localization = {
     'loading.configs': string,
     'backup.title': string,
     'backup.export': string,
+    'backup.export.saved': string,
     'backup.import': string,
     'backup.import.success': string,
   }
