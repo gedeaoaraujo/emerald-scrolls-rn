@@ -29,7 +29,11 @@
     "expo-router": "~5.1.1",
     "react-native-screens": "~4.11.1",
     "expo-linking": "~7.1.5",
-    "expo-constants": "~17.1.6"
+    "expo-constants": "~17.1.6",
+    "react-native-csv": "^0.2.0",
+    "react-native-zip-archive": "^7.0.2",
+    "react-native-fs": "^2.20.0",
+    "expo-dev-client": "~5.2.2"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
