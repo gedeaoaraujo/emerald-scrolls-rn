@@ -25,7 +25,8 @@ export async function insertScrolls(...scrolls: ScrollModel[]) {
     await db.withExclusiveTransactionAsync(async (tx) => {
       await Promise.all(scrolls.map(({ id, title, date, text }) =>
         tx.runAsync(`
-          INSERT INTO scroll(id, title, date, text) VALUES ($id, $title, $date, $text)
+          INSERT OR REPLACE INTO scroll(id, title, date, text) 
+          VALUES ($id, $title, $date, $text)
         `, { $id: id, $title: title, $date: date, $text: text }
         )
       ))
