@@ -3,12 +3,19 @@ import { ScrollModel } from '../model/ScrollModel'
 
 export async function getAllScrolls(): Promise<ScrollModel[]> {
   const db = await SQLite.openDatabaseAsync('emerald.db')
-  return await db.getAllAsync<ScrollModel>(`SELECT * FROM scroll`)
+  try {
+    return await db.getAllAsync<ScrollModel>(`SELECT * FROM scroll`)
+  } catch (error) {
+    console.error('Error on getAllScrolls:', error)
+    throw error;
+  } finally {
+    db.closeAsync()
+  }
 }
 
 export async function insertScrolls(...scrolls: ScrollModel[]) {
+  const db = await SQLite.openDatabaseAsync('emerald.db')
   try {
-    const db = await SQLite.openDatabaseAsync('emerald.db')
     await db.withExclusiveTransactionAsync(async (tx) => {
       await Promise.all(scrolls.map(({ id, title, date, text }) =>
         tx.runAsync(`
@@ -19,12 +26,14 @@ export async function insertScrolls(...scrolls: ScrollModel[]) {
     })
   } catch (error) {
     console.error('Error on insertScrolls:', error)
+  } finally {
+    db.closeAsync()
   }
 }
 
 export async function deleteScrolls(...ids: string[]) {
+  const db = await SQLite.openDatabaseAsync('emerald.db')
   try {
-    const db = await SQLite.openDatabaseAsync('emerald.db')
     await db.withExclusiveTransactionAsync(async (tx) => {
       await Promise.all(ids.map((id) =>
         tx.runAsync(`DELETE FROM scroll WHERE id = $id`, { $id: id })
@@ -32,12 +41,14 @@ export async function deleteScrolls(...ids: string[]) {
     });
   } catch (error) {
     console.error('Error on deleteScrolls:', error);
+  } finally {
+    db.closeAsync()
   }
 }
 
 export async function updateScrolls(...scrolls: ScrollModel[]) {
+  const db = await SQLite.openDatabaseAsync('emerald.db')
   try {
-    const db = await SQLite.openDatabaseAsync('emerald.db')
     await db.withExclusiveTransactionAsync(async (tx) => {
       await Promise.all(scrolls.map(({ id, title, date, text }) =>
         tx.runAsync(
@@ -50,14 +61,18 @@ export async function updateScrolls(...scrolls: ScrollModel[]) {
     });
   } catch (error) {
     console.error('Error on updateScrolls:', error);
+  } finally {
+    db.closeAsync()
   }
 }
 
 export async function dropTable() {
+  const db = await SQLite.openDatabaseAsync('emerald.db')
   try{
-    const db = await SQLite.openDatabaseAsync('emerald.db')
     db.runAsync('DROP TABLE IF EXISTS scroll')
   } catch (error) {
     console.error('Error on dropTable:', error); 
+  } finally {
+    db.closeAsync()
   }
 }
