@@ -21,8 +21,8 @@ export const generateCsvZipped = async (t: any) => {
     const csvPath = `${RNFS.DownloadDirectoryPath}/csv-${date}.csv`;
     await RNFS.writeFile(csvPath, csvContent, 'utf8');
 
-    // let zipName: string = `EmeraldScrolls-${date}.zip`;
-    const zipPath = `${RNFS.DownloadDirectoryPath}/${zipName}.zip`;
+    let zipName: string = `EmeraldScrolls-${date}.zip`;
+    const zipPath = `${RNFS.DownloadDirectoryPath}/${zipName}`;
     await zip([csvPath], zipPath);
 
     RNFS.unlink(csvPath);
