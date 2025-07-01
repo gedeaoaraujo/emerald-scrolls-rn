@@ -33,7 +33,7 @@ export const generateCsvZipped = async (t: any) => {
   }
 }
 
-export const readCsvZipped = async (
+const readCsvZipped = async (
   t: any, docPciker: DocumentPickerAsset
 ) => {
   try {
