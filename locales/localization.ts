@@ -45,5 +45,6 @@ export type Localization = {
     'backup.title': string,
     'backup.export': string,
     'backup.import': string,
+    'backup.import.success': string,
   }
 }

@@ -47,5 +47,6 @@ export const enUS: Localization = {
     'backup.title': 'Backup',
     'backup.export': 'Export scrolls',
     'backup.import': 'Import scrolls',
+    'backup.import.success': 'All scrolls have been imported successfully!',
   }
 }
