@@ -6,7 +6,6 @@ import { ScrollsProvider } from '../contexts/ScrollsContext';
 import EditScrollMenu from '../components/EditScrollMenu';
 import { migrateDbIfNeeded } from '../database/migration';
 import ViewScrollMenu from '../components/ViewScrollMenu';
-import { ScrollModel } from '../model/ScrollModel';
 import HomeMenu from '../components/HomeMenu';
 import { useTranslation } from 'react-i18next';
 import { SQLiteProvider } from 'expo-sqlite';
@@ -26,14 +25,16 @@ function MainContent() {
   }, [])
 
   return (
-    <Stack>
+    <Stack
+      screenOptions={{
+        headerTintColor: theme.colors.textOnPrimary,
+        headerStyle: { backgroundColor: theme.colors.primary },
+    }}>
       <Stack.Screen
         name="index"
         options={{
           headerShown: false,
           title: "Splash Screen",
-          headerTintColor: theme.colors.textOnPrimary,
-          headerStyle: { backgroundColor: theme.colors.primary },
         }}
       />
       <Stack.Screen
@@ -41,25 +42,26 @@ function MainContent() {
         options={{
           headerShown: false,
           title: "Password Screen",
-          headerTintColor: theme.colors.textOnPrimary,
-          headerStyle: { backgroundColor: theme.colors.primary },
         }}
       />
       <Stack.Screen
         name="home"
         options={() => ({
           title: t('app.name'),
-          headerTintColor: theme.colors.textOnPrimary,
-          headerStyle: { backgroundColor: theme.colors.primary },
           headerRight: () => <HomeMenu />
         })}
       />
       <Stack.Screen
         name="view"
-        options={({ route: { params } }) => ({
+        options={({ route: { params }, navigation }) => ({
           title: t('view.scroll'),
-          headerTintColor: theme.colors.textOnPrimary,
-          headerStyle: { backgroundColor: theme.colors.primary },
+          headerLeft: () => (
+            <HeaderBackButton
+              style={{ marginStart: 0, marginEnd: 15 }}
+              tintColor={ theme.colors.textOnPrimary }
+              onPress={() => navigation.goBack()}
+            />
+          ),
           headerRight: () => <ViewScrollMenu params={params} />
         })}
       />
@@ -67,10 +69,9 @@ function MainContent() {
         name="create"
         options={({ navigation }) => ({
           title: t('create.scroll'),
-          headerTintColor: theme.colors.textOnPrimary,
-          headerStyle: { backgroundColor: theme.colors.primary },
           headerLeft: () => (
             <HeaderBackButton
+              style={{ marginStart: 0, marginEnd: 15 }}
               tintColor={ theme.colors.textOnPrimary }
               onPress={() => Dialog.discartChanges(t, navigation.goBack)}
             />
@@ -80,10 +81,15 @@ function MainContent() {
       />
       <Stack.Screen
         name="edit"
-        options={({ route: { params } }) => ({
+        options={({ route: { params }, navigation }) => ({
           title: t('edit.scroll'),
-          headerTintColor: theme.colors.textOnPrimary,
-          headerStyle: { backgroundColor: theme.colors.primary },
+          headerLeft: () => (
+            <HeaderBackButton
+              style={{ marginStart: 0, marginEnd: 15 }}
+              tintColor={ theme.colors.textOnPrimary }
+              onPress={() => navigation.goBack()}
+            />
+          ),
           headerRight: () => <EditScrollMenu params={params} />
         })}
       />
@@ -91,8 +97,6 @@ function MainContent() {
         name="settings"
         options={{
           title: t('settings'),
-          headerTintColor: theme.colors.textOnPrimary,
-          headerStyle: { backgroundColor: theme.colors.primary },
         }}
       />
     </Stack>
