@@ -4,8 +4,8 @@ import { readString } from 'react-native-csv';
 import Dialog from "../utils/alerts";
 import RNFS from 'react-native-fs';
 import { ScrollModel } from '../model/ScrollModel';
-
-const zipName: string = `EmeraldScrolls-123`;
+import * as ExpoDocumentPicker from 'expo-document-picker';
+import { DocumentPickerAsset } from 'expo-document-picker';
 
 export const generateCsvZipped = async (t: any) => {
   try {
@@ -33,23 +33,40 @@ export const generateCsvZipped = async (t: any) => {
   }
 }
 
-export const readCsvZipped = async (t: any) => {
+export const readCsvZipped = async (
+  t: any, docPciker: DocumentPickerAsset
+) => {
   try {
-    const zipPath = `${RNFS.DownloadDirectoryPath}/${zipName}.zip`;
-    const targetPath = `${RNFS.DownloadDirectoryPath}/${zipName}`;
-    await unzip(zipPath, targetPath);
+    const dir = docPciker.name.replace('.zip', '');
+    const targetPath = `${RNFS.DocumentDirectoryPath}/${dir}/`
+    await unzip(docPciker.uri, targetPath);
 
     const files = await RNFS.readDir(targetPath);
     const csvFile = files.find(file => file.name.endsWith('.csv'));
     const csvFilePath = csvFile?.path ?? '';
-
     const csvString = await RNFS.readFile(csvFilePath, 'utf8');
     const results = readString(csvString, { header: true });
-    const data = results.data
+    
+    const data = results.data    
     await insertScrolls(...(data as ScrollModel[]))
   } catch (error) {
     console.log('Error on readCsvZipped:', error)
   } finally {
-    Dialog.notify(t, '', 'Todos os pergaminhos foram importados com sucesso!')
+    Dialog.notify(t, 'backup.import.success')
   }
 }
+
+export const pickDocument = async (t: any) => {
+  try {
+    const result = await ExpoDocumentPicker.getDocumentAsync({
+      multiple: false,
+      type: 'application/zip',
+      copyToCacheDirectory: true,
+    });
+
+    if (result.canceled) return
+    readCsvZipped(t, result.assets[0])
+  } catch (error) {
+    console.error('Error on pickDocument:', error);
+  }
+};
