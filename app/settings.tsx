@@ -6,6 +6,7 @@ import { DarkTheme } from "../theme/DarkTheme"
 import { RadioButton } from "../components/RadioButton"
 import { useTranslation } from "react-i18next"
 import { usePasswordViewModel } from "../viewmodels/PasswordViewModel"
+import { generateCsvZipped, readCsvZipped } from "../utils/export-compact"
 import PasswordDialog from "../components/PasswordDialog"
 import { useState } from "react"
 
@@ -20,6 +21,14 @@ export default function SettingsScreen() {
   const onOkDialogPressed = (pass: string) => {
     setVisibility(false)
     savePassword(pass)
+  }
+
+  const exportScrolls = async () => {
+    await generateCsvZipped(t)
+  }
+
+  const importScrolls = async () => {
+    await readCsvZipped(t)
   }
 
   return (
@@ -80,6 +89,24 @@ export default function SettingsScreen() {
           <Text style={[styles.text, {
             color: theme.colors.text
           }]}>{t('settings.password.modify')}</Text>
+        </TouchableOpacity>
+        <View style={styles.divider}/>
+      </>
+      <>
+        <Text style={[styles.title, {
+          color: theme.colors.title
+        }]}>{t('backup.title')}</Text>
+        <TouchableOpacity
+          onPress={() => exportScrolls()}>
+          <Text style={[styles.text, {
+            color: theme.colors.text
+          }]}>{t('backup.export')}</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => importScrolls()}>
+          <Text style={[styles.text, {
+            color: theme.colors.text
+          }]}>{t('backup.import')}</Text>
         </TouchableOpacity>
       </>
       <PasswordDialog 
