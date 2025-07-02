@@ -8,7 +8,9 @@ export async function getAllScrolls(): Promise<ScrollModel[]> {
     DATABASE_NAME, { useNewConnection: true }
   )
   try {
-    return await db.getAllAsync<ScrollModel>(`SELECT * FROM scroll`)
+    return await db.getAllAsync<ScrollModel>(`
+      SELECT * FROM scroll ORDER BY date DESC
+    `)
   } catch (error) {
     console.error('Error on getAllScrolls:', error)
     throw error;
