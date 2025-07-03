@@ -9,8 +9,8 @@ export default function EditScrollMenu({ params }) {
   const { theme } = useTheme()
   const { editScroll } = useScrolls()
 
-  const createNew = () => {
-    editScroll(params.id)
+  const createNew = async () => {
+    await editScroll(params.id)
     router.dismissTo('/home')
   }
 

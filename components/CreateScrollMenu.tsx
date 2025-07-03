@@ -9,8 +9,8 @@ export default function CreateScrollMenu() {
   const { theme } = useTheme()
   const { createScroll } = useScrolls()
 
-  const createNew = () => {
-    if (createScroll())
+  const createNew = async () => {
+    if (await createScroll())
       router.back()
   }
 

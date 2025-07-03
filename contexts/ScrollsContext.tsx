@@ -7,6 +7,7 @@ import { Share } from "react-native";
 import Dialog from "../utils/alerts";
 import { 
     deleteScrolls, 
+    getAllScrolls, 
     insertScrolls, 
     updateScrolls 
 } from "../database/scrolls.dao";
@@ -16,15 +17,15 @@ const ScrollsContext = createContext({
     date: '',
     title: '',
     list: ([] as ScrollModel[]),
-    editScroll: (id: string)=>{},
+    updateDate: (date: Date) => {},
     onChageText: (txt: string)=>{},
     removeScroll: (id: string)=>{},
     onChageDate: (date: string)=>{},
-    createScroll: (): boolean=>false,
     onChageTitle: (title: string)=>{},
-    updateDate: (date: Date) => {},
+    editScroll: async(id: string)=>{},
     init: (scrolls: ScrollModel[]) => {},
     shareScroll: (scroll: ScrollModel)=>{},
+    createScroll: async(): Promise<boolean>=>false,
 })
 
 export function ScrollsProvider({ children }) {
@@ -62,7 +63,7 @@ export function ScrollsProvider({ children }) {
         deleteScrolls(id)
     }
 
-    const createScroll = (): boolean => {
+    const createScroll = async (): Promise<boolean> => {
         if (!checkSavable()) {
             return false
         }
@@ -70,8 +71,8 @@ export function ScrollsProvider({ children }) {
             id: randomUUID(),
             title: title, date: date, text: text
         }
-        setList((prevItems) => [...prevItems, newScroll])
-        insertScrolls(newScroll)
+        await insertScrolls(newScroll)
+        setList(await getAllScrolls())
         clearScroll()
         return true
     }
@@ -82,13 +83,14 @@ export function ScrollsProvider({ children }) {
         })
     }
 
-    const editScroll = (scrollId: string) => {
+    const editScroll = async (scrollId: string) => {
         const item = list
             .filter(el => el.id === scrollId)[0]
         item.title = title
         item.date = date
         item.text = text
-        updateScrolls(item)
+        await updateScrolls(item)
+        setList(await getAllScrolls())
         clearScroll()
     }
 
