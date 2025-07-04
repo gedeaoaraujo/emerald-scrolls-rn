@@ -28,10 +28,11 @@ export const SearchBar = () => {
         textAlign='center'
         value={searchText}
         style={styles.search}
-        onSubmitEditing={() => onCheckPress()}
+        placeholderTextColor='black'
         cursorColor={theme.colors.primary}
-        onChangeText={text => setSearchText(text)}
         placeholder={t('search.placeholder')}
+        onSubmitEditing={() => onCheckPress()}
+        onChangeText={text => setSearchText(text)}
       />
       <TouchableOpacity
         onPress={() => onClearText()}
