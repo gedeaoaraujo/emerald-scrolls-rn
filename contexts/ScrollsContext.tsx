@@ -16,6 +16,8 @@ const ScrollsContext = createContext({
     text: '',
     date: '',
     title: '',
+    searchable: false,
+    toggleSearchable: ()=>{},
     list: ([] as ScrollModel[]),
     updateDate: (_date: Date) => {},
     onChageText: (_txt: string)=>{},
@@ -33,6 +35,7 @@ export function ScrollsProvider({ children }) {
     const [date, setDate] = useState('')
     const [text, setText] = useState('')
     const [title, setTitle] = useState('')
+    const [searchable, setSearchable] = useState(false)
     const [list, setList] = useState<ScrollModel[]>([])
 
     const init = (scrolls: ScrollModel[]) => {
@@ -51,6 +54,7 @@ export function ScrollsProvider({ children }) {
     const onChageText = (txt: string) => setText(txt)
     const onChageDate = (date: string) => setDate(date)
     const onChageTitle = (title: string) => setTitle(title)
+    const toggleSearchable = () => setSearchable(!searchable)
 
     const clearScroll = () => {
         setText('')
@@ -105,6 +109,7 @@ export function ScrollsProvider({ children }) {
             date,
             title,
             init,
+            searchable,
             editScroll, 
             shareScroll,
             removeScroll,
@@ -112,7 +117,8 @@ export function ScrollsProvider({ children }) {
             onChageTitle,
             onChageDate,
             onChageText,
-            updateDate
+            updateDate,
+            toggleSearchable
         }}>
             {children}
         </ScrollsContext>
