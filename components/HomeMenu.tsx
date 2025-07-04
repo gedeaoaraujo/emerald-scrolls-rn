@@ -1,4 +1,4 @@
-import { StyleSheet, TouchableOpacity } from "react-native";
+import { TouchableOpacity } from "react-native";
 import { FontAwesome6 } from '@expo/vector-icons';
 import { useTheme } from '../theme/ThemeContext';
 import { useRouter } from "expo-router";
@@ -11,7 +11,7 @@ const icon = (theme: ThemeType|string) => (
   theme === LightTheme ? 'moon' : 'sun'
 )
 
-const HomeMenu = () => {
+export default function HomeMenu() {
   const router = useRouter()
   const { toggleSearchable } = useScrolls()
   const { theme, toggleTheme } = useTheme()
@@ -57,4 +57,3 @@ const HomeMenu = () => {
   )
 }
 
-export default HomeMenu;
