@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useTranslation } from "react-i18next";
 import { useTheme } from "../theme/ThemeContext"
 import { FontAwesome6 } from '@expo/vector-icons';
 import { useScrolls } from "../contexts/ScrollsContext";
@@ -6,6 +7,7 @@ import { View, TextInput, TouchableOpacity, StyleSheet } from "react-native"
 
 export const SearchBar = () => {
   const { theme } = useTheme()
+  const { t } = useTranslation()
   const { onSearchText } = useScrolls()
   const [searchText, setSearchText] = useState('')
 
@@ -29,7 +31,7 @@ export const SearchBar = () => {
         onSubmitEditing={() => onCheckPress()}
         cursorColor={theme.colors.primary}
         onChangeText={text => setSearchText(text)}
-        placeholder='Search for: title, date or text'
+        placeholder={t('search.placeholder')}
       />
       <TouchableOpacity
         onPress={() => onClearText()}

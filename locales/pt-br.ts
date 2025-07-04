@@ -48,5 +48,6 @@ export const ptBR: Localization = {
     'backup.export.saved': 'Pergaminhos exportados com sucesso na pasta Download:',
     'backup.import': 'Importar pergaminhos',
     'backup.import.success': 'Todos os pergaminhos foram importados com sucesso!',
+    'search.placeholder': 'Procure por: título, data ou texto',
   }
 }

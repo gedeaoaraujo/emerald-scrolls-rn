@@ -48,5 +48,6 @@ export const enUS: Localization = {
     'backup.export.saved': 'Scrolls exported successfully on Download folder:',
     'backup.import': 'Import scrolls',
     'backup.import.success': 'All scrolls have been imported successfully!',
+    'search.placeholder': 'Search for: title, date or text',
   }
 }
