@@ -25,6 +25,7 @@ export function LocalizationProvider({ children }) {
   }
 
   const selectLang = (lang: string) => {
+    if (lang === language) return
     setLanguage(lang)
     saveLanguage(lang)
     i18n.changeLanguage(lang)
