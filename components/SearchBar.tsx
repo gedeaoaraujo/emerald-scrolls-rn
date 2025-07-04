@@ -13,6 +13,11 @@ export const SearchBar = () => {
     onSearchText(searchText)
   }
 
+  const onClearText = () => {
+    onSearchText('')
+    setSearchText('')
+  }
+
   return (
     <View style={[styles.container, {
       backgroundColor: theme.colors.primary
@@ -27,7 +32,7 @@ export const SearchBar = () => {
         placeholder='Search for: title, date or text'
       />
       <TouchableOpacity
-        onPress={() => setSearchText('')}
+        onPress={() => onClearText()}
         style={{ marginStart: 10 }}>
         <FontAwesome6
           size={20}
