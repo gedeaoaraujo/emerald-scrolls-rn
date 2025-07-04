@@ -36,19 +36,19 @@ const HomeMenu = () => {
   return (
     <>
       <TouchableOpacity
-        style={styles.option}
+        style={{ paddingHorizontal: 15 }}
         onPress={onPress}>
         <FontAwesome6 name={themeIcon} size={20}
           color={theme.colors.textOnPrimary} />
       </TouchableOpacity>
       <TouchableOpacity
-        style={styles.option}
+        style={{ paddingHorizontal: 10 }}
         onPress={()=> onClickSearch()}>
         <FontAwesome6 name='magnifying-glass'
           size={20} color={theme.colors.textOnPrimary} />
       </TouchableOpacity>
       <TouchableOpacity
-        style={{ paddingEnd: 10 }}
+        style={{ paddingHorizontal: 15 }}
         onPress={goToSettings}>
         <FontAwesome6 name='ellipsis-vertical' size={20}
           color={theme.colors.textOnPrimary} />
@@ -56,11 +56,5 @@ const HomeMenu = () => {
     </>
   )
 }
-
-const styles = StyleSheet.create({
-  option: {
-    paddingEnd: 20,
-  }
-})
 
 export default HomeMenu;
