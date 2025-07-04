@@ -11,7 +11,7 @@ import { useRouter } from 'expo-router';
 export default function HomeScreen() {
   const router = useRouter()
   const { theme } = useTheme()
-  const { list, init, searchable } = useScrolls()
+  const { list, init, searchable, onSearchText } = useScrolls()
 
   async function getScrolls() {
     init(await getAllScrolls())
@@ -20,6 +20,10 @@ export default function HomeScreen() {
   function goToCreate() {
     router.navigate('/create')
   }
+
+  useEffect(() => {
+    searchable ? null : onSearchText('')
+  }, [searchable])
 
   useEffect(() => {
     getScrolls()
