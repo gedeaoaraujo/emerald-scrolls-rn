@@ -44,7 +44,9 @@ export default function HomeScreen() {
         router={router} 
       />
       <FloatActionBtn
-        fabStyle={styles.buttonFab} 
+        fabStyle={[styles.buttonFab, {
+          bottom: searchable ? 80 : 20
+        }]}
         onClick={goToCreate}
         text='+' 
       />
@@ -60,7 +62,6 @@ const styles = StyleSheet.create({
   },
   buttonFab: {
     right: 20,
-    bottom: 20,
     position: 'absolute',
   }}
 );
