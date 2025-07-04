@@ -27,8 +27,11 @@ export const SearchBar = () => {
       <TextInput
         textAlign='center'
         value={searchText}
-        style={styles.search}
-        placeholderTextColor='black'
+        style={[styles.search, {
+          color: theme.colors.text,
+          backgroundColor: theme.colors.background
+        }]}
+        placeholderTextColor={theme.colors.text}
         cursorColor={theme.colors.primary}
         placeholder={t('search.placeholder')}
         onSubmitEditing={() => onCheckPress()}
@@ -57,6 +60,5 @@ const styles = StyleSheet.create({
     width: '90%',
     borderRadius: 10,
     paddingHorizontal: 10,
-    backgroundColor: 'white',
   }
 })
