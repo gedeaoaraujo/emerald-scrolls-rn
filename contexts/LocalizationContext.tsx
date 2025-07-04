@@ -5,7 +5,7 @@ import { getLanguageConfig, setLanguageConfig } from "../database/configs.dao";
 export const LocalizationContext = createContext({
   language: 'enUS',
   initLanguage: ()=>{},
-  selectLang: (lang: string)=>{},
+  selectLang: (_lang: string)=>{},
 })
 
 export function LocalizationProvider({ children }) {
