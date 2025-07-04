@@ -1,11 +1,17 @@
 import { useState } from "react"
 import { useTheme } from "../theme/ThemeContext"
 import { FontAwesome6 } from '@expo/vector-icons';
+import { useScrolls } from "../contexts/ScrollsContext";
 import { View, TextInput, TouchableOpacity, StyleSheet } from "react-native"
 
 export const SearchBar = () => {
   const { theme } = useTheme()
+  const { onSearchText } = useScrolls()
   const [searchText, setSearchText] = useState('')
+
+  const onCheckPress = () => {
+    onSearchText(searchText)
+  }
 
   return (
     <View style={[styles.container, {
@@ -15,6 +21,7 @@ export const SearchBar = () => {
         textAlign='center'
         value={searchText}
         style={styles.search}
+        onSubmitEditing={() => onCheckPress()}
         cursorColor={theme.colors.primary}
         onChangeText={text => setSearchText(text)}
         placeholder='Search for: title, date or text'

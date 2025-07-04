@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState } from "react";
 import { ScrollModel } from "../model/ScrollModel";
 import { useTranslation } from 'react-i18next';
+import { fmtDateTime } from "../utils/date";
 import { isEmpty } from "../utils/strings";
 import { randomUUID } from "expo-crypto";
 import { Share } from "react-native";
@@ -26,6 +27,7 @@ const ScrollsContext = createContext({
     onChageTitle: (_title: string)=>{},
     editScroll: async(_id: string)=>{},
     init: (_scrolls: ScrollModel[]) => {},
+    onSearchText: async(_text: string)=>{},
     shareScroll: (_scroll: ScrollModel)=>{},
     createScroll: async(): Promise<boolean>=>false,
 })
@@ -102,6 +104,18 @@ export function ScrollsProvider({ children }) {
         setDate(newDate.toISOString())
     }
 
+    const onSearchText = async (text: string) => {
+      const lang = t('language')
+      const res = await getAllScrolls()
+      const lowerText = text.toLowerCase()
+      const filtered = res.filter(e => (
+        fmtDateTime(lang, e.date).includes(lowerText) 
+        || e.title.toLowerCase().includes(lowerText) 
+        || e.text.toLowerCase().includes(lowerText)
+      ))
+      setList(filtered)
+    }
+
     return (
         <ScrollsContext value={{
             list, 
@@ -111,14 +125,15 @@ export function ScrollsProvider({ children }) {
             init,
             searchable,
             editScroll, 
+            updateDate,
             shareScroll,
             removeScroll,
             createScroll,
             onChageTitle,
             onChageDate,
             onChageText,
-            updateDate,
-            toggleSearchable
+            onSearchText,
+            toggleSearchable,
         }}>
             {children}
         </ScrollsContext>
