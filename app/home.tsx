@@ -5,12 +5,13 @@ import { useScrolls } from '../contexts/ScrollsContext';
 import { getAllScrolls } from '../database/scrolls.dao';
 import { useTheme } from '../theme/ThemeContext';
 import { ScrollsList } from '../components/ScrollsList';
+import { SearchBar } from '../components/SearchBar';
 import { useRouter } from 'expo-router';
 
 export default function HomeScreen() {
   const router = useRouter()
   const { theme } = useTheme()
-  const { list, init } = useScrolls()
+  const { list, init, searchable } = useScrolls()
 
   async function getScrolls() {
     init(await getAllScrolls())
@@ -29,6 +30,7 @@ export default function HomeScreen() {
       flex: 1, paddingBottom: 50,
       backgroundColor: theme.colors.background
     }}>
+    {!searchable ? null : <SearchBar/>}
     <View style={[styles.content, { 
       backgroundColor: theme.colors.background
     }]}>
@@ -56,5 +58,5 @@ const styles = StyleSheet.create({
     right: 20,
     bottom: 20,
     position: 'absolute',
-  }
-});
+  }}
+);

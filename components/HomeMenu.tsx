@@ -5,6 +5,7 @@ import { useRouter } from "expo-router";
 import { LightTheme } from "../theme/LightTheme";
 import { ThemeType } from "../theme/ThemeType";
 import { useEffect, useState } from 'react';
+import { useScrolls } from "../contexts/ScrollsContext";
 
 const icon = (theme: ThemeType|string) => (
   theme === LightTheme ? 'moon' : 'sun'
@@ -12,6 +13,7 @@ const icon = (theme: ThemeType|string) => (
 
 const HomeMenu = () => {
   const router = useRouter()
+  const { toggleSearchable } = useScrolls()
   const { theme, toggleTheme } = useTheme()
   const [themeIcon, setThemeIcon] = useState(icon(theme))
 
@@ -27,20 +29,26 @@ const HomeMenu = () => {
     router.navigate('/settings')
   }
 
+  const onClickSearch = () => {
+    toggleSearchable()
+  }
+
   return (
     <>
       <TouchableOpacity
-        style={[styles.option, {
-          paddingHorizontal: 15
-        }]}
+        style={styles.option}
         onPress={onPress}>
         <FontAwesome6 name={themeIcon} size={20}
           color={theme.colors.textOnPrimary} />
       </TouchableOpacity>
       <TouchableOpacity
-        style={[styles.option, {
-          paddingHorizontal: 10
-        }]}
+        style={styles.option}
+        onPress={()=> onClickSearch()}>
+        <FontAwesome6 name='magnifying-glass'
+          size={20} color={theme.colors.textOnPrimary} />
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={{ paddingEnd: 10 }}
         onPress={goToSettings}>
         <FontAwesome6 name='ellipsis-vertical' size={20}
           color={theme.colors.textOnPrimary} />
@@ -50,7 +58,9 @@ const HomeMenu = () => {
 }
 
 const styles = StyleSheet.create({
-  option: {}
+  option: {
+    paddingEnd: 20,
+  }
 })
 
 export default HomeMenu;
