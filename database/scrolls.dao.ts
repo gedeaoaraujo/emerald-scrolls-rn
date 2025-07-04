@@ -13,7 +13,7 @@ export async function getAllScrolls(): Promise<ScrollModel[]> {
     `)
   } catch (error) {
     console.error('Error on getAllScrolls:', error)
-    throw error;
+    return []
   } finally {
     await db.closeAsync()
   }
