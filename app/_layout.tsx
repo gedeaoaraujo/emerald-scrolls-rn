@@ -35,6 +35,7 @@ function MainContent() {
         options={{
           headerShown: false,
           title: "Splash Screen",
+          animation: 'fade_from_bottom',
         }}
       />
       <Stack.Screen
@@ -42,12 +43,14 @@ function MainContent() {
         options={{
           headerShown: false,
           title: "Password Screen",
+          animation: 'fade_from_bottom',
         }}
       />
       <Stack.Screen
         name="home"
         options={() => ({
           title: t('app.name'),
+          animation: 'fade_from_bottom',
           headerRight: () => <HomeMenu />
         })}
       />
@@ -55,6 +58,7 @@ function MainContent() {
         name="view"
         options={({ route: { params }, navigation }) => ({
           title: t('view.scroll'),
+          animation: 'fade_from_bottom',
           headerLeft: () => (
             <HeaderBackButton
               style={{ marginStart: 0, marginEnd: 15 }}
@@ -69,6 +73,7 @@ function MainContent() {
         name="create"
         options={({ navigation }) => ({
           title: t('create.scroll'),
+          animation: 'fade_from_bottom',
           headerLeft: () => (
             <HeaderBackButton
               style={{ marginStart: 0, marginEnd: 15 }}
@@ -83,6 +88,7 @@ function MainContent() {
         name="edit"
         options={({ route: { params }, navigation }) => ({
           title: t('edit.scroll'),
+          animation: 'fade_from_bottom',
           headerLeft: () => (
             <HeaderBackButton
               style={{ marginStart: 0, marginEnd: 15 }}
@@ -97,6 +103,7 @@ function MainContent() {
         name="settings"
         options={{
           title: t('settings'),
+          animation: 'fade_from_bottom',
         }}
       />
     </Stack>
