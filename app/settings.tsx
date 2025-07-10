@@ -71,6 +71,14 @@ export default function SettingsScreen() {
           selected={language === 'enUS'}
           />
         <RadioButton
+          label={t('settings.lang.german')}
+          style={[styles.text, {
+            color: theme.colors.text
+          }]}
+          onPress={() => selectLang('deDE')}
+          selected={language === 'deDE'}
+          />
+        <RadioButton
           label={t('settings.lang.portuguese')}
           style={[styles.text, {
             color: theme.colors.text

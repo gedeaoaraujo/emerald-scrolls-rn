@@ -1,10 +1,11 @@
 import i18n from 'i18next';
 import { enUS } from './en-us';
 import { ptBR } from './pt-br';
+import { deDE } from './de-de';
 import { initReactI18next } from 'react-i18next';
 
 const resources = {
-  enUS, ptBR
+  enUS, ptBR, deDE
 }
 
 i18n

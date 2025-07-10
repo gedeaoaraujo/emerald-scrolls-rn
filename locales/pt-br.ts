@@ -30,6 +30,7 @@ export const ptBR: Localization = {
     'settings.theme.light': 'Claro',
     'settings.theme.dark': 'Escuro',
     'settings.lang': 'Idioma',
+    'settings.lang.german': 'Alemão',
     'settings.lang.english': 'Inglês',
     'settings.lang.portuguese': 'Português (Brasileiro)',
     'settings.password': 'Senha',

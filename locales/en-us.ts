@@ -30,6 +30,7 @@ export const enUS: Localization = {
     'settings.theme.light': 'Light',
     'settings.theme.dark': 'Dark',
     'settings.lang': 'Language',
+    'settings.lang.german': 'German',
     'settings.lang.english': 'English',
     'settings.lang.portuguese': 'Portuguese (Brazilian)',
     'settings.password': 'Password',
