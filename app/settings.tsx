@@ -63,6 +63,14 @@ export default function SettingsScreen() {
           color: theme.colors.title
         }]}>{t('settings.lang')}</Text>
         <RadioButton
+          label={t('settings.lang.hindi')}
+          style={[styles.text, {
+            color: theme.colors.text
+          }]}
+          onPress={() => selectLang('hiIN')}
+          selected={language === 'hiIN'}
+          />
+        <RadioButton
           label={t('settings.lang.english')}
           style={[styles.text, {
             color: theme.colors.text
@@ -77,6 +85,38 @@ export default function SettingsScreen() {
           }]}
           onPress={() => selectLang('deDE')}
           selected={language === 'deDE'}
+          />
+        <RadioButton
+          label={t('settings.lang.mandarin')}
+          style={[styles.text, {
+            color: theme.colors.text
+          }]}
+          onPress={() => selectLang('zhCN')}
+          selected={language === 'zhCN'}
+          />
+        <RadioButton
+          label={t('settings.lang.arabic')}
+          style={[styles.text, {
+            color: theme.colors.text
+          }]}
+          onPress={() => selectLang('arAR')}
+          selected={language === 'arAR'}
+          />
+        <RadioButton
+          label={t('settings.lang.spanish')}
+          style={[styles.text, {
+            color: theme.colors.text
+          }]}
+          onPress={() => selectLang('esES')}
+          selected={language === 'esES'}
+          />
+        <RadioButton
+          label={t('settings.lang.russian')}
+          style={[styles.text, {
+            color: theme.colors.text
+          }]}
+          onPress={() => selectLang('ruRU')}
+          selected={language === 'ruRU'}
           />
         <RadioButton
           label={t('settings.lang.portuguese')}

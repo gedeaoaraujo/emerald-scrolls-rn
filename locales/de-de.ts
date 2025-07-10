@@ -1,4 +1,4 @@
-import Localization from './localization.ts'
+import { Localization } from './localization'
 
 export const deDE: Localization = {
   translation: {
@@ -30,8 +30,13 @@ export const deDE: Localization = {
     'settings.theme.light': 'Hell',
     'settings.theme.dark': 'Dunkel',
     'settings.lang': 'Sprache',
+    'settings.lang.hindi': 'Hindi',
+    'settings.lang.arabic': 'Arabisch',
+    'settings.lang.russian': 'Russisch',
     'settings.lang.german': 'Deutsch',
+    'settings.lang.spanish': 'Spanisch',
     'settings.lang.english': 'Englisch',
+    'settings.lang.mandarin': 'Mandarin',
     'settings.lang.portuguese': 'Portugiesisch (Brasilianisch)',
     'settings.password': 'Passwort',
     'settings.password.modify': 'Passwort ändern',
