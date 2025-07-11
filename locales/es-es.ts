@@ -30,6 +30,7 @@ export const esES: Localization = {
     'settings.theme.light': 'Claro',
     'settings.theme.dark': 'Oscuro',
     'settings.lang': 'Idioma',
+    'settings.lang.text': 'Seleccionar idioma',
     'settings.lang.hindi': 'Hindi',
     'settings.lang.arabic': 'Àrabe',
     'settings.lang.russian': 'Ruso',

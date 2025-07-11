@@ -66,7 +66,7 @@ export default function SettingsScreen() {
           <Text style={[styles.text, {
             color: theme.colors.text
           }]}>
-            Mudar linguagem
+            {t('settings.lang.text')}
           </Text>
           <LanguagesModal 
             visibility={viewModal}

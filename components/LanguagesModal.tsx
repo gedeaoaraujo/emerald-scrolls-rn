@@ -36,7 +36,7 @@ export const LanguagesModal = ({
                 fontWeight: 'bold',
                 color: theme.colors.title
               }]}>
-                Select an language:
+                {t('settings.lang.text')}
               </Text>
               <RadioButton
                 label={t('settings.lang.hindi')}

@@ -30,6 +30,7 @@ export const arAR: Localization = {
     'settings.theme.light': 'فاتح',
     'settings.theme.dark': 'داكن',
     'settings.lang': 'اللغة',
+    'settings.lang.text': 'اختر اللغة',
     'settings.lang.hindi': 'الهندية',
     'settings.lang.arabic': 'العربية',
     'settings.lang.german': 'الألمانية',

@@ -30,6 +30,7 @@ export const deDE: Localization = {
     'settings.theme.light': 'Hell',
     'settings.theme.dark': 'Dunkel',
     'settings.lang': 'Sprache',
+    'settings.lang.text': 'Sprache auswählen',
     'settings.lang.hindi': 'Hindi',
     'settings.lang.arabic': 'Arabisch',
     'settings.lang.russian': 'Russisch',

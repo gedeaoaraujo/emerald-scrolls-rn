@@ -30,6 +30,7 @@ export const hiIN: Localization = {
     'settings.theme.light': 'हल्का',
     'settings.theme.dark': 'गहरा',
     'settings.lang': 'भाषा',
+    'settings.lang.text': 'भाषा चुनें',
     'settings.lang.hindi': 'हिंदी',
     'settings.lang.arabic': 'अरबी',
     'settings.lang.german': 'जर्मन',

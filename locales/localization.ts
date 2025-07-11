@@ -28,6 +28,7 @@ export type Localization = {
     'settings.theme.light': string,
     'settings.theme.dark': string,
     'settings.lang': string,
+    'settings.lang.text': string,
     'settings.lang.hindi': string,
     'settings.lang.arabic': string,
     'settings.lang.german': string,

@@ -30,6 +30,7 @@ export const ruRU: Localization = {
     'settings.theme.light': 'Светлая',
     'settings.theme.dark': 'Тёмная',
     'settings.lang': 'Язык',
+    'settings.lang.text': 'Выберите язык',
     'settings.lang.hindi': 'Хинди',
     'settings.lang.arabic': 'Арабский',
     'settings.lang.german': 'Немецкий',

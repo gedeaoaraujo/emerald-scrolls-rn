@@ -30,6 +30,7 @@ export const zhCN: Localization = {
     'settings.theme.light': '浅色',
     'settings.theme.dark': '深色',
     'settings.lang': '语言',
+    'settings.lang.text': '选择语言',
     'settings.lang.hindi': '印地语',
     'settings.lang.arabic': '阿拉伯',
     'settings.lang.german': '德语',
