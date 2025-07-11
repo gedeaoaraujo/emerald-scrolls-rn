@@ -1,4 +1,3 @@
-import { useLocalization } from "../contexts/LocalizationContext"
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { useTheme } from "../theme/ThemeContext"
 import { LightTheme } from "../theme/LightTheme"
@@ -7,6 +6,7 @@ import { RadioButton } from "../components/RadioButton"
 import { useTranslation } from "react-i18next"
 import { usePasswordViewModel } from "../viewmodels/PasswordViewModel"
 import { generateCsvZipped, pickDocument } from "../utils/export-compact"
+import { LanguagesModal } from "../components/LanguagesModal"
 import PasswordDialog from "../components/PasswordDialog"
 import { useState } from "react"
 
@@ -14,12 +14,11 @@ export default function SettingsScreen() {
   const { t } = useTranslation()
   const { theme, selectTheme } = useTheme()
   const { savePassword } = usePasswordViewModel()
-  const { language, selectLang } = useLocalization()
-  
-  const [visible, setVisibility] = useState(false)
+  const [viewModal, setViewModal] = useState(false)
+  const [viewPassword, setViewPassword] = useState(false)
 
   const onOkDialogPressed = (pass: string) => {
-    setVisibility(false)
+    setViewPassword(false)
     savePassword(pass)
   }
 
@@ -62,84 +61,33 @@ export default function SettingsScreen() {
         <Text style={[styles.title, {
           color: theme.colors.title
         }]}>{t('settings.lang')}</Text>
-        <RadioButton
-          label={t('settings.lang.hindi')}
-          style={[styles.text, {
+        <TouchableOpacity
+          onPress={() => setViewModal(true)}>
+          <Text style={[styles.text, {
             color: theme.colors.text
-          }]}
-          onPress={() => selectLang('hiIN')}
-          selected={language === 'hiIN'}
-          />
-        <RadioButton
-          label={t('settings.lang.english')}
-          style={[styles.text, {
-            color: theme.colors.text
-          }]}
-          onPress={() => selectLang('enUS')}
-          selected={language === 'enUS'}
-          />
-        <RadioButton
-          label={t('settings.lang.german')}
-          style={[styles.text, {
-            color: theme.colors.text
-          }]}
-          onPress={() => selectLang('deDE')}
-          selected={language === 'deDE'}
-          />
-        <RadioButton
-          label={t('settings.lang.mandarin')}
-          style={[styles.text, {
-            color: theme.colors.text
-          }]}
-          onPress={() => selectLang('zhCN')}
-          selected={language === 'zhCN'}
-          />
-        <RadioButton
-          label={t('settings.lang.arabic')}
-          style={[styles.text, {
-            color: theme.colors.text
-          }]}
-          onPress={() => selectLang('arAR')}
-          selected={language === 'arAR'}
-          />
-        <RadioButton
-          label={t('settings.lang.spanish')}
-          style={[styles.text, {
-            color: theme.colors.text
-          }]}
-          onPress={() => selectLang('esES')}
-          selected={language === 'esES'}
-          />
-        <RadioButton
-          label={t('settings.lang.russian')}
-          style={[styles.text, {
-            color: theme.colors.text
-          }]}
-          onPress={() => selectLang('ruRU')}
-          selected={language === 'ruRU'}
-          />
-        <RadioButton
-          label={t('settings.lang.portuguese')}
-          style={[styles.text, {
-            color: theme.colors.text
-          }]}
-          onPress={() => selectLang('ptBR')}
-          selected={language === 'ptBR'}
-          />
+          }]}>
+            Mudar linguagem
+          </Text>
+          <LanguagesModal 
+            visibility={viewModal}
+            closeModal={() => setViewModal(false)}/>
+        </TouchableOpacity>
         <View style={styles.divider}/>
       </>
+
       <>
         <Text style={[styles.title, {
           color: theme.colors.title
         }]}>{t('settings.password')}</Text>
         <TouchableOpacity
-          onPress={() => setVisibility(true)}>
+          onPress={() => setViewPassword(true)}>
           <Text style={[styles.text, {
             color: theme.colors.text
           }]}>{t('settings.password.modify')}</Text>
         </TouchableOpacity>
         <View style={styles.divider}/>
       </>
+
       <>
         <Text style={[styles.title, {
           color: theme.colors.title
@@ -157,11 +105,13 @@ export default function SettingsScreen() {
           }]}>{t('backup.import')}</Text>
         </TouchableOpacity>
       </>
+
       <PasswordDialog 
-        visible={visible}
-        onCancel={setVisibility}
+        visible={viewPassword}
+        onCancel={setViewPassword}
         onOk={(pass) => onOkDialogPressed(pass)}
         />
+
     </View>
   )
 }
