@@ -42,6 +42,7 @@ export default function HomeScreen() {
         list={list}
         theme={theme} 
         router={router} 
+        searchable={searchable}
       />
       <FloatActionBtn
         fabStyle={[styles.buttonFab, {

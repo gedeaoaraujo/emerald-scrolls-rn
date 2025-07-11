@@ -8,13 +8,14 @@ import { isEmpty } from "../utils/arrays"
 import { Router } from "expo-router"
 
 type ScrollsListProps = {
-  list: ScrollModel[],
-  theme: ThemeType
-  router: Router,
+  list: ScrollModel[];
+  theme: ThemeType;
+  router: Router;
+  searchable: boolean;
 }
 
 export const ScrollsList = ({ 
-  list, router, theme 
+  list, router, theme, searchable
 }: ScrollsListProps) => {
   const { t } = useTranslation()
 
@@ -61,7 +62,7 @@ export const ScrollsList = ({
 
   return (
     <View style={styles.container}>
-      {isEmpty(list) ? <EmptyList /> : <FilledList />}
+      {isEmpty(list) && !searchable ? <EmptyList /> : <FilledList />}
     </View>
   )
 }
