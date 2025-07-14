@@ -9,6 +9,7 @@ import { generateCsvZipped, pickDocument } from "../utils/export-compact"
 import { LanguagesModal } from "../components/LanguagesModal"
 import PasswordDialog from "../components/PasswordDialog"
 import { useState } from "react"
+import { requestReadPermission, requestWritePermission } from "../utils/permissions"
 
 export default function SettingsScreen() {
   const { t } = useTranslation()
@@ -23,11 +24,13 @@ export default function SettingsScreen() {
   }
 
   const exportScrolls = async () => {
-    await generateCsvZipped(t)
+    const granted = await requestWritePermission()
+    if (granted) await generateCsvZipped(t)
   }
 
   const importScrolls = async () => {
-    await pickDocument(t)
+    const granted = await requestReadPermission()
+    if (granted) await pickDocument(t)
   }
 
   return (
