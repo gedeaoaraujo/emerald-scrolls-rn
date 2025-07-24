@@ -4,8 +4,11 @@ import { useTheme } from '../theme/ThemeContext'
 import { useTranslation } from 'react-i18next'
 import { useEffect, useRef, useState } from 'react'
 import { usePasswordViewModel } from '../viewmodels/PasswordViewModel'
+import { BannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads'
 import { useRouter } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
+
+const adUnitId = __DEV__ ? TestIds.BANNER : "ca-app-pub-1882283420515970~4179656183"
 
 export default function SplashScreen() {
   const { 
@@ -86,6 +89,17 @@ export default function SplashScreen() {
           color: theme.colors.textOnPrimary
         }]}>{dots}</Text>
       </View>
+
+      <BannerAd
+        unitId={adUnitId}
+        size={BannerAdSize.LARGE_BANNER}
+        requestOptions={{
+          networkExtras: {
+            collapsible: 'bottom',
+          },
+        }}
+      />
+
       <StatusBar style='light' />
     </View>
   )

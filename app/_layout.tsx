@@ -6,6 +6,7 @@ import { ScrollsProvider } from '../contexts/ScrollsContext';
 import EditScrollMenu from '../components/EditScrollMenu';
 import { migrateDbIfNeeded } from '../database/migration';
 import ViewScrollMenu from '../components/ViewScrollMenu';
+import mobileAds from 'react-native-google-mobile-ads';
 import HomeMenu from '../components/HomeMenu';
 import { useTranslation } from 'react-i18next';
 import { SQLiteProvider } from 'expo-sqlite';
@@ -22,6 +23,7 @@ function MainContent() {
   useEffect(() => { 
     initLanguage()
     initTheme() 
+    mobileAds().initialize()
   }, [])
 
   return (

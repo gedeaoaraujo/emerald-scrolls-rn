@@ -7,7 +7,7 @@ import { ScrollModel } from '../model/ScrollModel';
 import * as ExpoDocumentPicker from 'expo-document-picker';
 import { DocumentPickerAsset } from 'expo-document-picker';
 
-export const generateCsvZipped = async (t: any) => {
+export const generateCsvZipped = async (t: any, callback: ()=>void) => {
   try {
     const date = Date.now().toString();
     const header = "id,title,date,text";
@@ -30,6 +30,8 @@ export const generateCsvZipped = async (t: any) => {
     Dialog.notify(t, 'backup.export.saved', finalName);
   } catch (error) {
     console.log('Error on generateCsvZipped:', error);
+  } finally {
+    callback();
   }
 }
 
@@ -56,7 +58,7 @@ const readCsvZipped = async (
   }
 }
 
-export const pickDocument = async (t: any) => {
+export const pickDocument = async (t: any, callback: ()=>void) => {
   try {
     const result = await ExpoDocumentPicker.getDocumentAsync({
       multiple: false,
@@ -68,5 +70,7 @@ export const pickDocument = async (t: any) => {
     readCsvZipped(t, result.assets[0])
   } catch (error) {
     console.error('Error on pickDocument:', error);
+  } finally {
+    callback()
   }
 };

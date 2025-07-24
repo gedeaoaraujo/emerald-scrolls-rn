@@ -8,8 +8,16 @@ import { usePasswordViewModel } from "../viewmodels/PasswordViewModel"
 import { generateCsvZipped, pickDocument } from "../utils/export-compact"
 import { LanguagesModal } from "../components/LanguagesModal"
 import PasswordDialog from "../components/PasswordDialog"
-import { useState } from "react"
 import { requestReadPermission, requestWritePermission } from "../utils/permissions"
+import { useEffect, useState } from "react"
+import { 
+  AdEventType, InterstitialAd, TestIds, BannerAd, BannerAdSize
+} from "react-native-google-mobile-ads"
+
+const adUnitId = __DEV__ ? TestIds.BANNER : "ca-app-pub-1882283420515970~4179656183"
+const interstitial = InterstitialAd.createForAdRequest(TestIds.INTERSTITIAL, {
+  requestNonPersonalizedAdsOnly: true
+})
 
 export default function SettingsScreen() {
   const { t } = useTranslation()
@@ -25,13 +33,30 @@ export default function SettingsScreen() {
 
   const exportScrolls = async () => {
     const granted = await requestWritePermission()
-    if (granted) await generateCsvZipped(t)
+    if (granted) await generateCsvZipped(t, () => {
+      interstitial.show()
+    })
   }
 
   const importScrolls = async () => {
     const granted = await requestReadPermission()
-    if (granted) await pickDocument(t)
+    if (granted) await pickDocument(t, ()=>{
+      interstitial.show()
+    })
   }
+
+  const loadInterstitial = () => {
+    const onCloseAd = interstitial.addAdEventListener(
+      AdEventType.CLOSED, ()=>{ interstitial.load() }
+    )
+    interstitial.load()
+    return () => { onCloseAd() }
+  }
+
+  useEffect(()=>{
+    const onUnsub = loadInterstitial()
+    return onUnsub
+  }, [])
 
   return (
     <View style={[styles.container, {
@@ -114,6 +139,19 @@ export default function SettingsScreen() {
         onCancel={setViewPassword}
         onOk={(pass) => onOkDialogPressed(pass)}
         />
+
+      <View style={{ width: '100%', padding: 20 }}>
+        <View style={{ height: 20 }}/>
+        <BannerAd
+          unitId={adUnitId}
+          size={BannerAdSize.LARGE_BANNER}
+          requestOptions={{
+            networkExtras: {
+              collapsible: 'bottom',
+            },
+          }}
+        />
+      </View>
 
     </View>
   )
