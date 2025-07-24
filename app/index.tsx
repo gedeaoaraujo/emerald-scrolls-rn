@@ -11,14 +11,11 @@ import { StatusBar } from 'expo-status-bar'
 const adUnitId = __DEV__ ? TestIds.BANNER : "ca-app-pub-1882283420515970~4179656183"
 
 export default function SplashScreen() {
-  const { 
-    checkPassword,
-  } = usePasswordViewModel()
-
   const { theme } = useTheme()
   const { t } = useTranslation()
 
   const [dots, setDots] = useState('')
+  const { checkPassword } = usePasswordViewModel()
   const translateY = useRef(new Animated.Value(0)).current
 
   const startChecking = async () => {
