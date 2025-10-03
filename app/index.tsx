@@ -4,11 +4,11 @@ import { useTheme } from '../theme/ThemeContext'
 import { useTranslation } from 'react-i18next'
 import { useEffect, useRef, useState } from 'react'
 import { usePasswordViewModel } from '../viewmodels/PasswordViewModel'
-import { BannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads'
+// import { BannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads'
 import { useRouter } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
 
-const adBannerId = __DEV__ ? TestIds.BANNER : "ca-app-pub-1882283420515970/3117408843"
+// const adBannerId = __DEV__ ? TestIds.BANNER : "ca-app-pub-1882283420515970/3117408843"
 
 export default function SplashScreen() {
   const { theme } = useTheme()
@@ -87,10 +87,10 @@ export default function SplashScreen() {
         }]}>{dots}</Text>
       </View>
 
-      <BannerAd
+      {/* <BannerAd
         unitId={adBannerId}
         size={BannerAdSize.LARGE_BANNER}
-      />
+      /> */}
 
       <StatusBar style='light' />
     </View>

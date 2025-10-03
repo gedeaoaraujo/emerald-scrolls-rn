@@ -10,16 +10,16 @@ import { LanguagesModal } from "../components/LanguagesModal"
 import PasswordDialog from "../components/PasswordDialog"
 import { requestReadPermission, requestWritePermission } from "../utils/permissions"
 import { useEffect, useState } from "react"
-import { 
-  AdEventType, InterstitialAd, TestIds, BannerAd, BannerAdSize
-} from "react-native-google-mobile-ads"
+// import { 
+//   AdEventType, InterstitialAd, TestIds, BannerAd, BannerAdSize
+// } from "react-native-google-mobile-ads"
 
-const adBannerId = __DEV__ ? TestIds.BANNER : "ca-app-pub-1882283420515970/3105467416"
-const adInterstitialId = __DEV__ ? TestIds.INTERSTITIAL : "ca-app-pub-1882283420515970/1792385746"
+// const adBannerId = __DEV__ ? TestIds.BANNER : "ca-app-pub-1882283420515970/3105467416"
+// const adInterstitialId = __DEV__ ? TestIds.INTERSTITIAL : "ca-app-pub-1882283420515970/1792385746"
 
-const interstitial = InterstitialAd.createForAdRequest(adInterstitialId, {
-  requestNonPersonalizedAdsOnly: true
-})
+// const interstitial = InterstitialAd.createForAdRequest(adInterstitialId, {
+//   requestNonPersonalizedAdsOnly: true
+// })
 
 export default function SettingsScreen() {
   const { t } = useTranslation()
@@ -36,23 +36,23 @@ export default function SettingsScreen() {
   const exportScrolls = async () => {
     const granted = await requestWritePermission()
     if (granted) await generateCsvZipped(t, () => {
-      interstitial.show()
+      // interstitial.show()
     })
   }
 
   const importScrolls = async () => {
     const granted = await requestReadPermission()
     if (granted) await pickDocument(t, ()=>{
-      interstitial.show()
+      // interstitial.show()
     })
   }
 
   const loadInterstitial = () => {
-    const onCloseAd = interstitial.addAdEventListener(
-      AdEventType.CLOSED, ()=>{ interstitial.load() }
-    )
-    interstitial.load()
-    return () => { onCloseAd() }
+    // const onCloseAd = interstitial.addAdEventListener(
+    //   AdEventType.CLOSED, ()=>{ interstitial.load() }
+    // )
+    // interstitial.load()
+    return () => { /*onCloseAd()*/ }
   }
 
   useEffect(()=>{
@@ -142,7 +142,7 @@ export default function SettingsScreen() {
         onOk={(pass) => onOkDialogPressed(pass)}
         />
 
-      <View style={{ width: '100%', padding: 20 }}>
+      {/* <View style={{ width: '100%', padding: 20 }}>
         <View style={{ height: 20 }}/>
         <BannerAd
           unitId={adBannerId}
@@ -153,7 +153,7 @@ export default function SettingsScreen() {
             },
           }}
         />
-      </View>
+      </View> */}
 
     </View>
   )
