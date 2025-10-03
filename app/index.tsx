@@ -26,7 +26,7 @@ export default function SplashScreen() {
       } else {
         router.replace('/password')
       }
-    }, 2_000);
+    }, 3_000);
   }
 
   useEffect(() => {
