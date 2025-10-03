@@ -14,8 +14,10 @@ import {
   AdEventType, InterstitialAd, TestIds, BannerAd, BannerAdSize
 } from "react-native-google-mobile-ads"
 
-const adUnitId = __DEV__ ? TestIds.BANNER : "ca-app-pub-1882283420515970~4179656183"
-const interstitial = InterstitialAd.createForAdRequest(TestIds.INTERSTITIAL, {
+const adBannerId = __DEV__ ? TestIds.BANNER : "ca-app-pub-1882283420515970/3105467416"
+const adInterstitialId = __DEV__ ? TestIds.INTERSTITIAL : "ca-app-pub-1882283420515970/1792385746"
+
+const interstitial = InterstitialAd.createForAdRequest(adInterstitialId, {
   requestNonPersonalizedAdsOnly: true
 })
 
@@ -143,11 +145,11 @@ export default function SettingsScreen() {
       <View style={{ width: '100%', padding: 20 }}>
         <View style={{ height: 20 }}/>
         <BannerAd
-          unitId={adUnitId}
+          unitId={adBannerId}
           size={BannerAdSize.LARGE_BANNER}
           requestOptions={{
             networkExtras: {
-              collapsible: 'bottom',
+              collapsible: 'top',
             },
           }}
         />

@@ -8,7 +8,7 @@ import { BannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads'
 import { useRouter } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
 
-const adUnitId = __DEV__ ? TestIds.BANNER : "ca-app-pub-1882283420515970~4179656183"
+const adBannerId = __DEV__ ? TestIds.BANNER : "ca-app-pub-1882283420515970/3117408843"
 
 export default function SplashScreen() {
   const { theme } = useTheme()
@@ -88,13 +88,8 @@ export default function SplashScreen() {
       </View>
 
       <BannerAd
-        unitId={adUnitId}
+        unitId={adBannerId}
         size={BannerAdSize.LARGE_BANNER}
-        requestOptions={{
-          networkExtras: {
-            collapsible: 'bottom',
-          },
-        }}
       />
 
       <StatusBar style='light' />
